@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/components.php';
 
 $data = site_data();
 $title = 'Kontak - Yayasan Cendekia';
-$description = 'Hubungi Yayasan Cendekia dan unit sekolah TK, SD, SMP, SMK, PAUD, serta Cabang Rosari.';
+$description = 'Hubungi Yayasan Cendekia dan unit sekolah TK, SD, SMP, SMK, PAUD, serta Cabang Lorasi.';
 
 require __DIR__ . '/includes/header.php';
 ?>
