@@ -39,7 +39,8 @@ require __DIR__ . '/includes/header.php';
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Kontak WhatsApp tiap unit.</h2>
             </div>
             <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                <?php foreach ($data['schools'] as $school): ?>
+                <?php foreach ($data['schools'] as $key => $school): ?>
+                    <?php if ($key === 'rosari') continue; ?>
                     <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
                         <p class="text-sm font-bold text-teal-700"><?= e($school['level']); ?></p>
                         <h3 class="mt-2 text-xl font-bold text-slate-950"><?= e($school['name']); ?></h3>
