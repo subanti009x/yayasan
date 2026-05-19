@@ -4,7 +4,7 @@ return [
     'foundation' => [
         'name' => 'Yayasan Cendekia',
         'tagline' => 'Membangun generasi cerdas, berkarakter, dan siap masa depan.',
-        'description' => 'Yayasan Cendekia menaungi layanan pendidikan dari PAUD, TK, SD, SMP, SMK, hingga Cabang Lorasi dengan lingkungan belajar yang hangat, disiplin, dan relevan bagi anak Indonesia.',
+        'description' => 'Yayasan Cendekia menaungi layanan pendidikan dari PAUD, TK, SD, SMP, SMK, hingga Cabang Losari dengan lingkungan belajar yang hangat, disiplin, dan relevan bagi anak Indonesia.',
         'phone' => '6281234567800',
         'email' => 'info@yayasancendekia.sch.id',
         'address' => 'Jl. Dukuh Semar No.34, Kecapi, Kec. Harjamukti, Kota Cirebon, Jawa Barat 45142',
@@ -94,11 +94,11 @@ return [
             'accent' => 'amber',
         ],
         'rosari' => [
-            'name' => 'Cabang Lorasi',
-            'short_name' => 'Lorasi',
+            'name' => 'Cabang Losari',
+            'short_name' => 'Losari',
             'page' => 'rosari.php',
             'level' => 'Cabang sekolah',
-            'description' => 'Cabang Lorasi menghadirkan layanan pendidikan Yayasan Cendekia yang dekat dengan keluarga, rapi dalam pembinaan, dan aktif membangun komunitas.',
+            'description' => 'Cabang Losari menghadirkan layanan pendidikan Yayasan Cendekia yang dekat dengan keluarga, rapi dalam pembinaan, dan aktif membangun komunitas.',
             'phone' => '6281234567805',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
