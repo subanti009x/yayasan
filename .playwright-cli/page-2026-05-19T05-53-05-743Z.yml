@@ -1,0 +1,303 @@
+- generic [ref=e1]:
+  - iframe [ref=e2]:
+    
+  - generic [ref=e3]: Dukungan pembaca layar diaktifkan.
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - link "Beranda Formulir" [ref=e344] [cursor=pointer]:
+          - img [ref=e13]
+        - textbox "Judul dokumen" [ref=e345]: Pendaftaran Yayasan Cendekia
+        - generic "Menyimpan…, Setiap perubahan yang Anda buat tersimpan secara otomatis di Drive.,Terakhir diedit beberapa detik lalu" [ref=e1577]: Menyimpan…
+      - generic [ref=e26]:
+        - button "Sesuaikan Tema" [ref=e346] [cursor=pointer]
+        - button "Urungkan" [ref=e347] [cursor=pointer]
+        - button "Salin link responden" [ref=e348] [cursor=pointer]
+        - button "Bagikan" [ref=e349] [cursor=pointer]
+        - button "Publikasikan" [ref=e350] [cursor=pointer]
+        - button "Lainnya" [ref=e351] [cursor=pointer]
+        - 'button "Akun Google: riski suleman (riskisuleman2011@gmail.com)" [ref=e352] [cursor=pointer]':
+          - img [ref=e67]
+    - tablist [ref=e71]:
+      - tab "Pertanyaan" [selected] [ref=e353] [cursor=pointer]:
+        - generic [ref=e73]: Pertanyaan
+      - tab "Jawaban" [ref=e354] [cursor=pointer]:
+        - generic [ref=e76]: Jawaban
+      - tab "Setelan" [ref=e355] [cursor=pointer]:
+        - generic [ref=e78]: Setelan
+  - generic [ref=e81]:
+    - generic [ref=e87]:
+      - generic [ref=e92]:
+        - generic [ref=e95]:
+          - textbox "Judul formulir" [ref=e356]
+          - toolbar "Opsi format":
+            - button "Tebal" [ref=e357] [cursor=pointer]:
+              - generic [ref=e103]: 
+            - button "Miring" [ref=e358] [cursor=pointer]:
+              - generic [ref=e107]: 
+            - button "Garis bawah" [ref=e359] [cursor=pointer]:
+              - generic [ref=e111]: 
+            - button "Sisipkan link" [ref=e360] [cursor=pointer]:
+              - generic [ref=e115]: 
+            - button "Menghapus format" [ref=e361] [cursor=pointer]:
+              - generic [ref=e119]: 
+        - generic [ref=e122]:
+          - generic [ref=e123]:
+            - generic: Deskripsi formulir
+            - textbox "Deskripsi formulir" [ref=e362]
+          - toolbar "Opsi format":
+            - button "Tebal" [ref=e363] [cursor=pointer]:
+              - generic [ref=e130]: 
+            - button "Miring" [ref=e364] [cursor=pointer]:
+              - generic [ref=e134]: 
+            - button "Garis bawah" [ref=e365] [cursor=pointer]:
+              - generic [ref=e138]: 
+            - button "Sisipkan link" [ref=e366] [cursor=pointer]:
+              - generic [ref=e142]: 
+            - button "Daftar bernomor" [ref=e367] [cursor=pointer]:
+              - generic [ref=e146]: 
+            - button "Daftar berbutir" [ref=e368] [cursor=pointer]:
+              - generic [ref=e150]: 
+            - button "Menghapus format" [ref=e369] [cursor=pointer]:
+              - generic [ref=e154]: 
+      - generic [ref=e155]:
+        - generic [ref=e163]:
+          - generic [ref=e169]:
+            - generic [ref=e170]:
+              - textbox "Pertanyaan" [ref=e370]
+              - toolbar "Opsi format":
+                - button "Tebal" [ref=e371] [cursor=pointer]:
+                  - generic [ref=e178]: 
+                - button "Miring" [ref=e372] [cursor=pointer]:
+                  - generic [ref=e182]: 
+                - button "Garis bawah" [ref=e373] [cursor=pointer]:
+                  - generic [ref=e186]: 
+                - button "Sisipkan link" [ref=e374] [cursor=pointer]:
+                  - generic [ref=e190]: 
+                - button "Menghapus format" [ref=e375] [cursor=pointer]:
+                  - generic [ref=e194]: 
+            - generic [ref=e461]: "*"
+          - generic [ref=e446]:
+            - generic: Teks jawaban singkat
+            - textbox "Teks jawaban singkat" [disabled] [ref=e448]
+        - generic [ref=e469]:
+          - generic [ref=e478]:
+            - generic [ref=e479]:
+              - textbox "Pertanyaan" [ref=e481]
+              - toolbar "Opsi format":
+                - button "Tebal" [ref=e483] [cursor=pointer]:
+                  - generic [ref=e486]: 
+                - button "Miring" [ref=e487] [cursor=pointer]:
+                  - generic [ref=e490]: 
+                - button "Garis bawah" [ref=e491] [cursor=pointer]:
+                  - generic [ref=e494]: 
+                - button "Sisipkan link" [ref=e495] [cursor=pointer]:
+                  - generic [ref=e498]: 
+                - button "Menghapus format" [ref=e499] [cursor=pointer]:
+                  - generic [ref=e502]: 
+            - generic [ref=e713]: "*"
+          - list "opsi pertanyaan" [ref=e567]:
+            - listitem "opsi pertanyaan" [ref=e568]:
+              - generic [ref=e569]:
+                - generic [ref=e572]:
+                  - generic:
+                    - radio [disabled]
+                - textbox "nilai opsi" [ref=e580]: Laki-laki
+            - listitem "opsi pertanyaan" [ref=e677]:
+              - generic [ref=e678]:
+                - generic [ref=e681]:
+                  - generic:
+                    - radio [disabled]
+                - textbox "nilai opsi" [ref=e689]: Perempuan
+        - generic [ref=e721]:
+          - generic [ref=e730]:
+            - generic [ref=e731]:
+              - textbox "Pertanyaan" [ref=e733]
+              - toolbar "Opsi format":
+                - button "Tebal" [ref=e737] [cursor=pointer]:
+                  - generic [ref=e740]: 
+                - button "Miring" [ref=e741] [cursor=pointer]:
+                  - generic [ref=e744]: 
+                - button "Garis bawah" [ref=e745] [cursor=pointer]:
+                  - generic [ref=e748]: 
+                - button "Sisipkan link" [ref=e749] [cursor=pointer]:
+                  - generic [ref=e752]: 
+                - button "Menghapus format" [ref=e753] [cursor=pointer]:
+                  - generic [ref=e756]: 
+            - generic [ref=e978]: "*"
+          - generic [ref=e967]:
+            - generic: Teks jawaban singkat
+            - textbox "Teks jawaban singkat" [disabled] [ref=e969]
+        - generic [ref=e986]:
+          - generic [ref=e995]:
+            - generic [ref=e996]:
+              - textbox "Pertanyaan" [ref=e998]
+              - toolbar "Opsi format":
+                - button "Tebal" [ref=e1002] [cursor=pointer]:
+                  - generic [ref=e1005]: 
+                - button "Miring" [ref=e1006] [cursor=pointer]:
+                  - generic [ref=e1009]: 
+                - button "Garis bawah" [ref=e1010] [cursor=pointer]:
+                  - generic [ref=e1013]: 
+                - button "Sisipkan link" [ref=e1014] [cursor=pointer]:
+                  - generic [ref=e1017]: 
+                - button "Menghapus format" [ref=e1018] [cursor=pointer]:
+                  - generic [ref=e1021]: 
+            - generic [ref=e1161]: "*"
+          - generic [ref=e1149]:
+            - generic: Teks jawaban panjang
+            - textbox "Teks jawaban panjang" [disabled] [ref=e1151]
+        - generic [ref=e1169]:
+          - generic [ref=e1178]:
+            - generic [ref=e1179]:
+              - textbox "Pertanyaan" [ref=e1181]
+              - toolbar "Opsi format":
+                - button "Tebal" [ref=e1185] [cursor=pointer]:
+                  - generic [ref=e1188]: 
+                - button "Miring" [ref=e1189] [cursor=pointer]:
+                  - generic [ref=e1192]: 
+                - button "Garis bawah" [ref=e1193] [cursor=pointer]:
+                  - generic [ref=e1196]: 
+                - button "Sisipkan link" [ref=e1197] [cursor=pointer]:
+                  - generic [ref=e1200]: 
+                - button "Menghapus format" [ref=e1201] [cursor=pointer]:
+                  - generic [ref=e1204]: 
+            - generic [ref=e1344]: "*"
+          - generic [ref=e1332]:
+            - generic: Teks jawaban singkat
+            - textbox "Teks jawaban singkat" [disabled] [ref=e1334]
+        - generic [ref=e1352]:
+          - generic [ref=e1358]:
+            - generic [ref=e1362]:
+              - textbox "Pertanyaan" [ref=e1364]
+              - toolbar "Opsi format":
+                - button "Tebal" [ref=e1368] [cursor=pointer]:
+                  - generic [ref=e1371]: 
+                - button "Miring" [ref=e1372] [cursor=pointer]:
+                  - generic [ref=e1375]: 
+                - button "Garis bawah" [ref=e1376] [cursor=pointer]:
+                  - generic [ref=e1379]: 
+                - button "Sisipkan link" [ref=e1380] [cursor=pointer]:
+                  - generic [ref=e1383]: 
+                - button "Menghapus format" [ref=e1384] [cursor=pointer]:
+                  - generic [ref=e1387]: 
+            - button "Tambahkan gambar sebaris" [ref=e1389] [cursor=pointer]
+            - generic [ref=e1395]:
+              - generic [ref=e1396]: Jenis Pertanyaan
+              - listbox "Jenis pertanyaan" [ref=e1397] [cursor=pointer]:
+                - option "Jawaban singkat" [active] [selected] [ref=e1581]:
+                  - generic [ref=e1401]: Jawaban singkat
+                - option "Paragraf":
+                  - generic [ref=e1405]: Paragraf
+                - option "Pilihan ganda":
+                  - generic [ref=e1410]: Pilihan ganda
+                - option "Kotak Centang":
+                  - generic [ref=e1414]: Kotak Centang
+                - option "Drop-down":
+                  - generic [ref=e1418]: Drop-down
+                - option "Upload file":
+                  - generic [ref=e1422]: Upload file
+                - option "Skala linier":
+                  - generic [ref=e1426]: Skala linier
+                - option "Rating":
+                  - generic [ref=e1430]: Rating
+                - option "Kisi pilihan ganda":
+                  - generic [ref=e1434]: Kisi pilihan ganda
+                - option "Petak kotak centang":
+                  - generic [ref=e1438]: Petak kotak centang
+                - option "Tanggal":
+                  - generic [ref=e1442]: Tanggal
+                - option "Waktu":
+                  - generic [ref=e1446]: Waktu
+          - generic [ref=e1447]:
+            - generic [ref=e1585]:
+              - generic: Teks jawaban singkat
+              - textbox "Teks jawaban singkat" [disabled] [ref=e1587]
+            - generic [ref=e1484]:
+              - button "Buat duplikat pertanyaan" [ref=e1486] [cursor=pointer]
+              - button "Hapus pertanyaan" [ref=e1492] [cursor=pointer]
+              - generic [ref=e1498]:
+                - generic [ref=e1500]: Wajib diisi
+                - checkbox "Wajib diisi" [ref=e1501] [cursor=pointer]
+              - button "Opsi lain" [ref=e1505] [cursor=pointer]
+    - iframe [ref=e1590]:
+      - generic [ref=f44e5]:
+        - generic [ref=f44e6]:
+          - generic [ref=f44e8]:
+            - heading "Pendaftaran Yayasan Cendekia" [level=1] [ref=f44e12]: Pendaftaran Yayasan Cendekia
+            - generic [ref=f44e15]: "* Menunjukkan pertanyaan yang wajib diisi"
+          - list [ref=f44e16]:
+            - listitem [ref=f44e17]:
+              - generic [ref=f44e18]:
+                - heading "Nama lengkap Pertanyaan wajib" [level=3] [ref=f44e22]:
+                  - generic [ref=f44e23]: Nama lengkap
+                  - generic "Pertanyaan wajib" [ref=f44e24]: "*"
+                - textbox "Nama lengkap" [disabled] [ref=f44e26]
+            - listitem [ref=f44e27]:
+              - generic [ref=f44e28]:
+                - heading "Jenis kelamin Pertanyaan wajib" [level=3] [ref=f44e32]:
+                  - generic [ref=f44e33]: Jenis kelamin
+                  - generic "Pertanyaan wajib" [ref=f44e34]: "*"
+                - radiogroup "Jenis kelamin Pertanyaan wajib" [ref=f44e36]:
+                  - generic [ref=f44e37]:
+                    - generic [ref=f44e40]:
+                      - generic [ref=f44e41]:
+                        - radio "Laki-laki" [disabled]
+                      - generic [ref=f44e44]: Laki-laki
+                    - generic [ref=f44e47]:
+                      - generic [ref=f44e48]:
+                        - radio "Perempuan" [disabled]
+                      - generic [ref=f44e51]: Perempuan
+            - listitem [ref=f44e52]:
+              - generic [ref=f44e53]:
+                - heading "Umur / tanggal lahir Pertanyaan wajib" [level=3] [ref=f44e57]:
+                  - generic [ref=f44e58]: Umur / tanggal lahir
+                  - generic "Pertanyaan wajib" [ref=f44e59]: "*"
+                - textbox "Umur / tanggal lahir" [disabled] [ref=f44e61]
+            - listitem [ref=f44e62]:
+              - generic [ref=f44e63]:
+                - heading "Alamat Pertanyaan wajib" [level=3] [ref=f44e67]:
+                  - generic [ref=f44e68]: Alamat
+                  - generic "Pertanyaan wajib" [ref=f44e69]: "*"
+                - textbox "Alamat" [disabled] [ref=f44e71]
+            - listitem [ref=f44e72]:
+              - generic [ref=f44e73]:
+                - heading "Nomor HP Pertanyaan wajib" [level=3] [ref=f44e77]:
+                  - generic [ref=f44e78]: Nomor HP
+                  - generic "Pertanyaan wajib" [ref=f44e79]: "*"
+                - textbox "Nomor HP" [disabled] [ref=f44e81]
+            - listitem [ref=f44e82]:
+              - generic [ref=f44e83]:
+                - heading "Pilihan sekolah" [level=3] [ref=f44e87]:
+                  - generic [ref=f44e88]: Pilihan sekolah
+                - radiogroup "Pilihan sekolah" [ref=f44e90]:
+                  - generic [ref=f44e94]:
+                    - generic [ref=f44e95]:
+                      - radio "Opsi 1" [disabled]
+                    - generic [ref=f44e98]: Opsi 1
+          - generic [ref=f44e99]:
+            - generic [ref=f44e100]:
+              - button "Submit" [disabled] [ref=f44e102]:
+                - generic [ref=f44e105]: Kirim
+              - button "Kosongkan formulir" [disabled] [ref=f44e107]:
+                - generic [ref=f44e110]: Kosongkan formulir
+            - generic [ref=f44e111]: Jangan pernah mengirimkan sandi melalui Google Formulir.
+        - generic [ref=f44e113]:
+          - generic [ref=f44e114]:
+            - link "GoogleFormulir" [ref=f44e116] [cursor=pointer]:
+              - /url: //www.google.com/forms/about/?utm_source=product&utm_medium=forms_logo&utm_campaign=forms
+              - img "Google" [ref=f44e117]
+              - text: Formulir
+            - generic [ref=f44e118]: Konten ini tidak dibuat atau didukung oleh Google.
+          - button "Lainnya" [ref=f44e122] [cursor=pointer]
+    - generic [ref=e391]:
+      - button "Tambahkan pertanyaan" [ref=e393] [cursor=pointer]
+      - button "Impor pertanyaan" [ref=e399] [cursor=pointer]
+      - button "Tambahkan judul dan deskripsi" [ref=e405] [cursor=pointer]
+      - button "Tambahkan gambar" [ref=e411] [cursor=pointer]
+      - button "Tambahkan video" [ref=e417] [cursor=pointer]
+      - button "Tambahkan bagian" [ref=e423] [cursor=pointer]
+  - iframe [ref=e216]:
+    
+  - generic [ref=e218]: .
+  - generic [ref=e220]: Banner disembunyikan

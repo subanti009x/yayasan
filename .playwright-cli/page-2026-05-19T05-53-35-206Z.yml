@@ -1,0 +1,221 @@
+- generic [ref=e1]:
+  - iframe [ref=e2]:
+    
+  - generic [ref=e3]: Dukungan pembaca layar diaktifkan.
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - link [ref=e1594] [cursor=pointer]:
+          - img [ref=e13]
+        - textbox [ref=e1595]: Pendaftaran Yayasan Cendekia
+        - generic [ref=e1596]: Semua perubahan telah disimpan di Drive
+      - generic [ref=e26]:
+        - button [disabled] [ref=e1597]
+        - button [disabled] [ref=e1598]
+        - generic [ref=e39]:
+          - button [expanded] [ref=e1599] [cursor=pointer]
+          - generic [ref=e1724]:
+            - generic [ref=e1725]: Salin link responden
+            - textbox [ref=e1732]: https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/viewform?usp=publish-editor
+            - generic [ref=e1735]:
+              - generic [ref=e1738]:
+                - checkbox [ref=e1739] [cursor=pointer]
+                - generic [ref=e1745]: Persingkat URL
+              - button [ref=e1747] [cursor=pointer]:
+                - generic [ref=e1751]: Salin
+        - button [ref=e1600] [cursor=pointer]
+        - button [ref=e1753] [cursor=pointer]
+        - button [ref=e1602] [cursor=pointer]
+        - button [ref=e1603] [cursor=pointer]:
+          - img [ref=e67]
+    - tablist [ref=e71]:
+      - tab [selected] [ref=e1604] [cursor=pointer]:
+        - generic [ref=e73]: Pertanyaan
+      - tab [ref=e1605] [cursor=pointer]:
+        - generic [ref=e76]: Jawaban
+      - tab [ref=e1606] [cursor=pointer]:
+        - generic [ref=e78]: Setelan
+  - generic [ref=e87]:
+    - generic [ref=e92]:
+      - generic [ref=e95]:
+        - textbox [ref=e1607]
+        - button [ref=e1608] [cursor=pointer]:
+          - generic [ref=e103]: 
+        - button [ref=e1609] [cursor=pointer]:
+          - generic [ref=e107]: 
+        - button [ref=e1610] [cursor=pointer]:
+          - generic [ref=e111]: 
+        - button [ref=e1611] [cursor=pointer]:
+          - generic [ref=e115]: 
+        - button [ref=e1612] [cursor=pointer]:
+          - generic [ref=e119]: 
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - generic: Deskripsi formulir
+          - textbox [ref=e1613]
+        - button [ref=e1614] [cursor=pointer]:
+          - generic [ref=e130]: 
+        - button [ref=e1615] [cursor=pointer]:
+          - generic [ref=e134]: 
+        - button [ref=e1616] [cursor=pointer]:
+          - generic [ref=e138]: 
+        - button [ref=e1617] [cursor=pointer]:
+          - generic [ref=e142]: 
+        - button [ref=e1618] [cursor=pointer]:
+          - generic [ref=e146]: 
+        - button [ref=e1619] [cursor=pointer]:
+          - generic [ref=e150]: 
+        - button [ref=e1620] [cursor=pointer]:
+          - generic [ref=e154]: 
+    - generic [ref=e155]:
+      - generic [ref=e163]:
+        - generic [ref=e169]:
+          - generic [ref=e170]:
+            - textbox [ref=e1621]
+            - button [ref=e1622] [cursor=pointer]:
+              - generic [ref=e178]: 
+            - button [ref=e1623] [cursor=pointer]:
+              - generic [ref=e182]: 
+            - button [ref=e1624] [cursor=pointer]:
+              - generic [ref=e186]: 
+            - button [ref=e1625] [cursor=pointer]:
+              - generic [ref=e190]: 
+            - button [ref=e1626] [cursor=pointer]:
+              - generic [ref=e194]: 
+          - generic [ref=e461]: "*"
+        - generic [ref=e446]:
+          - generic: Teks jawaban singkat
+          - textbox [disabled] [ref=e1627]
+      - generic [ref=e469]:
+        - generic [ref=e478]:
+          - generic [ref=e479]:
+            - textbox [ref=e1628]
+            - button [ref=e1629] [cursor=pointer]:
+              - generic [ref=e486]: 
+            - button [ref=e1630] [cursor=pointer]:
+              - generic [ref=e490]: 
+            - button [ref=e1631] [cursor=pointer]:
+              - generic [ref=e494]: 
+            - button [ref=e1632] [cursor=pointer]:
+              - generic [ref=e498]: 
+            - button [ref=e1633] [cursor=pointer]:
+              - generic [ref=e502]: 
+          - generic [ref=e713]: "*"
+        - list [ref=e1634]:
+          - listitem [ref=e1635]:
+            - generic [ref=e569]:
+              - generic [ref=e572]:
+                - generic:
+                  - radio [disabled]
+              - textbox [ref=e1636]: Laki-laki
+          - listitem [ref=e1637]:
+            - generic [ref=e678]:
+              - generic [ref=e681]:
+                - generic:
+                  - radio [disabled]
+              - textbox [ref=e1638]: Perempuan
+      - generic [ref=e721]:
+        - generic [ref=e730]:
+          - generic [ref=e731]:
+            - textbox [ref=e1639]
+            - button [ref=e1640] [cursor=pointer]:
+              - generic [ref=e740]: 
+            - button [ref=e1641] [cursor=pointer]:
+              - generic [ref=e744]: 
+            - button [ref=e1642] [cursor=pointer]:
+              - generic [ref=e748]: 
+            - button [ref=e1643] [cursor=pointer]:
+              - generic [ref=e752]: 
+            - button [ref=e1644] [cursor=pointer]:
+              - generic [ref=e756]: 
+          - generic [ref=e978]: "*"
+        - generic [ref=e967]:
+          - generic: Teks jawaban singkat
+          - textbox [disabled] [ref=e1645]
+      - generic [ref=e986]:
+        - generic [ref=e995]:
+          - generic [ref=e996]:
+            - textbox [ref=e1646]
+            - button [ref=e1647] [cursor=pointer]:
+              - generic [ref=e1005]: 
+            - button [ref=e1648] [cursor=pointer]:
+              - generic [ref=e1009]: 
+            - button [ref=e1649] [cursor=pointer]:
+              - generic [ref=e1013]: 
+            - button [ref=e1650] [cursor=pointer]:
+              - generic [ref=e1017]: 
+            - button [ref=e1651] [cursor=pointer]:
+              - generic [ref=e1021]: 
+          - generic [ref=e1161]: "*"
+        - generic [ref=e1149]:
+          - generic: Teks jawaban panjang
+          - textbox [disabled] [ref=e1652]
+      - generic [ref=e1169]:
+        - generic [ref=e1178]:
+          - generic [ref=e1179]:
+            - textbox [ref=e1653]
+            - button [ref=e1654] [cursor=pointer]:
+              - generic [ref=e1188]: 
+            - button [ref=e1655] [cursor=pointer]:
+              - generic [ref=e1192]: 
+            - button [ref=e1656] [cursor=pointer]:
+              - generic [ref=e1196]: 
+            - button [ref=e1657] [cursor=pointer]:
+              - generic [ref=e1200]: 
+            - button [ref=e1658] [cursor=pointer]:
+              - generic [ref=e1204]: 
+          - generic [ref=e1344]: "*"
+        - generic [ref=e1332]:
+          - generic: Teks jawaban singkat
+          - textbox [disabled] [ref=e1659]
+      - generic [ref=e1352]:
+        - generic [ref=e1358]:
+          - generic [ref=e1362]:
+            - textbox [ref=e1660]
+            - button [ref=e1661] [cursor=pointer]:
+              - generic [ref=e1371]: 
+            - button [ref=e1662] [cursor=pointer]:
+              - generic [ref=e1375]: 
+            - button [ref=e1663] [cursor=pointer]:
+              - generic [ref=e1379]: 
+            - button [ref=e1664] [cursor=pointer]:
+              - generic [ref=e1383]: 
+            - button [ref=e1665] [cursor=pointer]:
+              - generic [ref=e1387]: 
+          - button [ref=e1666] [cursor=pointer]
+          - generic [ref=e1395]:
+            - generic [ref=e1396]: Jenis Pertanyaan
+            - listbox [ref=e1667] [cursor=pointer]:
+              - option [selected] [ref=e1668]:
+                - generic [ref=e1401]: Jawaban singkat
+              - generic [ref=e1405]: Paragraf
+              - generic [ref=e1410]: Pilihan ganda
+              - generic [ref=e1414]: Kotak Centang
+              - generic [ref=e1418]: Drop-down
+              - generic [ref=e1422]: Upload file
+              - generic [ref=e1426]: Skala linier
+              - generic [ref=e1430]: Rating
+              - generic [ref=e1434]: Kisi pilihan ganda
+              - generic [ref=e1438]: Petak kotak centang
+              - generic [ref=e1442]: Tanggal
+              - generic [ref=e1446]: Waktu
+        - generic [ref=e1447]:
+          - generic [ref=e1585]:
+            - generic: Teks jawaban singkat
+            - textbox [disabled] [ref=e1669]
+          - generic [ref=e1484]:
+            - button [disabled] [ref=e1670]
+            - button [disabled] [ref=e1671]
+            - generic [ref=e1498]:
+              - generic [ref=e1500]: Wajib diisi
+              - checkbox [checked] [ref=e1672] [cursor=pointer]
+            - button [ref=e1673] [cursor=pointer]
+  - iframe [ref=e216]:
+    
+  - generic [ref=e218]: .
+  - generic [ref=e220]: Banner disembunyikan
+  - alertdialog "Pengelolaan respons yang simpel" [ref=e1760]:
+    - heading "Pengelolaan respons yang simpel" [level=1] [ref=e1762]
+    - paragraph [ref=e1765]: Berhenti atau mulai terima respons di formulir Anda
+    - button "Oke" [active] [ref=e1767] [cursor=pointer]:
+      - generic [ref=e1770]: Oke
