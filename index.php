@@ -60,6 +60,7 @@ require __DIR__ . '/includes/header.php';
             </div>
             <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
                 <?php foreach ($data['schools'] as $key => $school): ?>
+                    <?php if ($key === 'rosari') continue; ?>
                     <?php render_school_card($key, $school); ?>
                 <?php endforeach; ?>
             </div>
