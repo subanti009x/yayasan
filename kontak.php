@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/components.php';
 
 $data = site_data();
 $title = 'Kontak - Yayasan Cendekia';
-$description = 'Hubungi Yayasan Cendekia Cirebon serta halaman pendaftaran TK Losari dan SD Losari.';
+$description = 'Hubungi admin Yayasan Cendekia, Cendekia Cirebon, TK Losari, dan SD Losari.';
 
 require __DIR__ . '/includes/header.php';
 ?>
@@ -12,8 +12,8 @@ require __DIR__ . '/includes/header.php';
     <section class="bg-slate-950 py-20 text-white sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <p class="text-sm font-bold uppercase tracking-wide text-teal-200">Kontak</p>
-            <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">Temukan admin sekolah dan lokasi Yayasan Cendekia.</h1>
-            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-200">Hubungi yayasan atau pilih WhatsApp unit sekolah sesuai kebutuhan pendaftaran dan informasi jenjang.</p>
+            <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">Kontak admin sekolah.</h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-200">Silakan hubungi admin sesuai jenjang yang ingin ditanyakan. Kami bantu arahkan informasi pendaftaran dan lokasi sekolah.</p>
         </div>
     </section>
 
@@ -21,7 +21,7 @@ require __DIR__ . '/includes/header.php';
         <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
             <div>
                 <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Yayasan</p>
-                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Informasi utama</h2>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Informasi yayasan</h2>
                 <div class="mt-6 grid gap-4 text-sm text-slate-600">
                     <p class="rounded-lg border border-slate-200 bg-slate-50 p-4"><?= e($data['foundation']['address']); ?></p>
                     <a class="rounded-lg border border-slate-200 bg-slate-50 p-4 transition hover:border-teal-300 hover:text-teal-700" href="mailto:<?= e($data['foundation']['email']); ?>"><?= e($data['foundation']['email']); ?></a>
@@ -36,7 +36,7 @@ require __DIR__ . '/includes/header.php';
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-2xl">
                 <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Admin Sekolah</p>
-                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Kontak WhatsApp tiap unit.</h2>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">WhatsApp sekolah.</h2>
             </div>
             <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                 <?php foreach ($data['schools'] as $key => $school): ?>

@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/components.php';
 
 $data = site_data();
 $title = 'Cabang Losari - Yayasan Cendekia';
-$description = 'Pilih halaman pendaftaran TK Losari atau SD Losari sesuai jenjang pendidikan anak.';
+$description = 'Pilih pendaftaran TK Losari atau SD Losari sesuai kebutuhan anak.';
 
 require __DIR__ . '/includes/header.php';
 ?>
@@ -14,8 +14,8 @@ require __DIR__ . '/includes/header.php';
         <div class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/82 to-slate-900/30"></div>
         <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
             <span class="inline-flex rounded-full bg-white/12 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20">Cabang Losari</span>
-            <h1 class="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">Pilih jenjang pendaftaran Losari.</h1>
-            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-100">TK Losari dan SD Losari memiliki halaman sendiri agar konten pendaftaran lebih sesuai dengan kebutuhan calon siswa dan orang tua.</p>
+            <h1 class="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">Pendaftaran Cabang Losari.</h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-100">Silakan pilih TK Losari atau SD Losari. Setiap halaman berisi informasi singkat, kontak admin, dan form pendaftaran awal.</p>
         </div>
     </section>
 
@@ -23,8 +23,8 @@ require __DIR__ . '/includes/header.php';
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
                 <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Cabang Losari</p>
-                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Halaman khusus untuk TK dan SD.</h2>
-                <p class="mt-4 text-base leading-8 text-slate-600">Pemisahan halaman membantu setiap jenjang menampilkan daya tarik yang berbeda: suasana bermain dan kemandirian untuk TK, serta fondasi akademik dan karakter untuk SD.</p>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Pilih sesuai jenjang anak.</h2>
+                <p class="mt-4 text-base leading-8 text-slate-600">Untuk anak usia dini, orang tua bisa melihat TK Losari. Untuk jenjang dasar, silakan masuk ke halaman SD Losari.</p>
             </div>
             <div class="grid gap-6 md:grid-cols-2">
                 <?php foreach (schools_by_campus($data, 'losari') as $key => $school): ?>

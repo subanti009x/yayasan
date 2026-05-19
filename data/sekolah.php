@@ -3,8 +3,8 @@
 return [
     'foundation' => [
         'name' => 'Yayasan Cendekia',
-        'tagline' => 'Membangun generasi cerdas, berkarakter, dan siap masa depan.',
-        'description' => 'Yayasan Cendekia menaungi layanan pendidikan Cendekia Cirebon dan Cabang Losari dengan konten pendaftaran yang sesuai untuk setiap jenjang pendidikan.',
+        'tagline' => 'Tempat anak belajar, bertumbuh, dan dibimbing dengan hati.',
+        'description' => 'Yayasan Cendekia hadir untuk mendampingi anak-anak dari usia dini sampai siap melanjutkan masa depan. Informasi pendaftaran tersedia untuk Cendekia Cirebon serta TK dan SD Losari.',
         'phone' => '6281234567800',
         'email' => 'info@yayasancendekia.sch.id',
         'address' => 'Jl. Dukuh Semar No.34, Kecapi, Kec. Harjamukti, Kota Cirebon, Jawa Barat 45142',
@@ -18,7 +18,7 @@ return [
             'page' => 'tk-paud.php',
             'campus' => 'cirebon',
             'level' => 'Pendidikan anak usia dini',
-            'description' => 'Program bermain sambil belajar untuk membangun kemandirian, bahasa, motorik, sosial emosional, dan kebiasaan baik sejak dini.',
+            'description' => 'Anak-anak belajar lewat bermain, bercerita, bernyanyi, dan kegiatan sederhana yang melatih kemandirian serta kebiasaan baik sejak dini.',
             'phone' => '6281234567801',
             // URL /formResponse Google Form Pendaftaran Yayasan Cendekia.
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
@@ -40,7 +40,7 @@ return [
             'page' => 'sd.php',
             'campus' => 'cirebon',
             'level' => 'Sekolah dasar',
-            'description' => 'Pendidikan dasar yang menyeimbangkan literasi, numerasi, karakter, kreativitas, dan pembiasaan ibadah serta disiplin positif.',
+            'description' => 'Pendampingan belajar dasar untuk membaca, menulis, berhitung, berani bertanya, dan membiasakan sikap disiplin dalam keseharian.',
             'phone' => '6281234567802',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
@@ -61,7 +61,7 @@ return [
             'page' => 'smp.php',
             'campus' => 'cirebon',
             'level' => 'Sekolah menengah pertama',
-            'description' => 'Lingkungan belajar remaja yang mendorong cara berpikir kritis, komunikasi, kepemimpinan, dan kesiapan menuju jenjang berikutnya.',
+            'description' => 'Masa SMP menjadi ruang bagi siswa untuk lebih percaya diri, belajar bertanggung jawab, dan menyiapkan diri menuju jenjang berikutnya.',
             'phone' => '6281234567803',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
@@ -82,7 +82,7 @@ return [
             'page' => 'smk.php',
             'campus' => 'cirebon',
             'level' => 'Sekolah menengah kejuruan',
-            'description' => 'Program vokasi yang menyiapkan siswa dengan keterampilan kerja, budaya profesional, literasi digital, dan kesiapan industri.',
+            'description' => 'Siswa dibimbing mengenal dunia kerja, melatih keterampilan, dan membangun kebiasaan profesional sejak di bangku sekolah.',
             'phone' => '6281234567804',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
@@ -103,7 +103,7 @@ return [
             'page' => 'losari-tk.php',
             'campus' => 'losari',
             'level' => 'Pendidikan anak usia dini',
-            'description' => 'Halaman TK Losari menonjolkan pengalaman belajar yang aman, hangat, dan menyenangkan agar anak siap mandiri, bersosialisasi, dan percaya diri masuk jenjang SD.',
+            'description' => 'TK Losari menjadi tempat awal anak mengenal sekolah dengan suasana yang hangat, aman, dan menyenangkan.',
             'phone' => '6281234567805',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
@@ -124,7 +124,7 @@ return [
             'page' => 'losari-sd.php',
             'campus' => 'losari',
             'level' => 'Sekolah dasar',
-            'description' => 'Halaman SD Losari berfokus pada penguatan baca tulis hitung, karakter, kedisiplinan, dan pendampingan belajar agar anak memiliki fondasi akademik yang kuat.',
+            'description' => 'SD Losari mendampingi anak membangun dasar belajar yang kuat, mulai dari baca tulis hitung sampai sikap disiplin dan percaya diri.',
             'phone' => '6281234567805',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [

@@ -82,7 +82,7 @@ function render_registration_preview(array $school): void
             Kirim Pendaftaran
         </button>
         <p class="hidden rounded-md bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200" data-form-success>Terima kasih. Data pendaftaran sedang dikirim ke Google Form.</p>
-        <p class="text-xs leading-6 text-slate-500">Data dikirim langsung ke Google Form resmi sekolah tanpa membuka halaman Google Form.</p>
+        <p class="text-xs leading-6 text-slate-500">Setelah dikirim, admin sekolah akan menindaklanjuti data pendaftaran ini.</p>
         <iframe name="<?= e($iframeName); ?>" class="hidden" title="Google Form submission target" data-google-form-frame></iframe>
     </form>
     <?php
@@ -109,7 +109,7 @@ function render_school_page(string $key): void
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
                 <div>
                     <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Profil Sekolah</p>
-                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Ruang belajar yang terarah dan dekat dengan keluarga.</h2>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Lingkungan belajar yang dekat dengan anak.</h2>
                     <p class="mt-5 text-base leading-8 text-slate-600"><?= e($school['description']); ?></p>
                     <div class="mt-8 grid gap-4 sm:grid-cols-3">
                         <div class="rounded-lg border border-slate-200 bg-slate-50 p-5">
@@ -127,9 +127,9 @@ function render_school_page(string $key): void
                     </div>
                 </div>
                 <aside class="rounded-lg bg-slate-950 p-6 text-white shadow-soft">
-                    <p class="text-sm font-semibold text-teal-200">Informasi pendaftaran</p>
+                    <p class="text-sm font-semibold text-teal-200">Pendaftaran</p>
                     <h2 class="mt-3 text-2xl font-bold">Hubungi admin <?= e($school['short_name']); ?></h2>
-                    <p class="mt-4 text-sm leading-7 text-slate-200">Tim admin siap membantu informasi biaya, jadwal observasi, syarat berkas, dan alur pendaftaran siswa baru.</p>
+                    <p class="mt-4 text-sm leading-7 text-slate-200">Admin akan membantu menjawab pertanyaan seputar biaya, jadwal, berkas, dan langkah pendaftaran.</p>
                     <div class="mt-6 grid gap-3">
                         <a href="<?= e(whatsapp_url($school['phone'], 'Halo ' . $school['name'] . ', saya ingin bertanya tentang pendaftaran.')); ?>" class="rounded-md bg-white px-4 py-3 text-center text-sm font-bold text-slate-950 transition hover:bg-slate-100" target="_blank" rel="noopener">WhatsApp <?= e($school['short_name']); ?></a>
                         <a href="#pendaftaran" class="rounded-md border border-white/20 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-white/10">Isi Form Pendaftaran</a>
@@ -142,8 +142,8 @@ function render_school_page(string $key): void
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
                 <div>
                     <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Pendaftaran</p>
-                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Isi data di website, kirim langsung ke Google Form.</h2>
-                    <p class="mt-5 text-base leading-8 text-slate-600">Pengguna tetap berada di halaman sekolah. Di balik layar, data masuk ke Google Form unit terkait.</p>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Isi data calon siswa.</h2>
+                    <p class="mt-5 text-base leading-8 text-slate-600">Data ini menjadi langkah awal agar admin sekolah dapat menghubungi orang tua dan membantu proses berikutnya.</p>
                 </div>
                 <?php render_registration_preview($school); ?>
             </div>
