@@ -22,6 +22,7 @@
                     <?php foreach (schools_by_campus($data, 'losari') as $school): ?>
                         <a href="<?= e($school['page']); ?>" class="text-slate-600 transition hover:text-teal-700"><?= e($school['name']); ?></a>
                     <?php endforeach; ?>
+                    <a href="faq.php" class="mt-3 text-slate-600 transition hover:text-teal-700">FAQ Pendaftaran</a>
                 </div>
             </div>
 

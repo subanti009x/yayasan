@@ -41,6 +41,8 @@ function nav_items(array $data): array
         $items[] = ['label' => $school['short_name'], 'url' => $school['page']];
     }
 
+    $items[] = ['label' => 'Cabang Losari', 'url' => 'index.php#cabang-losari'];
+    $items[] = ['label' => 'FAQ', 'url' => 'faq.php'];
     $items[] = ['label' => 'Kontak', 'url' => 'kontak.php'];
 
     return $items;

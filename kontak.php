@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/components.php';
 
 $data = site_data();
 $title = 'Kontak - Yayasan Cendekia';
-$description = 'Hubungi admin Yayasan Cendekia, Cendekia Cirebon, TK Losari, dan SD Losari.';
+$description = 'Hubungi admin Yayasan Cendekia, Cendekia Cirebon, TK / PAUD Losari, dan SD Losari.';
 
 require __DIR__ . '/includes/header.php';
 ?>

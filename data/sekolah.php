@@ -19,6 +19,13 @@ return [
             'campus' => 'cirebon',
             'level' => 'Pendidikan anak usia dini',
             'description' => 'Anak-anak belajar lewat bermain, bercerita, bernyanyi, dan kegiatan sederhana yang melatih kemandirian serta kebiasaan baik sejak dini.',
+            'programs' => [
+                ['title' => 'Bermain terarah', 'description' => 'Kegiatan bermain disiapkan untuk melatih bahasa, motorik, rasa ingin tahu, dan keberanian anak.'],
+                ['title' => 'Pembiasaan mandiri', 'description' => 'Anak dibiasakan merapikan barang, antre, berdoa, dan mengikuti kegiatan sederhana dengan bimbingan guru.'],
+                ['title' => 'Kesiapan masuk SD', 'description' => 'Anak mulai dikenalkan huruf, angka, warna, bentuk, dan aturan kelas dengan cara yang menyenangkan.'],
+            ],
+            'facilities' => ['Ruang kelas anak', 'Area bermain', 'Media belajar edukatif', 'Pendampingan guru kelas'],
+            'activities' => ['Bernyanyi dan bercerita', 'Mewarnai dan membuat karya', 'Senam dan permainan motorik', 'Pembiasaan doa dan sopan santun'],
             'phone' => '6281234567801',
             // URL /formResponse Google Form Pendaftaran Yayasan Cendekia.
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
@@ -41,6 +48,13 @@ return [
             'campus' => 'cirebon',
             'level' => 'Sekolah dasar',
             'description' => 'Pendampingan belajar dasar untuk membaca, menulis, berhitung, berani bertanya, dan membiasakan sikap disiplin dalam keseharian.',
+            'programs' => [
+                ['title' => 'Baca tulis hitung', 'description' => 'Siswa dibimbing memperkuat kemampuan dasar agar lebih percaya diri mengikuti pelajaran.'],
+                ['title' => 'Karakter harian', 'description' => 'Kedisiplinan, tanggung jawab, dan sopan santun dibangun melalui rutinitas sekolah.'],
+                ['title' => 'Belajar aktif', 'description' => 'Guru mendorong siswa bertanya, berdiskusi, dan mencoba menyelesaikan tugas dengan mandiri.'],
+            ],
+            'facilities' => ['Ruang kelas', 'Perpustakaan sederhana', 'Area olahraga', 'Pendampingan wali kelas'],
+            'activities' => ['Literasi pagi', 'Latihan berhitung', 'Kegiatan seni dan prakarya', 'Olahraga bersama'],
             'phone' => '6281234567802',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
@@ -62,6 +76,13 @@ return [
             'campus' => 'cirebon',
             'level' => 'Sekolah menengah pertama',
             'description' => 'Masa SMP menjadi ruang bagi siswa untuk lebih percaya diri, belajar bertanggung jawab, dan menyiapkan diri menuju jenjang berikutnya.',
+            'programs' => [
+                ['title' => 'Pendampingan remaja', 'description' => 'Siswa dibantu membangun kebiasaan belajar, tanggung jawab, dan cara bergaul yang sehat.'],
+                ['title' => 'Percaya diri berbicara', 'description' => 'Kegiatan kelas memberi ruang untuk presentasi, diskusi, dan menyampaikan pendapat.'],
+                ['title' => 'Persiapan jenjang lanjut', 'description' => 'Siswa diarahkan mengenali minat dan pilihan pendidikan setelah SMP.'],
+            ],
+            'facilities' => ['Ruang kelas', 'Ruang kegiatan siswa', 'Area olahraga', 'Bimbingan wali kelas'],
+            'activities' => ['Diskusi kelompok', 'Presentasi siswa', 'Kegiatan organisasi', 'Olahraga dan seni'],
             'phone' => '6281234567803',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
@@ -83,6 +104,13 @@ return [
             'campus' => 'cirebon',
             'level' => 'Sekolah menengah kejuruan',
             'description' => 'Siswa dibimbing mengenal dunia kerja, melatih keterampilan, dan membangun kebiasaan profesional sejak di bangku sekolah.',
+            'programs' => [
+                ['title' => 'Keterampilan kerja', 'description' => 'Siswa dikenalkan pada kebiasaan kerja, tanggung jawab, dan keterampilan sesuai bidangnya.'],
+                ['title' => 'Literasi digital', 'description' => 'Pembelajaran diarahkan agar siswa terbiasa menggunakan teknologi secara produktif.'],
+                ['title' => 'Budaya profesional', 'description' => 'Siswa dibiasakan tepat waktu, rapi, komunikatif, dan siap mengikuti arahan kerja.'],
+            ],
+            'facilities' => ['Ruang kelas', 'Ruang praktik', 'Akses perangkat belajar', 'Pendampingan guru produktif'],
+            'activities' => ['Praktik keterampilan', 'Proyek siswa', 'Simulasi kerja', 'Kegiatan kewirausahaan'],
             'phone' => '6281234567804',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
@@ -98,12 +126,19 @@ return [
             'accent' => 'amber',
         ],
         'losari-tk' => [
-            'name' => 'TK Losari',
-            'short_name' => 'TK Losari',
+            'name' => 'TK / PAUD Losari',
+            'short_name' => 'TK / PAUD Losari',
             'page' => 'losari-tk.php',
             'campus' => 'losari',
             'level' => 'Pendidikan anak usia dini',
-            'description' => 'TK Losari menjadi tempat awal anak mengenal sekolah dengan suasana yang hangat, aman, dan menyenangkan.',
+            'description' => 'TK / PAUD Losari menjadi tempat awal anak mengenal sekolah dengan suasana yang hangat, aman, dan menyenangkan.',
+            'programs' => [
+                ['title' => 'Adaptasi sekolah', 'description' => 'Anak dibantu mengenal guru, teman, aturan kelas, dan kegiatan sekolah secara perlahan.'],
+                ['title' => 'Bermain dan bercerita', 'description' => 'Kegiatan dibuat dekat dengan dunia anak agar mereka senang belajar dan berani mencoba.'],
+                ['title' => 'Kemandirian awal', 'description' => 'Anak dibiasakan makan, merapikan barang, antre, dan mengikuti arahan guru.'],
+            ],
+            'facilities' => ['Ruang kelas TK', 'Area bermain', 'Media belajar anak', 'Pendampingan guru'],
+            'activities' => ['Bercerita', 'Mewarnai', 'Bernyanyi', 'Permainan kelompok'],
             'phone' => '6281234567805',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
@@ -125,6 +160,13 @@ return [
             'campus' => 'losari',
             'level' => 'Sekolah dasar',
             'description' => 'SD Losari mendampingi anak membangun dasar belajar yang kuat, mulai dari baca tulis hitung sampai sikap disiplin dan percaya diri.',
+            'programs' => [
+                ['title' => 'Dasar akademik', 'description' => 'Anak dibimbing memperkuat membaca, menulis, berhitung, dan memahami pelajaran harian.'],
+                ['title' => 'Kebiasaan belajar', 'description' => 'Siswa dilatih mengerjakan tugas, bertanya, dan mengikuti kegiatan kelas dengan tertib.'],
+                ['title' => 'Karakter dan percaya diri', 'description' => 'Kegiatan sekolah membantu anak berani tampil, bekerja sama, dan menghargai teman.'],
+            ],
+            'facilities' => ['Ruang kelas SD', 'Area belajar', 'Area olahraga', 'Pendampingan wali kelas'],
+            'activities' => ['Literasi kelas', 'Latihan numerasi', 'Prakarya', 'Olahraga bersama'],
             'phone' => '6281234567805',
             'form_url' => 'https://docs.google.com/forms/d/e/1FAIpQLSdyMCqYfhgK0lLHgmpo6u8ifqmdzgKDjtygIJ2hC6jvzFJifA/formResponse',
             'form_entries' => [
