@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/includes/helpers.php';
-require __DIR__ . '/includes/components.php';
+require_once __DIR__ . '/includes/helpers.php';
+require_once __DIR__ . '/includes/components.php';
 
 $school = site_data()['schools']['sd'];
 $title = $school['name'] . ' - Yayasan Cendekia';

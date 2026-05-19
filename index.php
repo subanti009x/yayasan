@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/includes/helpers.php';
-require __DIR__ . '/includes/components.php';
+require_once __DIR__ . '/includes/helpers.php';
+require_once __DIR__ . '/includes/components.php';
 
 $data = site_data();
 $title = 'Yayasan Cendekia - Pendidikan Terpadu Indonesia';
