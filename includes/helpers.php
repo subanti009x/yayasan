@@ -37,17 +37,28 @@ function nav_items(array $data): array
         ['label' => 'Yayasan', 'url' => 'index.php'],
     ];
 
-    foreach ($data['schools'] as $school) {
-        if ($school['page'] === 'rosari.php') {
-            continue;
-        }
-
+    foreach (schools_by_campus($data, 'cirebon') as $school) {
         $items[] = ['label' => $school['short_name'], 'url' => $school['page']];
     }
 
     $items[] = ['label' => 'Kontak', 'url' => 'kontak.php'];
 
     return $items;
+}
+
+function schools_by_campus(array $data, string $campus): array
+{
+    $schools = [];
+
+    foreach ($data['schools'] as $key => $school) {
+        if (($school['campus'] ?? 'cirebon') !== $campus) {
+            continue;
+        }
+
+        $schools[$key] = $school;
+    }
+
+    return $schools;
 }
 
 function accent_classes(string $accent): array

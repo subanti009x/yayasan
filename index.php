@@ -25,11 +25,11 @@ require __DIR__ . '/includes/header.php';
             <div class="grid gap-4 sm:grid-cols-2">
                 <div class="rounded-lg border border-white/15 bg-white/10 p-5 text-white backdrop-blur">
                     <p class="text-3xl font-bold">6</p>
-                    <p class="mt-1 text-sm text-slate-200">Jenjang dan cabang</p>
+                    <p class="mt-1 text-sm text-slate-200">Halaman jenjang</p>
                 </div>
                 <div class="rounded-lg border border-white/15 bg-white/10 p-5 text-white backdrop-blur">
-                    <p class="text-3xl font-bold">1</p>
-                    <p class="mt-1 text-sm text-slate-200">Yayasan terpadu</p>
+                    <p class="text-3xl font-bold">2</p>
+                    <p class="mt-1 text-sm text-slate-200">Lokasi layanan</p>
                 </div>
                 <div class="rounded-lg border border-white/15 bg-white/10 p-5 text-white backdrop-blur sm:col-span-2">
                     <p class="text-3xl font-bold">Online</p>
@@ -43,10 +43,10 @@ require __DIR__ . '/includes/header.php';
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
                 <div>
-                    <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Tentang Yayasan</p>
-                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Lingkungan pendidikan yang dekat, tertib, dan bertumbuh bersama keluarga.</h2>
+                    <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Konsep Pendaftaran</p>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Konten dibuat sesuai jenjang agar calon orang tua lebih mudah memilih.</h2>
                 </div>
-                <p class="text-base leading-8 text-slate-600">Yayasan Cendekia dirancang untuk membantu orang tua menemukan jalur pendidikan yang sesuai bagi anak, mulai dari usia dini hingga kejuruan. Setiap unit memiliki admin pendaftaran, tautan Google Form, dan lokasi maps masing-masing sehingga proses informasi lebih jelas.</p>
+                <p class="text-base leading-8 text-slate-600">Cendekia Cirebon tampil sebagai paket pendidikan lengkap TK, SD, SMP, dan SMK. Cabang Losari disiapkan dengan halaman TK dan SD terpisah agar pesan pendaftaran, suasana belajar, dan ajakan daftarnya lebih relevan untuk usia anak.</p>
             </div>
         </div>
     </section>
@@ -54,13 +54,27 @@ require __DIR__ . '/includes/header.php';
     <section id="unit-sekolah" class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
-                <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Unit Sekolah</p>
-                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Pilih jenjang pendidikan Yayasan Cendekia.</h2>
-                <p class="mt-4 text-base leading-8 text-slate-600">Setiap halaman sekolah menampilkan profil, WhatsApp admin, pendaftaran, dan lokasi Google Maps.</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Cendekia Cirebon</p>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Satu paket website untuk TK, SD, SMP, dan SMK.</h2>
+                <p class="mt-4 text-base leading-8 text-slate-600">Setiap jenjang memiliki konten khusus, halaman pendaftaran, WhatsApp admin, dan lokasi sehingga informasi lebih lengkap untuk calon siswa.</p>
             </div>
             <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                <?php foreach ($data['schools'] as $key => $school): ?>
-                    <?php if ($key === 'rosari') continue; ?>
+                <?php foreach (schools_by_campus($data, 'cirebon') as $key => $school): ?>
+                    <?php render_school_card($key, $school); ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+
+    <section id="cabang-losari" class="bg-white py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 max-w-3xl">
+                <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Cabang Losari</p>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Halaman pendaftaran terpisah untuk TK dan SD Losari.</h2>
+                <p class="mt-4 text-base leading-8 text-slate-600">TK Losari menonjolkan suasana belajar yang aman dan menyenangkan, sedangkan SD Losari menonjolkan fondasi akademik, karakter, dan kedisiplinan.</p>
+            </div>
+            <div class="grid gap-6 md:grid-cols-2">
+                <?php foreach (schools_by_campus($data, 'losari') as $key => $school): ?>
                     <?php render_school_card($key, $school); ?>
                 <?php endforeach; ?>
             </div>
@@ -73,7 +87,10 @@ require __DIR__ . '/includes/header.php';
                 <p class="text-sm font-bold uppercase tracking-wide text-teal-200">Pendaftaran</p>
                 <h2 class="mt-3 text-3xl font-bold">Mulai dari jenjang yang tepat.</h2>
                 <p class="mt-4 text-sm leading-7 text-slate-200">Pilih halaman sekolah, isi data awal, lalu lanjut ke Google Form unit terkait. Admin sekolah akan membantu tahapan berikutnya.</p>
-                <a href="#unit-sekolah" class="mt-7 inline-flex rounded-md bg-white px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-100">Pilih Sekolah</a>
+                <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+                    <a href="#unit-sekolah" class="inline-flex justify-center rounded-md bg-white px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-100">Cendekia Cirebon</a>
+                    <a href="#cabang-losari" class="inline-flex justify-center rounded-md border border-white/20 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10">Cabang Losari</a>
+                </div>
             </div>
             <?php render_map($data['foundation']['maps_embed'], 'Lokasi Yayasan Cendekia'); ?>
         </div>

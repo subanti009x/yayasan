@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/components.php';
 
 $data = site_data();
 $title = 'Kontak - Yayasan Cendekia';
-$description = 'Hubungi Yayasan Cendekia dan unit sekolah TK, SD, SMP, SMK, PAUD, serta Cabang Losari.';
+$description = 'Hubungi Yayasan Cendekia Cirebon serta halaman pendaftaran TK Losari dan SD Losari.';
 
 require __DIR__ . '/includes/header.php';
 ?>
@@ -40,7 +40,6 @@ require __DIR__ . '/includes/header.php';
             </div>
             <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
                 <?php foreach ($data['schools'] as $key => $school): ?>
-                    <?php if ($key === 'rosari') continue; ?>
                     <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
                         <p class="text-sm font-bold text-teal-700"><?= e($school['level']); ?></p>
                         <h3 class="mt-2 text-xl font-bold text-slate-950"><?= e($school['name']); ?></h3>

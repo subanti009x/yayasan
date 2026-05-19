@@ -13,9 +13,13 @@
             </div>
 
             <div>
-                <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Unit Sekolah</h2>
+                <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Cendekia Cirebon</h2>
                 <div class="mt-4 grid gap-2 text-sm">
-                    <?php foreach ($data['schools'] as $school): ?>
+                    <?php foreach (schools_by_campus($data, 'cirebon') as $school): ?>
+                        <a href="<?= e($school['page']); ?>" class="text-slate-600 transition hover:text-teal-700"><?= e($school['name']); ?></a>
+                    <?php endforeach; ?>
+                    <span class="mt-3 text-xs font-bold uppercase tracking-wide text-slate-400">Cabang Losari</span>
+                    <?php foreach (schools_by_campus($data, 'losari') as $school): ?>
                         <a href="<?= e($school['page']); ?>" class="text-slate-600 transition hover:text-teal-700"><?= e($school['name']); ?></a>
                     <?php endforeach; ?>
                 </div>

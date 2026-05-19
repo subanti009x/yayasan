@@ -2,10 +2,36 @@
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/components.php';
 
-$school = site_data()['schools']['rosari'];
-$title = $school['name'] . ' - Yayasan Cendekia';
-$description = $school['description'];
+$data = site_data();
+$title = 'Cabang Losari - Yayasan Cendekia';
+$description = 'Pilih halaman pendaftaran TK Losari atau SD Losari sesuai jenjang pendidikan anak.';
 
 require __DIR__ . '/includes/header.php';
-render_school_page('rosari');
-require __DIR__ . '/includes/footer.php';
+?>
+<main>
+    <section class="relative isolate overflow-hidden bg-slate-950">
+        <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1600&q=80" alt="Cabang Losari" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-40">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/82 to-slate-900/30"></div>
+        <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+            <span class="inline-flex rounded-full bg-white/12 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20">Cabang Losari</span>
+            <h1 class="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">Pilih jenjang pendaftaran Losari.</h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-100">TK Losari dan SD Losari memiliki halaman sendiri agar konten pendaftaran lebih sesuai dengan kebutuhan calon siswa dan orang tua.</p>
+        </div>
+    </section>
+
+    <section class="bg-white py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 max-w-3xl">
+                <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Cabang Losari</p>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Halaman khusus untuk TK dan SD.</h2>
+                <p class="mt-4 text-base leading-8 text-slate-600">Pemisahan halaman membantu setiap jenjang menampilkan daya tarik yang berbeda: suasana bermain dan kemandirian untuk TK, serta fondasi akademik dan karakter untuk SD.</p>
+            </div>
+            <div class="grid gap-6 md:grid-cols-2">
+                <?php foreach (schools_by_campus($data, 'losari') as $key => $school): ?>
+                    <?php render_school_card($key, $school); ?>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+</main>
+<?php require __DIR__ . '/includes/footer.php'; ?>

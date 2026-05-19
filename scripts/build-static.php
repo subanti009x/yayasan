@@ -8,6 +8,8 @@ $pages = [
     'smp.php' => 'smp.html',
     'smk.php' => 'smk.html',
     'tk-paud.php' => 'tk-paud.html',
+    'losari-tk.php' => 'losari-tk.html',
+    'losari-sd.php' => 'losari-sd.html',
     'rosari.php' => 'rosari.html',
     'kontak.php' => 'kontak.html',
 ];
@@ -30,8 +32,8 @@ foreach ($pages as $source => $target) {
     );
 
     $html = str_replace(
-        ['href="sd.php', 'href="smp.php', 'href="smk.php', 'href="tk-paud.php', 'href="rosari.php', 'href="kontak.php'],
-        ['href="sd.html', 'href="smp.html', 'href="smk.html', 'href="tk-paud.html', 'href="rosari.html', 'href="kontak.html'],
+        ['href="sd.php', 'href="smp.php', 'href="smk.php', 'href="tk-paud.php', 'href="losari-tk.php', 'href="losari-sd.php', 'href="rosari.php', 'href="kontak.php'],
+        ['href="sd.html', 'href="smp.html', 'href="smk.html', 'href="tk-paud.html', 'href="losari-tk.html', 'href="losari-sd.html', 'href="rosari.html', 'href="kontak.html'],
         $html
     );
 
