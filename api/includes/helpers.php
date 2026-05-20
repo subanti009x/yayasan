@@ -16,6 +16,17 @@ function e(string $value): string
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
 }
 
+function url(string $path): string
+{
+    if (getenv('VERCEL') === '1') {
+        if ($path === 'index.php') {
+            return '/';
+        }
+        return '/' . preg_replace('/\.php$/', '', $path);
+    }
+    return $path;
+}
+
 function current_page(): string
 {
     return basename($_SERVER['SCRIPT_NAME'] ?? 'index.php');
@@ -23,7 +34,21 @@ function current_page(): string
 
 function is_active(string $page): bool
 {
-    return current_page() === $page;
+    $normalizedPage = preg_replace('/^\//', '', preg_replace('/\.php$/', '', $page));
+    $normalizedCurrent = preg_replace('/^\//', '', preg_replace('/\.php$/', '', current_page()));
+    
+    if ($normalizedCurrent === '') {
+        $normalizedCurrent = 'index';
+    }
+    if ($normalizedPage === '') {
+        $normalizedPage = 'index';
+    }
+    
+    // Handle anchor links or query strings if any (e.g. index#cabang-losari)
+    $normalizedPage = explode('#', $normalizedPage)[0];
+    $normalizedPage = explode('?', $normalizedPage)[0];
+    
+    return $normalizedCurrent === $normalizedPage;
 }
 
 function whatsapp_url(string $phone, string $message): string
@@ -34,17 +59,17 @@ function whatsapp_url(string $phone, string $message): string
 function nav_items(array $data): array
 {
     $items = [
-        ['label' => 'Yayasan', 'url' => 'index.php'],
+        ['label' => 'Yayasan', 'url' => url('index.php')],
     ];
 
     foreach (schools_by_campus($data, 'cirebon') as $school) {
-        $items[] = ['label' => $school['short_name'], 'url' => $school['page']];
+        $items[] = ['label' => $school['short_name'], 'url' => url($school['page'])];
     }
 
-    $items[] = ['label' => 'Cabang Losari', 'url' => 'index.php#cabang-losari'];
-    $items[] = ['label' => 'Artikel', 'url' => 'articles.php'];
-    $items[] = ['label' => 'FAQ', 'url' => 'faq.php'];
-    $items[] = ['label' => 'Kontak', 'url' => 'kontak.php'];
+    $items[] = ['label' => 'Cabang Losari', 'url' => url('index.php') . '#cabang-losari'];
+    $items[] = ['label' => 'Artikel', 'url' => url('articles.php')];
+    $items[] = ['label' => 'FAQ', 'url' => url('faq.php')];
+    $items[] = ['label' => 'Kontak', 'url' => url('kontak.php')];
 
     return $items;
 }

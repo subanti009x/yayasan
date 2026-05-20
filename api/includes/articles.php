@@ -245,6 +245,9 @@ function article_date(array $article): string
 
 function article_url(array $article): string
 {
+    if (getenv('VERCEL') === '1') {
+        return '/artikel-' . rawurlencode($article['slug'] ?? '');
+    }
     return 'artikel.php?slug=' . rawurlencode($article['slug'] ?? '');
 }
 

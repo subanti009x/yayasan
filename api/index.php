@@ -21,7 +21,7 @@ require __DIR__ . '/includes/header.php';
                 <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-100"><?= e($data['foundation']['description']); ?></p>
                 <div class="mt-8 flex flex-col gap-3 sm:flex-row">
                     <a href="#unit-sekolah" class="inline-flex items-center justify-center rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-300">Lihat Unit Sekolah</a>
-                    <a href="kontak.php" class="inline-flex items-center justify-center rounded-md bg-white px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-100">Kontak Yayasan</a>
+                    <a href="<?= url('kontak.php'); ?>" class="inline-flex items-center justify-center rounded-md bg-white px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-100">Kontak Yayasan</a>
                 </div>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
@@ -204,7 +204,7 @@ require __DIR__ . '/includes/header.php';
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Cerita dan informasi dari sekolah.</h2>
                     <p class="mt-4 text-base leading-8 text-slate-600">Artikel terbaru akan otomatis tampil di sini setelah dipublikasikan melalui dashboard admin.</p>
                 </div>
-                <a href="articles.php" class="inline-flex rounded-md border border-amber-200 bg-white px-5 py-3 text-sm font-bold text-orange-700 transition hover:border-orange-300 hover:bg-amber-50">Lihat Semua Artikel</a>
+                <a href="<?= url('articles.php'); ?>" class="inline-flex rounded-md border border-amber-200 bg-white px-5 py-3 text-sm font-bold text-orange-700 transition hover:border-orange-300 hover:bg-amber-50">Lihat Semua Artikel</a>
             </div>
             <?php if ($latestArticles === []): ?>
                 <div class="rounded-lg border border-slate-200 bg-white p-8 text-center shadow-sm">

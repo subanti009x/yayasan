@@ -36,7 +36,7 @@ $items = nav_items($data);
 <body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
     <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 glass-nav">
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Navigasi utama">
-            <a href="index.php" class="flex items-center gap-3" aria-label="Beranda Yayasan Cendekia">
+            <a href="<?= url('index.php'); ?>" class="flex items-center gap-3" aria-label="Beranda Yayasan Cendekia">
                 <span class="grid h-11 w-11 place-items-center rounded-lg bg-orange-600 text-base font-bold text-white shadow-soft">YC</span>
                 <span>
                     <span class="block text-sm font-bold tracking-wide text-slate-950">Yayasan Cendekia</span>

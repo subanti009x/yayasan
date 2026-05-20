@@ -13,8 +13,8 @@ function render_school_card(string $key, array $school): void
             <h3 class="mt-4 text-xl font-bold text-slate-950"><?= e($school['name']); ?></h3>
             <p class="mt-3 text-sm leading-7 text-slate-600"><?= e($school['description']); ?></p>
             <div class="mt-6 flex flex-wrap gap-3">
-                <a href="<?= e($school['page']); ?>" class="rounded-md bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">Lihat Sekolah</a>
-                <a href="<?= e($school['page']); ?>#pendaftaran" class="rounded-md border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Daftar</a>
+                <a href="<?= e(url($school['page'])); ?>" class="rounded-md bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">Lihat Sekolah</a>
+                <a href="<?= e(url($school['page'])); ?>#pendaftaran" class="rounded-md border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Daftar</a>
             </div>
         </div>
     </article>

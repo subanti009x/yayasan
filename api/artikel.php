@@ -17,7 +17,7 @@ if ($article === null) {
                 <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Artikel</p>
                 <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-950">Artikel tidak ditemukan.</h1>
                 <p class="mt-4 text-base leading-8 text-slate-600">Konten yang anda buka mungkin sudah dipindahkan atau belum dipublikasikan.</p>
-                <a href="articles.php" class="mt-8 inline-flex rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Lihat Artikel Lain</a>
+                <a href="<?= url('articles.php'); ?>" class="mt-8 inline-flex rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Lihat Artikel Lain</a>
             </div>
         </section>
     </main>
@@ -87,7 +87,7 @@ require __DIR__ . '/includes/header.php';
                                 <dd class="mt-1 text-slate-600"><?php render_article_views($article); ?></dd>
                             </div>
                         </dl>
-                        <a href="articles.php" class="mt-6 inline-flex w-full justify-center rounded-md bg-orange-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Semua Artikel</a>
+                        <a href="<?= url('articles.php'); ?>" class="mt-6 inline-flex w-full justify-center rounded-md bg-orange-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Semua Artikel</a>
                     </div>
                 </aside>
             </div>

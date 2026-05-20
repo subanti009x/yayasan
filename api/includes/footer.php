@@ -16,14 +16,14 @@
                 <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Cendekia Cirebon</h2>
                 <div class="mt-4 grid gap-2 text-sm">
                     <?php foreach (schools_by_campus($data, 'cirebon') as $school): ?>
-                        <a href="<?= e($school['page']); ?>" class="text-slate-600 transition hover:text-orange-700"><?= e($school['name']); ?></a>
+                        <a href="<?= e(url($school['page'])); ?>" class="text-slate-600 transition hover:text-orange-700"><?= e($school['name']); ?></a>
                     <?php endforeach; ?>
                     <span class="mt-3 text-xs font-bold uppercase tracking-wide text-slate-400">Cabang Losari</span>
                     <?php foreach (schools_by_campus($data, 'losari') as $school): ?>
-                        <a href="<?= e($school['page']); ?>" class="text-slate-600 transition hover:text-orange-700"><?= e($school['name']); ?></a>
+                        <a href="<?= e(url($school['page'])); ?>" class="text-slate-600 transition hover:text-orange-700"><?= e($school['name']); ?></a>
                     <?php endforeach; ?>
-                    <a href="articles.php" class="mt-3 text-slate-600 transition hover:text-orange-700">Artikel Sekolah</a>
-                    <a href="faq.php" class="mt-3 text-slate-600 transition hover:text-orange-700">FAQ Pendaftaran</a>
+                    <a href="<?= url('articles.php'); ?>" class="mt-3 text-slate-600 transition hover:text-orange-700">Artikel Sekolah</a>
+                    <a href="<?= url('faq.php'); ?>" class="mt-3 text-slate-600 transition hover:text-orange-700">FAQ Pendaftaran</a>
                     <?php if (!defined('BUILD_STATIC')): ?>
                         <a href="/admin" class="text-slate-600 transition hover:text-orange-700">Dashboard Admin</a>
                     <?php endif; ?>
