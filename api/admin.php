@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once __DIR__ . '/../includes/helpers.php';
-require_once __DIR__ . '/../includes/articles.php';
+require_once __DIR__ . '/includes/helpers.php';
+require_once __DIR__ . '/includes/articles.php';
 
 $adminPassword = getenv('ADMIN_PASSWORD') ?: 'cendekia-admin';
 $sessionSecret = getenv('SESSION_SECRET') ?: 'cendekia-session-secret-key-123456';
@@ -268,7 +268,7 @@ if (($_GET['success'] ?? '') === 'save') {
 $title = 'Dashboard Admin - Yayasan Cendekia';
 $description = 'Dashboard admin artikel Yayasan Cendekia.';
 
-require __DIR__ . '/../includes/header.php';
+require __DIR__ . '/includes/header.php';
 ?>
 <main>
     <section class="bg-slate-950 py-14 text-white sm:py-16">
@@ -417,4 +417,4 @@ require __DIR__ . '/../includes/header.php';
         </div>
     </section>
 </main>
-<?php require __DIR__ . '/../includes/footer.php'; ?>
+<?php require __DIR__ . '/includes/footer.php'; ?>

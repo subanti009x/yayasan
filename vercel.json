@@ -8,28 +8,36 @@
   "functions": {
     "api/**/*.php": {
       "runtime": "vercel-php@0.9.0"
-    },
-    "*.php": {
-      "runtime": "vercel-php@0.9.0"
     }
   },
   "routes": [
     { "src": "/admin", "dest": "/api/admin.php" },
     { "src": "/admin.php", "dest": "/api/admin.php" },
-    { "src": "/articles", "dest": "/articles.php" },
-    { "src": "/sd", "dest": "/sd.php" },
-    { "src": "/smp", "dest": "/smp.php" },
-    { "src": "/smk", "dest": "/smk.php" },
-    { "src": "/tk-paud", "dest": "/tk-paud.php" },
-    { "src": "/losari-tk", "dest": "/losari-tk.php" },
-    { "src": "/losari-sd", "dest": "/losari-sd.php" },
-    { "src": "/rosari", "dest": "/rosari.php" },
-    { "src": "/faq", "dest": "/faq.php" },
-    { "src": "/kontak", "dest": "/kontak.php" },
-    { "src": "/artikel-(.+)", "dest": "/artikel.php?slug=$1" },
+    { "src": "/articles", "dest": "/api/articles.php" },
+    { "src": "/articles.php", "dest": "/api/articles.php" },
+    { "src": "/sd", "dest": "/api/sd.php" },
+    { "src": "/sd.php", "dest": "/api/sd.php" },
+    { "src": "/smp", "dest": "/api/smp.php" },
+    { "src": "/smp.php", "dest": "/api/smp.php" },
+    { "src": "/smk", "dest": "/api/smk.php" },
+    { "src": "/smk.php", "dest": "/api/smk.php" },
+    { "src": "/tk-paud", "dest": "/api/tk-paud.php" },
+    { "src": "/tk-paud.php", "dest": "/api/tk-paud.php" },
+    { "src": "/losari-tk", "dest": "/api/losari-tk.php" },
+    { "src": "/losari-tk.php", "dest": "/api/losari-tk.php" },
+    { "src": "/losari-sd", "dest": "/api/losari-sd.php" },
+    { "src": "/losari-sd.php", "dest": "/api/losari-sd.php" },
+    { "src": "/rosari", "dest": "/api/rosari.php" },
+    { "src": "/rosari.php", "dest": "/api/rosari.php" },
+    { "src": "/faq", "dest": "/api/faq.php" },
+    { "src": "/faq.php", "dest": "/api/faq.php" },
+    { "src": "/kontak", "dest": "/api/kontak.php" },
+    { "src": "/kontak.php", "dest": "/api/kontak.php" },
+    { "src": "/artikel-(.+)", "dest": "/api/artikel.php?slug=$1" },
     { "src": "/assets/(.*)", "dest": "/assets/$1" },
     { "src": "/data/(.*)", "dest": "/data/$1" },
-    { "src": "/$", "dest": "/index.php" },
+    { "src": "/$", "dest": "/api/index.php" },
+    { "src": "/index.php", "dest": "/api/index.php" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }

@@ -25,7 +25,7 @@ foreach ($pages as $source => $target) {
     $_SERVER['SCRIPT_NAME'] = '/' . $source;
 
     ob_start();
-    require $root . '/' . $source;
+    require $root . '/api/' . $source;
     $html = ob_get_clean();
 
     $html = str_replace(
@@ -45,15 +45,15 @@ foreach ($pages as $source => $target) {
     file_put_contents($public . '/' . $target, $html);
 }
 
-require_once $root . '/includes/helpers.php';
-require_once $root . '/includes/articles.php';
+require_once $root . '/api/includes/helpers.php';
+require_once $root . '/api/includes/articles.php';
 
 foreach (load_articles(true) as $article) {
     $_SERVER['SCRIPT_NAME'] = '/artikel.php';
     $_GET['slug'] = $article['slug'];
 
     ob_start();
-    require $root . '/artikel.php';
+    require $root . '/api/artikel.php';
     $html = ob_get_clean();
 
     $html = str_replace(
