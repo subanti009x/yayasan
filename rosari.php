@@ -22,7 +22,7 @@ require __DIR__ . '/includes/header.php';
     <section class="bg-white py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
-                <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Cabang Losari</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Cabang Losari</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Pilih sesuai jenjang anak.</h2>
                 <p class="mt-4 text-base leading-8 text-slate-600">Untuk anak usia dini, orang tua bisa melihat TKIT Cendekia 2 Losari. Untuk jenjang dasar, silakan masuk ke halaman SD IT Cendekia 2 Losari.</p>
             </div>

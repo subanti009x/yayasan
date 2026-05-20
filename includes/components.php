@@ -14,7 +14,7 @@ function render_school_card(string $key, array $school): void
             <p class="mt-3 text-sm leading-7 text-slate-600"><?= e($school['description']); ?></p>
             <div class="mt-6 flex flex-wrap gap-3">
                 <a href="<?= e($school['page']); ?>" class="rounded-md bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">Lihat Sekolah</a>
-                <a href="<?= e($school['page']); ?>#pendaftaran" class="rounded-md border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-teal-300 hover:text-teal-700">Daftar</a>
+                <a href="<?= e($school['page']); ?>#pendaftaran" class="rounded-md border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Daftar</a>
             </div>
         </div>
     </article>
@@ -43,18 +43,31 @@ function render_school_hero(array $school): void
 
 function render_registration_preview(array $school): void
 {
-    $entries = $school['form_entries'];
+    $campusLabel = ($school['campus'] ?? 'cirebon') === 'losari' ? 'Cabang Losari' : 'Cabang Kota Cirebon';
+    $entries = [
+        'nama' => 'entry.1226095507',
+        'jenis_kelamin' => 'entry.605978838',
+        'tanggal_lahir' => 'entry.2110263237',
+        'alamat' => 'entry.1727194637',
+        'nomor_hp' => 'entry.2053465285',
+        'pilihan_sekolah' => 'entry.1398125872',
+    ];
+    $formAction = preg_replace('/\/viewform(\?.*)?$/', '/formResponse', $school['form_url']) ?? $school['form_url'];
     $iframeName = 'hidden_google_form_' . preg_replace('/[^a-z0-9]+/', '_', strtolower($school['short_name']));
     ?>
-    <form class="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" action="<?= e($school['form_url']); ?>" method="post" target="<?= e($iframeName); ?>" data-google-form>
+    <form class="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" action="<?= e($formAction); ?>" method="post" target="<?= e($iframeName); ?>" data-google-form>
+        <div>
+            <span class="inline-flex rounded-full bg-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange-800 ring-1 ring-amber-200"><?= e($campusLabel); ?></span>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Data pendaftaran akan masuk ke Google Form resmi <?= e($campusLabel); ?>.</p>
+        </div>
         <div class="grid gap-4 sm:grid-cols-2">
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
                 Nama lengkap
-                <input type="text" name="<?= e($entries['nama']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" placeholder="Nama calon siswa" required>
+                <input type="text" name="<?= e($entries['nama']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
             </label>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
                 Jenis kelamin
-                <select name="<?= e($entries['jenis_kelamin']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" required>
+                <select name="<?= e($entries['jenis_kelamin']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
                     <option>Laki-laki</option>
                     <option>Perempuan</option>
                 </select>
@@ -63,25 +76,25 @@ function render_registration_preview(array $school): void
         <div class="grid gap-4 sm:grid-cols-2">
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
                 Umur / tanggal lahir
-                <input type="text" name="<?= e($entries['tanggal_lahir']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" placeholder="Contoh: 7 tahun / 12-05-2019" required>
+                <input type="text" name="<?= e($entries['tanggal_lahir']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Contoh: 7 tahun / 12-05-2019" required>
             </label>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
                 Nomor HP
-                <input type="tel" name="<?= e($entries['nomor_hp']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" placeholder="08xxxxxxxxxx" required>
+                <input type="tel" name="<?= e($entries['nomor_hp']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
             </label>
         </div>
         <label class="grid gap-2 text-sm font-semibold text-slate-700">
             Alamat
-            <textarea name="<?= e($entries['alamat']); ?>" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-teal-500 focus:ring-4 focus:ring-teal-100" placeholder="Alamat domisili" required></textarea>
+            <textarea name="<?= e($entries['alamat']); ?>" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat domisili" required></textarea>
         </label>
         <label class="grid gap-2 text-sm font-semibold text-slate-700">
             Pilihan sekolah
             <input type="text" name="<?= e($entries['pilihan_sekolah']); ?>" value="<?= e($school['name']); ?>" readonly class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal text-slate-600">
         </label>
-        <button type="submit" class="rounded-md bg-teal-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-200">
+        <button type="submit" class="rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-200">
             Kirim Pendaftaran
         </button>
-        <p class="hidden rounded-md bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
+        <p class="hidden rounded-md bg-amber-50 px-4 py-3 text-sm font-semibold text-orange-800 ring-1 ring-amber-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
         <p class="text-xs leading-6 text-slate-500">Setelah dikirim, admin sekolah akan menindaklanjuti data pendaftaran ini.</p>
         <iframe name="<?= e($iframeName); ?>" class="hidden" title="Google Form submission target" data-google-form-frame></iframe>
     </form>
@@ -187,7 +200,7 @@ function render_school_detail_sections(array $school): void
     <section class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
-                <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Program Unggulan</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Program Unggulan</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Kegiatan belajar yang disesuaikan dengan jenjang.</h2>
             </div>
             <div class="grid gap-5 md:grid-cols-3">
@@ -204,7 +217,7 @@ function render_school_detail_sections(array $school): void
     <section class="bg-white py-16 sm:py-20">
         <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
             <div>
-                <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Fasilitas</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Fasilitas</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Ruang belajar dan kegiatan siswa.</h2>
                 <p class="mt-5 text-base leading-8 text-slate-600">Fasilitas disiapkan untuk mendukung kegiatan belajar harian, pendampingan guru, dan aktivitas siswa di sekolah.</p>
             </div>
@@ -228,7 +241,7 @@ function render_school_detail_sections(array $school): void
     <section class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
-                <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Kegiatan Siswa</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Kegiatan Siswa</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Anak belajar lewat kebiasaan sehari-hari.</h2>
             </div>
             <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -261,7 +274,7 @@ function render_school_page(string $key): void
         <section class="bg-white py-16 sm:py-20">
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
                 <div>
-                    <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Profil Sekolah</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Profil Sekolah</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Lingkungan belajar yang dekat dengan anak.</h2>
                     <p class="mt-5 text-base leading-8 text-slate-600"><?= e($school['description']); ?></p>
                     <div class="mt-8 grid gap-4 sm:grid-cols-3">
@@ -280,7 +293,7 @@ function render_school_page(string $key): void
                     </div>
                 </div>
                 <aside class="rounded-lg bg-slate-950 p-6 text-white shadow-soft">
-                    <p class="text-sm font-semibold text-teal-200">Pendaftaran</p>
+                    <p class="text-sm font-semibold text-amber-200">Pendaftaran</p>
                     <h2 class="mt-3 text-2xl font-bold">Hubungi admin <?= e($school['short_name']); ?></h2>
                     <p class="mt-4 text-sm leading-7 text-slate-200">Admin akan membantu menjawab pertanyaan seputar biaya, jadwal, berkas, dan langkah pendaftaran.</p>
                     <div class="mt-6 grid gap-3">
@@ -296,9 +309,9 @@ function render_school_page(string $key): void
         <section id="pendaftaran" class="bg-slate-50 py-16 sm:py-20">
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
                 <div>
-                    <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Pendaftaran</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Pendaftaran</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Isi data calon siswa.</h2>
-                    <p class="mt-5 text-base leading-8 text-slate-600">Data ini menjadi langkah awal agar admin sekolah dapat menghubungi orang tua dan membantu proses berikutnya.</p>
+                    <p class="mt-5 text-base leading-8 text-slate-600">Form di website ini otomatis mengirim data ke Google Form sesuai cabang sekolah yang dipilih.</p>
                 </div>
                 <?php render_registration_preview($school); ?>
             </div>
@@ -307,7 +320,7 @@ function render_school_page(string $key): void
         <section class="bg-white py-16 sm:py-20">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="mb-8 max-w-2xl">
-                    <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Lokasi</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Lokasi</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Google Maps <?= e($school['name']); ?></h2>
                 </div>
                 <?php render_map($school['maps_embed'], 'Lokasi ' . $school['name'], $school['maps_url'] ?? null); ?>

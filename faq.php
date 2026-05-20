@@ -37,7 +37,7 @@ require __DIR__ . '/includes/header.php';
 <main>
     <section class="bg-slate-950 py-20 text-white sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <p class="text-sm font-bold uppercase tracking-wide text-teal-200">FAQ Pendaftaran</p>
+            <p class="text-sm font-bold uppercase tracking-wide text-amber-200">FAQ Pendaftaran</p>
             <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">Pertanyaan yang sering ditanyakan orang tua.</h1>
             <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-200">Beberapa jawaban singkat sebelum menghubungi admin atau mengisi form pendaftaran.</p>
         </div>

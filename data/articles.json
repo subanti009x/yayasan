@@ -1,0 +1,30 @@
+[
+    {
+        "id": "art_20260520_002",
+        "title": "Pentingnya Pendampingan Orang Tua Saat Memilih Sekolah",
+        "slug": "pentingnya-pendampingan-orang-tua-saat-memilih-sekolah",
+        "category": "Informasi Pendaftaran",
+        "author": "Admin Yayasan",
+        "excerpt": "Memilih sekolah akan lebih mudah ketika orang tua memahami kebutuhan anak, lingkungan belajar, dan arah pendampingan yang diberikan sekolah.",
+        "content": "Setiap anak memiliki kebutuhan belajar yang berbeda. Karena itu, orang tua perlu melihat suasana sekolah, cara guru mendampingi siswa, serta program yang sesuai dengan usia dan karakter anak.\n\nYayasan Cendekia menyediakan informasi jenjang, kontak admin, formulir pendaftaran, dan lokasi sekolah agar orang tua dapat memulai proses dengan lebih mudah. Jika masih ada pertanyaan, admin sekolah siap membantu memberikan arahan.",
+        "image": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=80",
+        "views": 3,
+        "status": "published",
+        "created_at": "2026-05-20 09:10",
+        "updated_at": "2026-05-20 09:10"
+    },
+    {
+        "id": "art_20260520_001",
+        "title": "Kegiatan Belajar Menyenangkan di Yayasan Cendekia",
+        "slug": "kegiatan-belajar-menyenangkan-di-yayasan-cendekia",
+        "category": "Kegiatan Sekolah",
+        "author": "Admin Yayasan",
+        "excerpt": "Suasana belajar yang hangat membantu siswa lebih percaya diri, aktif bertanya, dan nyaman mengikuti kegiatan sekolah.",
+        "content": "Di Yayasan Cendekia, kegiatan belajar disiapkan agar anak merasa dekat dengan guru, teman, dan lingkungan sekolah. Setiap aktivitas diarahkan untuk membangun keberanian, kemandirian, serta kebiasaan baik sehari-hari.\n\nMelalui kegiatan kelas, literasi, seni, olahraga, dan pendampingan guru, siswa diberi ruang untuk belajar dengan cara yang bertahap dan menyenangkan. Harapannya, anak tidak hanya memahami pelajaran, tetapi juga tumbuh sebagai pribadi yang lebih percaya diri.",
+        "image": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1400&q=80",
+        "views": 1,
+        "status": "published",
+        "created_at": "2026-05-20 09:00",
+        "updated_at": "2026-05-20 09:00"
+    }
+]

@@ -11,7 +11,7 @@ $items = nav_items($data);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= e($title); ?></title>
     <meta name="description" content="<?= e($description); ?>">
-    <meta name="theme-color" content="#0f766e">
+    <meta name="theme-color" content="#ea580c">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://images.unsplash.com">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -37,7 +37,7 @@ $items = nav_items($data);
     <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 glass-nav">
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Navigasi utama">
             <a href="index.php" class="flex items-center gap-3" aria-label="Beranda Yayasan Cendekia">
-                <span class="grid h-11 w-11 place-items-center rounded-lg bg-teal-700 text-base font-bold text-white shadow-soft">YC</span>
+                <span class="grid h-11 w-11 place-items-center rounded-lg bg-orange-600 text-base font-bold text-white shadow-soft">YC</span>
                 <span>
                     <span class="block text-sm font-bold tracking-wide text-slate-950">Yayasan Cendekia</span>
                     <span class="block text-xs text-slate-500">Sekolah Indonesia</span>
@@ -46,13 +46,13 @@ $items = nav_items($data);
 
             <div class="hidden items-center gap-1 lg:flex">
                 <?php foreach ($items as $item): ?>
-                    <a href="<?= e($item['url']); ?>" class="rounded-md px-3 py-2 text-sm font-semibold transition <?= is_active($item['url']) ? 'bg-teal-50 text-teal-800' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-950'; ?>">
+                    <a href="<?= e($item['url']); ?>" class="rounded-md px-3 py-2 text-sm font-semibold transition <?= is_active($item['url']) ? 'bg-amber-50 text-orange-800' : 'text-slate-600 hover:bg-amber-50 hover:text-orange-800'; ?>">
                         <?= e($item['label']); ?>
                     </a>
                 <?php endforeach; ?>
             </div>
 
-            <a href="<?= e(whatsapp_url($data['foundation']['phone'], 'Halo Yayasan Cendekia, saya ingin bertanya tentang pendaftaran.')); ?>" class="hidden rounded-md bg-teal-700 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-200 lg:inline-flex" target="_blank" rel="noopener">
+            <a href="<?= e(whatsapp_url($data['foundation']['phone'], 'Halo Yayasan Cendekia, saya ingin bertanya tentang pendaftaran.')); ?>" class="hidden rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-200 lg:inline-flex" target="_blank" rel="noopener">
                 Hubungi Kami
             </a>
 
@@ -67,11 +67,11 @@ $items = nav_items($data);
         <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-4 py-4 lg:hidden" data-mobile-menu>
             <div class="mx-auto grid max-w-7xl gap-1">
                 <?php foreach ($items as $item): ?>
-                    <a href="<?= e($item['url']); ?>" class="rounded-md px-3 py-3 text-sm font-semibold <?= is_active($item['url']) ? 'bg-teal-50 text-teal-800' : 'text-slate-700 hover:bg-slate-100'; ?>">
+                    <a href="<?= e($item['url']); ?>" class="rounded-md px-3 py-3 text-sm font-semibold <?= is_active($item['url']) ? 'bg-amber-50 text-orange-800' : 'text-slate-700 hover:bg-amber-50 hover:text-orange-800'; ?>">
                         <?= e($item['label']); ?>
                     </a>
                 <?php endforeach; ?>
-                <a href="<?= e(whatsapp_url($data['foundation']['phone'], 'Halo Yayasan Cendekia, saya ingin bertanya tentang pendaftaran.')); ?>" class="mt-2 rounded-md bg-teal-700 px-3 py-3 text-center text-sm font-semibold text-white" target="_blank" rel="noopener">
+                <a href="<?= e(whatsapp_url($data['foundation']['phone'], 'Halo Yayasan Cendekia, saya ingin bertanya tentang pendaftaran.')); ?>" class="mt-2 rounded-md bg-orange-600 px-3 py-3 text-center text-sm font-semibold text-white" target="_blank" rel="noopener">
                     Hubungi WhatsApp
                 </a>
             </div>
