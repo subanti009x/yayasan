@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/components.php';
 
 $title = 'FAQ Pendaftaran - Yayasan Cendekia';
-$description = 'Pertanyaan yang sering diajukan seputar pendaftaran Yayasan Cendekia, Cendekia Cirebon, TK / PAUD Losari, dan SD Losari.';
+$description = 'Pertanyaan yang sering diajukan seputar pendaftaran Yayasan Cendekia, Cendekia Cirebon, TKIT Cendekia 2 Losari, dan SD IT Cendekia 2 Losari.';
 
 $faqs = [
     [
@@ -16,11 +16,11 @@ $faqs = [
     ],
     [
         'question' => 'Apa perbedaan Cendekia Cirebon dan Cabang Losari?',
-        'answer' => 'Cendekia Cirebon menampilkan jenjang TK, SD, SMP, dan SMK. Cabang Losari saat ini disiapkan dengan halaman khusus TK / PAUD Losari dan SD Losari.',
+        'answer' => 'Cendekia Cirebon menampilkan jenjang TK, SD, SMP, dan SMK. Cabang Losari saat ini disiapkan dengan halaman khusus TKIT Cendekia 2 Losari dan SD IT Cendekia 2 Losari.',
     ],
     [
-        'question' => 'Apakah TK / PAUD Losari dan SD Losari memiliki form berbeda?',
-        'answer' => 'Ya. TK / PAUD Losari dan SD Losari memiliki halaman masing-masing sehingga pilihan sekolah pada form pendaftaran sesuai dengan jenjang yang dipilih.',
+        'question' => 'Apakah TKIT Cendekia 2 Losari dan SD IT Cendekia 2 Losari memiliki form berbeda?',
+        'answer' => 'Ya. TKIT Cendekia 2 Losari dan SD IT Cendekia 2 Losari memiliki halaman masing-masing sehingga pilihan sekolah pada form pendaftaran sesuai dengan jenjang yang dipilih.',
     ],
     [
         'question' => 'Apakah bisa survei atau datang langsung ke sekolah?',

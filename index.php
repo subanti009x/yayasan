@@ -70,8 +70,8 @@ require __DIR__ . '/includes/header.php';
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
                 <p class="text-sm font-bold uppercase tracking-wide text-teal-700">Cabang Losari</p>
-                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">TK dan SD Losari.</h2>
-                <p class="mt-4 text-base leading-8 text-slate-600">Orang tua bisa langsung memilih halaman yang sesuai. TK / PAUD Losari dibuat untuk masa awal anak bersekolah, sementara SD Losari membantu anak memperkuat dasar belajar dan kebiasaan baik.</p>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">TK dan SD IT Cendekia 2 Losari.</h2>
+                <p class="mt-4 text-base leading-8 text-slate-600">Orang tua bisa langsung memilih halaman yang sesuai. TKIT Cendekia 2 Losari dibuat untuk masa awal anak bersekolah, sementara SD IT Cendekia 2 Losari membantu anak memperkuat dasar belajar dan kebiasaan baik.</p>
             </div>
             <div class="grid gap-6 md:grid-cols-2">
                 <?php foreach (schools_by_campus($data, 'losari') as $key => $school): ?>

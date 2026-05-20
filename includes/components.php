@@ -81,7 +81,7 @@ function render_registration_preview(array $school): void
         <button type="submit" class="rounded-md bg-teal-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-teal-800 focus:outline-none focus:ring-4 focus:ring-teal-200">
             Kirim Pendaftaran
         </button>
-        <p class="hidden rounded-md bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200" data-form-success>Terima kasih. Data pendaftaran sedang dikirim ke Google Form.</p>
+        <p class="hidden rounded-md bg-emerald-50 px-4 py-3 text-sm font-semibold text-emerald-700 ring-1 ring-emerald-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
         <p class="text-xs leading-6 text-slate-500">Setelah dikirim, admin sekolah akan menindaklanjuti data pendaftaran ini.</p>
         <iframe name="<?= e($iframeName); ?>" class="hidden" title="Google Form submission target" data-google-form-frame></iframe>
     </form>
