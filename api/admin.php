@@ -39,7 +39,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 function admin_redirect(string $suffix = ''): void
 {
-    header('Location: admin.php' . $suffix);
+    header('Location: /admin' . $suffix);
     exit;
 }
 
@@ -379,7 +379,7 @@ require __DIR__ . '/../includes/header.php';
                         <div class="mt-6 flex flex-col gap-3 sm:flex-row">
                             <button type="submit" class="rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Simpan Artikel</button>
                             <?php if ($editArticle): ?>
-                                <a href="admin.php" class="rounded-md border border-slate-200 px-5 py-3 text-center text-sm font-bold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Batal Edit</a>
+                                <a href="/admin" class="rounded-md border border-slate-200 px-5 py-3 text-center text-sm font-bold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Batal Edit</a>
                             <?php endif; ?>
                         </div>
                     </form>
@@ -396,7 +396,7 @@ require __DIR__ . '/../includes/header.php';
                                             <p class="mt-2 text-sm leading-6 text-slate-600"><?= e(article_plain_excerpt($article, 120)); ?></p>
                                         </div>
                                         <div class="flex shrink-0 gap-2">
-                                            <a href="admin.php?edit=<?= e($article['id'] ?? ''); ?>" class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Edit</a>
+                                            <a href="/admin?edit=<?= e($article['id'] ?? ''); ?>" class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Edit</a>
                                             <form method="post" onsubmit="return confirm('Hapus artikel ini?');">
                                                 <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']); ?>">
                                                 <input type="hidden" name="action" value="delete">

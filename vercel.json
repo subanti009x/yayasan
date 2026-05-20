@@ -1,19 +1,35 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": false,
   "alias": [
     "yayasan-sekolah-cendekia.vercel.app"
   ],
-  "buildCommand": "php scripts/build-static.php",
   "functions": {
     "api/**/*.php": {
+      "runtime": "vercel-php@0.9.0"
+    },
+    "*.php": {
       "runtime": "vercel-php@0.9.0"
     }
   },
   "routes": [
     { "src": "/admin", "dest": "/api/admin.php" },
-    { "src": "/admin.php", "dest": "/api/admin.php" }
+    { "src": "/admin.php", "dest": "/api/admin.php" },
+    { "src": "/articles", "dest": "/articles.php" },
+    { "src": "/sd", "dest": "/sd.php" },
+    { "src": "/smp", "dest": "/smp.php" },
+    { "src": "/smk", "dest": "/smk.php" },
+    { "src": "/tk-paud", "dest": "/tk-paud.php" },
+    { "src": "/losari-tk", "dest": "/losari-tk.php" },
+    { "src": "/losari-sd", "dest": "/losari-sd.php" },
+    { "src": "/rosari", "dest": "/rosari.php" },
+    { "src": "/faq", "dest": "/faq.php" },
+    { "src": "/kontak", "dest": "/kontak.php" },
+    { "src": "/artikel-(.+)", "dest": "/artikel.php?slug=$1" },
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/data/(.*)", "dest": "/data/$1" },
+    { "src": "/$", "dest": "/index.php" },
+    { "src": "/(.*)", "dest": "/$1" }
   ]
 }
