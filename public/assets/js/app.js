@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem(sessionKey, 'true');
             } else {
                 // Just fetch and update the display count (for list cards or secondary views)
-                const res = await fetch(`${API_BASE}/article_${id}`);
+                const res = await fetch(`${API_BASE}/article_${id}/`);
                 if (res.ok) {
                     const data = await res.json();
                     const currentCount = data.count || 0;
