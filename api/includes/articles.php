@@ -172,6 +172,10 @@ function find_article_by_id(string $id): ?array
 
 function increment_article_views(string $id): ?array
 {
+    if (getenv('VERCEL') === '1') {
+        return null;
+    }
+
     $path = articles_path();
 
     if (!is_file($path)) {
