@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (viewElements.length === 0) return;
 
     // Determine if we are on a single article detail page
-    const isArticlePage = window.location.pathname.includes('/artikel-') || document.querySelector('article') !== null;
+    const isArticlePage = window.location.pathname.includes('/artikel-');
     let mainArticleId = null;
 
     if (isArticlePage) {
