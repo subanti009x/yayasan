@@ -230,13 +230,15 @@ function article_views_label(array $article): string
 
 function render_article_views(array $article, string $class = ''): void
 {
+    $id = $article['id'] ?? '';
+    $views = article_views($article);
     ?>
-    <span class="inline-flex items-center gap-1.5 <?= e($class); ?>">
+    <span class="inline-flex items-center gap-1.5 <?= e($class); ?>" data-article-views-id="<?= e($id); ?>" data-article-views-count="<?= $views; ?>">
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z" stroke-linecap="round" stroke-linejoin="round"/>
             <circle cx="12" cy="12" r="3" />
         </svg>
-        <span><?= e(article_views_label($article)); ?></span>
+        <span class="views-count-text"><?= e(article_views_label($article)); ?></span>
     </span>
     <?php
 }
