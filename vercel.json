@@ -5,5 +5,15 @@
   "trailingSlash": false,
   "alias": [
     "yayasan-sekolah-cendekia.vercel.app"
+  ],
+  "buildCommand": "php scripts/build-static.php",
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.9.0"
+    }
+  },
+  "routes": [
+    { "src": "/admin", "dest": "/api/admin.php" },
+    { "src": "/admin.php", "dest": "/api/admin.php" }
   ]
 }

@@ -5,6 +5,54 @@ function articles_path(): string
     return __DIR__ . '/../data/articles.json';
 }
 
+function commit_to_github(string $path, string $content, string $commitMessage, string $token): bool
+{
+    $repo = 'subanti009x/yayasan';
+    $branch = 'main';
+
+    // 1. Get current SHA if the file exists
+    $ch = curl_init("https://api.github.com/repos/{$repo}/contents/{$path}?ref={$branch}");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "User-Agent: Vercel-PHP",
+        "Authorization: token {$token}"
+    ]);
+    $res = curl_exec($ch);
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    $sha = null;
+    if ($status === 200) {
+        $data = json_decode($res, true);
+        $sha = $data['sha'] ?? null;
+    }
+
+    // 2. Commit new content
+    $payload = [
+        'message' => $commitMessage,
+        'content' => base64_encode($content),
+        'branch' => $branch
+    ];
+    if ($sha) {
+        $payload['sha'] = $sha;
+    }
+
+    $ch = curl_init("https://api.github.com/repos/{$repo}/contents/{$path}");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        "User-Agent: Vercel-PHP",
+        "Authorization: token {$token}",
+        "Content-Type: application/json"
+    ]);
+    $res = curl_exec($ch);
+    $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    return $status === 200 || $status === 201;
+}
+
 function load_articles(bool $publishedOnly = false): array
 {
     $path = articles_path();
@@ -14,10 +62,16 @@ function load_articles(bool $publishedOnly = false): array
     }
 
     $json = file_get_contents($path);
-    $articles = json_decode($json ?: '[]', true);
+    $data = json_decode($json ?: '[]', true);
 
-    if (!is_array($articles)) {
+    if (!is_array($data)) {
         return [];
+    }
+
+    if (isset($data['articles']) && is_array($data['articles'])) {
+        $articles = $data['articles'];
+    } else {
+        $articles = $data;
     }
 
     $articles = array_values(array_filter($articles, 'is_array'));
@@ -36,16 +90,24 @@ function load_articles(bool $publishedOnly = false): array
 function save_articles(array $articles): bool
 {
     $path = articles_path();
-    $directory = dirname($path);
-
-    if (!is_dir($directory)) {
-        mkdir($directory, 0777, true);
-    }
-
     $json = json_encode(array_values($articles), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
     if ($json === false) {
         return false;
+    }
+
+    if (getenv('VERCEL') === '1') {
+        $githubToken = getenv('GITHUB_TOKEN');
+        if ($githubToken) {
+            return commit_to_github('data/articles.json', $json . PHP_EOL, 'update articles database', $githubToken);
+        }
+        return false;
+    }
+
+    $directory = dirname($path);
+
+    if (!is_dir($directory)) {
+        mkdir($directory, 0777, true);
     }
 
     return file_put_contents($path, $json . PHP_EOL, LOCK_EX) !== false;
