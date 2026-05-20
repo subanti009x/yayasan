@@ -6,7 +6,7 @@
     "yayasan-sekolah-cendekia.vercel.app"
   ],
   "functions": {
-    "api/**/*.php": {
+    "api/*.php": {
       "runtime": "vercel-php@0.9.0"
     }
   },
