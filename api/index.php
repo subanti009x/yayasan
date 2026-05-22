@@ -35,7 +35,7 @@ require __DIR__ . '/includes/header.php';
                 </div>
                 <div class="rounded-lg border border-white/15 bg-white/10 p-5 text-white backdrop-blur sm:col-span-2">
                     <p class="text-3xl font-bold">Online</p>
-                    <p class="mt-1 text-sm text-slate-200">Pendaftaran melalui Google Form tiap sekolah</p>
+                    <p class="mt-1 text-sm text-slate-200">Pendaftaran mudah secara online untuk tiap sekolah</p>
                 </div>
             </div>
         </div>

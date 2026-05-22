@@ -44,58 +44,275 @@ function render_school_hero(array $school): void
 function render_registration_preview(array $school): void
 {
     $campusLabel = ($school['campus'] ?? 'cirebon') === 'losari' ? 'Cabang Losari' : 'Cabang Kota Cirebon';
-    $entries = [
-        'nama' => 'entry.1226095507',
-        'jenis_kelamin' => 'entry.605978838',
-        'tanggal_lahir' => 'entry.2110263237',
-        'alamat' => 'entry.1727194637',
-        'nomor_hp' => 'entry.2053465285',
-        'pilihan_sekolah' => 'entry.1398125872',
-    ];
     $formAction = preg_replace('/\/viewform(\?.*)?$/', '/formResponse', $school['form_url']) ?? $school['form_url'];
     $iframeName = 'hidden_google_form_' . preg_replace('/[^a-z0-9]+/', '_', strtolower($school['short_name']));
+    
+    $isActualFormAvailable = in_array($school['name'], [
+        'TKIT Cendekia',
+        'SDIT SABILUL QURAN',
+        'SMPIT TAHFIDZUL QURAN'
+    ]);
     ?>
     <form class="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" action="<?= e($formAction); ?>" method="post" target="<?= e($iframeName); ?>" data-google-form>
         <div>
             <span class="inline-flex rounded-full bg-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange-800 ring-1 ring-amber-200"><?= e($campusLabel); ?></span>
-            <p class="mt-3 text-sm leading-7 text-slate-600">Data pendaftaran akan masuk ke Google Form resmi <?= e($campusLabel); ?>.</p>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Data pendaftaran Anda akan langsung diterima oleh admin resmi <?= e($campusLabel); ?>.</p>
         </div>
-        <div class="grid gap-4 sm:grid-cols-2">
+
+        <?php if (!$isActualFormAvailable): ?>
+            <div class="rounded-md bg-rose-50 border border-rose-200 p-4 text-sm text-rose-800 font-semibold mb-2">
+                ⚠️ Pendaftaran online untuk <?= e($school['name']); ?> belum dibuka. Silakan hubungi nomor WhatsApp sekolah untuk mendaftar langsung atau mendapatkan informasi lebih lanjut.
+            </div>
+        <?php endif; ?>
+
+        <?php if ($school['name'] === 'TKIT Cendekia'): ?>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama lengkap
+                    <input type="text" name="entry.794168599" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama panggilan
+                    <input type="text" name="entry.627662662" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama panggilan anak" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    No. WA
+                    <input type="tel" name="entry.1052167666" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Asal TK
+                    <input type="text" name="entry.1697485376" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Asal sekolah/TK sebelumnya" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Ayah
+                    <input type="text" name="entry.150230774" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ayah" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pekerjaan Ayah
+                    <input type="text" name="entry.1280888089" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ayah" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Ibu
+                    <input type="text" name="entry.1615103016" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ibu" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pekerjaan Ibu
+                    <input type="text" name="entry.1310556616" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ibu" required>
+                </label>
+            </div>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
-                Nama lengkap
-                <input type="text" name="<?= e($entries['nama']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
+                Alamat Rumah
+                <textarea name="entry.277342110" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat domisili lengkap" required></textarea>
             </label>
+
+        <?php elseif ($school['name'] === 'SDIT SABILUL QURAN'): ?>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Lengkap
+                    <input type="text" name="entry.1267371777" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Panggilan
+                    <input type="text" name="entry.567078244" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama panggilan anak" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Jenis Kelamin
+                    <select name="entry.484836580" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                        <option>Laki-laki</option>
+                        <option>Perempuan</option>
+                    </select>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Tempat tanggal lahir
+                    <input type="text" name="entry.149872710" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Contoh: Cirebon, 12 Mei 2019" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Agama
+                    <input type="text" name="entry.1744331187" value="Islam" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Kewarganegaraan
+                    <input type="text" name="entry.539583406" value="WNI" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Asal Sekolah
+                    <input type="text" name="entry.1590909408" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Asal TK/sekolah sebelumnya" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    No. WA Aktif
+                    <input type="tel" name="entry.676149694" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-3">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Ayah
+                    <input type="text" name="entry.935546412" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ayah" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pendidikan Ayah
+                    <input type="text" name="entry.1717883185" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ayah" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pekerjaan Ayah
+                    <input type="text" name="entry.2090349951" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ayah" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-3">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Ibu
+                    <input type="text" name="entry.837404399" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ibu" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pendidikan Ibu
+                    <input type="text" name="entry.1098953204" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ibu" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pekerjaan Ibu
+                    <input type="text" name="entry.216663890" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ibu" required>
+                </label>
+            </div>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
-                Jenis kelamin
-                <select name="<?= e($entries['jenis_kelamin']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
-                    <option>Laki-laki</option>
-                    <option>Perempuan</option>
-                </select>
+                Alamat tempat tinggal
+                <textarea name="entry.1035227650" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat lengkap domisili" required></textarea>
             </label>
-        </div>
-        <div class="grid gap-4 sm:grid-cols-2">
+
+        <?php elseif ($school['name'] === 'SMPIT TAHFIDZUL QURAN'): ?>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Lengkap
+                    <input type="text" name="entry.2055510208" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Panggilan
+                    <input type="text" name="entry.558526172" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama panggilan anak" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Jenis Kelamin
+                    <select name="entry.324562681" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                        <option>Laki-laki</option>
+                        <option>Perempuan</option>
+                    </select>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Tempat, Tanggal Lahir
+                    <input type="text" name="entry.56417918" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Contoh: Cirebon, 12 Mei 2013" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Agama
+                    <input type="text" name="entry.810990337" value="Islam" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Kewarganegaraan
+                    <input type="text" name="entry.2002042407" value="WNI" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Asal Sekolah
+                    <input type="text" name="entry.181234805" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Asal sekolah/SD sebelumnya" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    No. WA
+                    <input type="tel" name="entry.408552828" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-3">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Ayah
+                    <input type="text" name="entry.1001224564" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ayah" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pendidikan Ayah
+                    <input type="text" name="entry.51377260" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ayah" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pekerjaan Ayah
+                    <input type="text" name="entry.698003970" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ayah" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-3">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Ibu
+                    <input type="text" name="entry.108118824" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ibu" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pendidikan Ibu
+                    <input type="text" name="entry.137652037" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ibu" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pekerjaan Ibu
+                    <input type="text" name="entry.1959004689" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ibu" required>
+                </label>
+            </div>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
-                Umur / tanggal lahir
-                <input type="text" name="<?= e($entries['tanggal_lahir']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Contoh: 7 tahun / 12-05-2019" required>
+                Alamat Tempat Tinggal
+                <textarea name="entry.488607707" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat lengkap tempat tinggal" required></textarea>
             </label>
-            <label class="grid gap-2 text-sm font-semibold text-slate-700">
-                Nomor HP
-                <input type="tel" name="<?= e($entries['nomor_hp']); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
+
+        <?php else: ?>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-400 cursor-not-allowed">
+                    Nama lengkap
+                    <input type="text" disabled class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal cursor-not-allowed text-slate-400 outline-none" placeholder="Nama calon siswa">
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-400 cursor-not-allowed">
+                    Jenis kelamin
+                    <select disabled class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal cursor-not-allowed text-slate-400 outline-none">
+                        <option>Laki-laki</option>
+                        <option>Perempuan</option>
+                    </select>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-400 cursor-not-allowed">
+                    Umur / tanggal lahir
+                    <input type="text" disabled class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal cursor-not-allowed text-slate-400 outline-none" placeholder="Contoh: 7 tahun / 12-05-2019">
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-400 cursor-not-allowed">
+                    Nomor HP
+                    <input type="tel" disabled class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal cursor-not-allowed text-slate-400 outline-none" placeholder="08xxxxxxxxxx">
+                </label>
+            </div>
+            <label class="grid gap-2 text-sm font-semibold text-slate-400 cursor-not-allowed">
+                Alamat
+                <textarea disabled rows="3" class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal cursor-not-allowed text-slate-400 outline-none" placeholder="Alamat domisili"></textarea>
             </label>
-        </div>
-        <label class="grid gap-2 text-sm font-semibold text-slate-700">
-            Alamat
-            <textarea name="<?= e($entries['alamat']); ?>" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat domisili" required></textarea>
-        </label>
+        <?php endif; ?>
+
         <label class="grid gap-2 text-sm font-semibold text-slate-700">
             Pilihan sekolah
-            <input type="text" name="<?= e($entries['pilihan_sekolah']); ?>" value="<?= e($school['name']); ?>" readonly class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal text-slate-600">
+            <input type="text" value="<?= e($school['name']); ?>" readonly class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal text-slate-600">
         </label>
-        <button type="submit" class="rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-200">
-            Kirim Pendaftaran
-        </button>
-        <p class="hidden rounded-md bg-amber-50 px-4 py-3 text-sm font-semibold text-orange-800 ring-1 ring-amber-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
-        <p class="text-xs leading-6 text-slate-500">Setelah dikirim, admin sekolah akan menindaklanjuti data pendaftaran ini.</p>
+        
+        <?php if ($isActualFormAvailable): ?>
+            <button type="submit" class="rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-200">
+                Kirim Pendaftaran
+            </button>
+            <p class="hidden rounded-md bg-amber-50 px-4 py-3 text-sm font-semibold text-orange-800 ring-1 ring-amber-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
+            <p class="text-xs leading-6 text-slate-500">Setelah dikirim, admin sekolah akan menindaklanjuti data pendaftaran ini.</p>
+        <?php else: ?>
+            <button type="button" disabled class="rounded-md bg-slate-400 px-5 py-3 text-sm font-bold text-white cursor-not-allowed hover:bg-slate-400 focus:outline-none">
+                Pendaftaran Belum Dibuka
+            </button>
+            <p class="text-xs leading-6 text-slate-400">Pendaftaran online belum dibuka. Silakan hubungi WhatsApp sekolah untuk mendaftar langsung.</p>
+        <?php endif; ?>
+        
         <iframe name="<?= e($iframeName); ?>" class="hidden" title="Google Form submission target" data-google-form-frame></iframe>
     </form>
     <?php
@@ -310,8 +527,26 @@ function render_school_page(string $key): void
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
                 <div>
                     <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Pendaftaran</p>
-                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Isi data calon siswa.</h2>
-                    <p class="mt-5 text-base leading-8 text-slate-600">Form di website ini otomatis mengirim data ke Google Form sesuai cabang sekolah yang dipilih.</p>
+                    <?php if ($school['name'] === 'SMPIT TAHFIDZUL QURAN'): ?>
+                        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Formulir Pendaftaran</h2>
+                        <div class="mt-5 text-sm leading-7 text-slate-600 space-y-4">
+                            <p class="font-semibold text-slate-900">Assalamu’alaikum warahmatullahi wabarakatuh.</p>
+                            <p>Terima kasih atas minat Ayah/Bunda untuk mendaftarkan Ananda di SMPIT Tahfidzul Qur’an Cendekia Cirebon.</p>
+                            <p>Melalui formulir ini, Ayah/Bunda dapat mengisi data awal pendaftaran calon peserta didik baru. Data yang diisi akan digunakan oleh pihak sekolah sebagai data administrasi awal dalam proses Penerimaan Peserta Didik Baru (PPDB).</p>
+                            <p>Mohon agar Ayah/Bunda mengisi setiap kolom dengan data yang benar dan lengkap agar proses verifikasi dapat berjalan dengan baik.</p>
+                            <p>Setelah mengisi formulir ini, mohon berkenan untuk menghubungi Admin Sekolah melalui WhatsApp guna proses verifikasi data dan informasi tahapan pendaftaran selanjutnya.</p>
+                            <div class="my-4 rounded-md border border-amber-200 bg-amber-50 p-4">
+                                <span class="block font-bold text-orange-950">📞 Admin (WhatsApp):</span>
+                                <a href="https://wa.me/6281573888807" target="_blank" rel="noopener" class="text-orange-700 font-bold hover:underline">0815-7388-8807</a>
+                            </div>
+                            <p>Apabila terdapat pertanyaan atau membutuhkan informasi lebih lanjut terkait proses pendaftaran, Ayah/Bunda juga dapat menghubungi nomor tersebut.</p>
+                            <p class="font-semibold text-slate-900">Semoga Allah memudahkan setiap langkah pendidikan Ananda.</p>
+                            <p class="font-semibold text-slate-900">Wassalamu’alaikum warahmatullahi wabarakatuh.</p>
+                        </div>
+                    <?php else: ?>
+                        <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Isi data calon siswa.</h2>
+                        <p class="mt-5 text-base leading-8 text-slate-600">Formulir di website ini akan mengirimkan data pendaftaran secara langsung ke cabang sekolah yang dipilih.</p>
+                    <?php endif; ?>
                 </div>
                 <?php render_registration_preview($school); ?>
             </div>
