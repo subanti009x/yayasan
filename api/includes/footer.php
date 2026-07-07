@@ -25,7 +25,7 @@
                     <a href="<?= url('articles.php'); ?>" class="mt-3 text-slate-600 transition hover:text-orange-700">Artikel Sekolah</a>
                     <a href="<?= url('faq.php'); ?>" class="mt-3 text-slate-600 transition hover:text-orange-700">FAQ Pendaftaran</a>
                     <?php if (!defined('BUILD_STATIC')): ?>
-                        <a href="/admin" class="text-slate-600 transition hover:text-orange-700">Dashboard Admin</a>
+                        <a href="/admin.php" class="text-slate-600 transition hover:text-orange-700">Dashboard Admin</a>
                     <?php endif; ?>
                 </div>
             </div>

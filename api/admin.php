@@ -297,7 +297,7 @@ require __DIR__ . '/includes/header.php';
                         <input type="password" name="password" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
                     </label>
                     <button type="submit" class="mt-5 w-full rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Masuk Dashboard</button>
-                    <p class="mt-4 text-xs leading-6 text-slate-500">Default lokal: cendekia-admin. Untuk production, set environment variable ADMIN_PASSWORD.</p>
+                    <!-- <p class="mt-4 text-xs leading-6 text-slate-500">Password admin ada di documentasi dan diberikan oleh tim admin.</p> -->
                 </form>
             <?php else: ?>
                 <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
