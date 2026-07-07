@@ -15,7 +15,7 @@ function commit_to_github(string $path, string $content, string $commitMessage, 
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "User-Agent: Vercel-PHP",
-        "Authorization: token {$token}"
+        "Authorization: Bearer {$token}"
     ]);
     $res = curl_exec($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -43,7 +43,7 @@ function commit_to_github(string $path, string $content, string $commitMessage, 
     curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         "User-Agent: Vercel-PHP",
-        "Authorization: token {$token}",
+        "Authorization: Bearer {$token}",
         "Content-Type: application/json"
     ]);
     $res = curl_exec($ch);
