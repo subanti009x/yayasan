@@ -99,7 +99,7 @@ function save_articles(array $articles): bool
     if (getenv('VERCEL') === '1') {
         $githubToken = getenv('GITHUB_TOKEN');
         if ($githubToken) {
-            return commit_to_github('data/articles.json', $json . PHP_EOL, 'update articles database', $githubToken);
+            return commit_to_github('api/data/articles.json', $json . PHP_EOL, 'update articles database', $githubToken);
         }
         return false;
     }

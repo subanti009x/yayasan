@@ -19,7 +19,7 @@ function save_site_data(array $data): bool
     if (getenv('VERCEL') === '1') {
         $githubToken = getenv('GITHUB_TOKEN');
         if ($githubToken) {
-            return commit_to_github('data/site.json', $json . PHP_EOL, 'update site configuration', $githubToken);
+            return commit_to_github('api/data/site.json', $json . PHP_EOL, 'update site configuration', $githubToken);
         }
         return false;
     }
@@ -44,7 +44,7 @@ function save_faq_data(array $data): bool
     if (getenv('VERCEL') === '1') {
         $githubToken = getenv('GITHUB_TOKEN');
         if ($githubToken) {
-            return commit_to_github('data/faq.json', $json . PHP_EOL, 'update FAQ data', $githubToken);
+            return commit_to_github('api/data/faq.json', $json . PHP_EOL, 'update FAQ data', $githubToken);
         }
         return false;
     }
