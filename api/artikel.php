@@ -14,10 +14,10 @@ if ($article === null) {
     <main>
         <section class="bg-white py-20 sm:py-24">
             <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Artikel</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Artikel</p>
                 <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-950">Artikel tidak ditemukan.</h1>
                 <p class="mt-4 text-base leading-8 text-slate-600">Konten yang anda buka mungkin sudah dipindahkan atau belum dipublikasikan.</p>
-                <a href="<?= url('articles.php'); ?>" class="mt-8 inline-flex rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Lihat Artikel Lain</a>
+                <a href="<?= url('articles.php'); ?>" class="mt-8 inline-flex rounded-md bg-primary-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-700">Lihat Artikel Lain</a>
             </div>
         </section>
     </main>
@@ -45,9 +45,9 @@ require __DIR__ . '/includes/header.php';
             <?php if (!empty($article['image'])): ?>
                 <img src="<?= e($article['image']); ?>" alt="<?= e($article['title']); ?>" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-35">
             <?php endif; ?>
-            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/86 to-orange-950/45"></div>
+            <div class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/86 to-primary-950/45"></div>
             <div class="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-                <div class="flex flex-wrap items-center gap-2 text-sm font-bold uppercase tracking-wide text-amber-100">
+                <div class="flex flex-wrap items-center gap-2 text-sm font-bold uppercase tracking-wide text-secondary-100">
                     <span><?= e($article['category'] ?? 'Artikel'); ?></span>
                     <span class="text-white/35">/</span>
                     <span><?= e(article_date($article)); ?></span>
@@ -67,8 +67,8 @@ require __DIR__ . '/includes/header.php';
                     <?php render_article_body($article['content'] ?? ''); ?>
                 </div>
                 <aside class="lg:sticky lg:top-24 lg:self-start">
-                    <div class="rounded-lg border border-amber-200 bg-amber-50 p-6">
-                        <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Info Artikel</p>
+                    <div class="rounded-lg border border-secondary-200 bg-secondary-50 p-6">
+                        <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Info Artikel</p>
                         <dl class="mt-5 grid gap-4 text-sm">
                             <div>
                                 <dt class="font-bold text-slate-950">Penulis</dt>
@@ -87,7 +87,7 @@ require __DIR__ . '/includes/header.php';
                                 <dd class="mt-1 text-slate-600"><?php render_article_views($article); ?></dd>
                             </div>
                         </dl>
-                        <a href="<?= url('articles.php'); ?>" class="mt-6 inline-flex w-full justify-center rounded-md bg-orange-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Semua Artikel</a>
+                        <a href="<?= url('articles.php'); ?>" class="mt-6 inline-flex w-full justify-center rounded-md bg-primary-600 px-4 py-3 text-sm font-bold text-white transition hover:bg-primary-700">Semua Artikel</a>
                     </div>
                 </aside>
             </div>

@@ -5,39 +5,15 @@ require_once __DIR__ . '/includes/components.php';
 $title = 'FAQ Pendaftaran - Yayasan Cendekia';
 $description = 'Pertanyaan yang sering diajukan seputar pendaftaran Yayasan Cendekia, Cendekia Cirebon, TKIT Cendekia 2 Losari, dan SD IT Cendekia 2 Losari.';
 
-$faqs = [
-    [
-        'question' => 'Bagaimana cara mulai mendaftar?',
-        'answer' => 'Orang tua dapat memilih halaman jenjang yang dituju, mengisi data awal calon siswa, lalu menunggu admin sekolah menghubungi untuk langkah berikutnya.',
-    ],
-    [
-        'question' => 'Apakah bisa bertanya dulu sebelum mengisi form?',
-        'answer' => 'Bisa. Setiap halaman sekolah memiliki tombol WhatsApp admin. Orang tua dapat bertanya tentang biaya, jadwal, syarat berkas, atau informasi sekolah terlebih dahulu.',
-    ],
-    [
-        'question' => 'Apa perbedaan Cendekia Cirebon dan Cabang Losari?',
-        'answer' => 'Cendekia Cirebon menampilkan jenjang TK, SD, SMP, dan SMK. Cabang Losari saat ini disiapkan dengan halaman khusus TKIT Cendekia 2 Losari dan SD IT Cendekia 2 Losari.',
-    ],
-    [
-        'question' => 'Apakah TKIT Cendekia 2 Losari dan SD IT Cendekia 2 Losari memiliki form berbeda?',
-        'answer' => 'Ya. TKIT Cendekia 2 Losari dan SD IT Cendekia 2 Losari memiliki halaman masing-masing sehingga pilihan sekolah pada form pendaftaran sesuai dengan jenjang yang dipilih.',
-    ],
-    [
-        'question' => 'Apakah bisa survei atau datang langsung ke sekolah?',
-        'answer' => 'Silakan hubungi admin terlebih dahulu melalui WhatsApp agar jadwal kunjungan dapat diarahkan dengan lebih nyaman.',
-    ],
-    [
-        'question' => 'Data apa saja yang perlu disiapkan?',
-        'answer' => 'Untuk tahap awal, orang tua cukup menyiapkan nama calon siswa, jenis kelamin, tanggal lahir atau umur, alamat, dan nomor HP yang aktif.',
-    ],
-];
+require_once __DIR__ . '/includes/cms.php';
+$faqs = load_faq_data();
 
 require __DIR__ . '/includes/header.php';
 ?>
 <main>
     <section class="bg-slate-950 py-20 text-white sm:py-24">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <p class="text-sm font-bold uppercase tracking-wide text-amber-200">FAQ Pendaftaran</p>
+            <p class="text-sm font-bold uppercase tracking-wide text-secondary-200">FAQ Pendaftaran</p>
             <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">Pertanyaan yang sering ditanyakan orang tua.</h1>
             <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-200">Beberapa jawaban singkat sebelum menghubungi admin atau mengisi form pendaftaran.</p>
         </div>

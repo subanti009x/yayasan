@@ -319,26 +319,26 @@ function render_article_card(array $article, bool $featured = false): void
     $imageClass = $featured ? 'aspect-[16/10]' : 'aspect-[16/11]';
     ?>
     <article class="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft">
-        <a href="<?= e($url); ?>" class="block <?= e($imageClass); ?> overflow-hidden bg-amber-50">
+        <a href="<?= e($url); ?>" class="block <?= e($imageClass); ?> overflow-hidden bg-secondary-50">
             <?php if ($image !== ''): ?>
                 <img src="<?= e($image); ?>" alt="<?= e($article['title'] ?? 'Artikel Yayasan Cendekia'); ?>" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
             <?php else: ?>
-                <div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-orange-100 via-amber-50 to-yellow-100 text-sm font-bold text-orange-700">Yayasan Cendekia</div>
+                <div class="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary-100 via-secondary-50 to-yellow-100 text-sm font-bold text-primary-700">Yayasan Cendekia</div>
             <?php endif; ?>
         </a>
         <div class="p-6">
-            <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wide text-orange-700">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wide text-primary-700">
                 <span><?= e($article['category'] ?? 'Artikel'); ?></span>
                 <span class="text-slate-300">/</span>
                 <span class="text-slate-500"><?= e(article_date($article)); ?></span>
             </div>
             <h3 class="mt-3 text-xl font-bold leading-tight text-slate-950">
-                <a href="<?= e($url); ?>" class="transition hover:text-orange-700"><?= e($article['title'] ?? 'Artikel Yayasan Cendekia'); ?></a>
+                <a href="<?= e($url); ?>" class="transition hover:text-primary-700"><?= e($article['title'] ?? 'Artikel Yayasan Cendekia'); ?></a>
             </h3>
             <p class="mt-3 text-sm leading-7 text-slate-600"><?= e(article_plain_excerpt($article)); ?></p>
             <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
-                <?php render_article_views($article, 'rounded-full bg-amber-50 px-3 py-1.5 text-xs font-bold text-orange-800 ring-1 ring-amber-200'); ?>
-                <a href="<?= e($url); ?>" class="inline-flex rounded-md border border-amber-200 px-4 py-2 text-sm font-bold text-orange-700 transition hover:border-orange-300 hover:bg-amber-50">Baca Artikel</a>
+                <?php render_article_views($article, 'rounded-full bg-secondary-50 px-3 py-1.5 text-xs font-bold text-primary-800 ring-1 ring-secondary-200'); ?>
+                <a href="<?= e($url); ?>" class="inline-flex rounded-md border border-secondary-200 px-4 py-2 text-sm font-bold text-primary-700 transition hover:border-primary-300 hover:bg-secondary-50">Baca Artikel</a>
             </div>
         </div>
     </article>

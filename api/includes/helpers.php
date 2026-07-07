@@ -5,7 +5,8 @@ function site_data(): array
     static $data = null;
 
     if ($data === null) {
-        $data = require __DIR__ . '/../data/sekolah.php';
+        require_once __DIR__ . '/cms.php';
+        $data = load_site_data();
     }
 
     return $data;
@@ -91,15 +92,14 @@ function schools_by_campus(array $data, string $campus): array
 
 function accent_classes(string $accent): array
 {
-    $map = [
-        'orange' => ['badge' => 'bg-orange-50 text-orange-800 ring-orange-200', 'button' => 'bg-orange-600 hover:bg-orange-700 focus:ring-orange-300', 'text' => 'text-orange-700'],
-        'yellow' => ['badge' => 'bg-yellow-50 text-orange-800 ring-yellow-200', 'button' => 'bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300', 'text' => 'text-yellow-700'],
-        'amber' => ['badge' => 'bg-amber-50 text-amber-800 ring-amber-200', 'button' => 'bg-amber-500 hover:bg-amber-600 focus:ring-amber-300', 'text' => 'text-amber-700'],
-        'emerald' => ['badge' => 'bg-amber-50 text-orange-800 ring-amber-200', 'button' => 'bg-orange-600 hover:bg-orange-700 focus:ring-amber-300', 'text' => 'text-orange-700'],
-        'sky' => ['badge' => 'bg-yellow-50 text-orange-800 ring-yellow-200', 'button' => 'bg-amber-500 hover:bg-amber-600 focus:ring-yellow-300', 'text' => 'text-amber-700'],
-        'indigo' => ['badge' => 'bg-orange-50 text-orange-800 ring-orange-200', 'button' => 'bg-orange-600 hover:bg-orange-700 focus:ring-orange-300', 'text' => 'text-orange-700'],
-        'rose' => ['badge' => 'bg-yellow-50 text-orange-800 ring-yellow-200', 'button' => 'bg-yellow-500 hover:bg-yellow-600 focus:ring-yellow-300', 'text' => 'text-yellow-700'],
+    $allowed = ['orange', 'yellow', 'amber', 'emerald', 'sky', 'indigo', 'rose', 'blue', 'teal', 'pink', 'violet', 'fuchsia', 'primary', 'secondary'];
+    if (!in_array($accent, $allowed, true)) {
+        $accent = 'amber';
+    }
+    
+    return [
+        'badge' => "bg-{$accent}-50 text-{$accent}-800 ring-{$accent}-200",
+        'button' => "bg-{$accent}-600 hover:bg-{$accent}-700 focus:ring-{$accent}-300",
+        'text' => "text-{$accent}-700"
     ];
-
-    return $map[$accent] ?? $map['amber'];
 }

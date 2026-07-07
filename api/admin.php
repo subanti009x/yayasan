@@ -3,6 +3,7 @@ session_start();
 
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/articles.php';
+require_once __DIR__ . '/includes/cms.php';
 
 $adminPassword = getenv('ADMIN_PASSWORD') ?: 'cendekia-admin';
 $sessionSecret = getenv('SESSION_SECRET') ?: 'cendekia-session-secret-key-123456';
@@ -19,6 +20,7 @@ if (!$isLoggedIn && isset($_COOKIE['admin_auth'])) {
 
 $message = '';
 $error = '';
+$currentTab = $_GET['tab'] ?? 'articles';
 
 // 2. CSRF Token handling (Stateless backup via cookie)
 if (empty($_SESSION['csrf_token'])) {
@@ -39,7 +41,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 function admin_redirect(string $suffix = ''): void
 {
-    header('Location: /admin' . $suffix);
+    header('Location: /admin.php' . $suffix);
     exit;
 }
 
@@ -53,13 +55,14 @@ function require_csrf(): void
     }
 }
 
-function uploaded_article_image(?string &$error): ?string
+function uploaded_image(?string &$error, string $folder = 'articles'): ?string
 {
-    if (empty($_FILES['image_upload']) || !is_array($_FILES['image_upload'])) {
+    $inputName = $folder === 'articles' ? 'image_upload' : 'hero_image_upload';
+    if (empty($_FILES[$inputName]) || !is_array($_FILES[$inputName])) {
         return null;
     }
 
-    $file = $_FILES['image_upload'];
+    $file = $_FILES[$inputName];
 
     if (($file['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
         return null;
@@ -97,14 +100,15 @@ function uploaded_article_image(?string &$error): ?string
         return null;
     }
 
-    $filename = 'artikel-' . date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.' . $extension;
+    $prefix = $folder === 'articles' ? 'artikel' : 'hero';
+    $filename = $prefix . '-' . date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.' . $extension;
 
     // Vercel Serverless File Upload to GitHub
     if (getenv('VERCEL') === '1') {
         $githubToken = getenv('GITHUB_TOKEN');
         if ($githubToken) {
-            $uploadedPath = 'assets/uploads/articles/' . $filename;
-            $success = commit_to_github($uploadedPath, file_get_contents($tmpName), 'upload article image: ' . $filename, $githubToken);
+            $uploadedPath = 'assets/uploads/' . $folder . '/' . $filename;
+            $success = commit_to_github($uploadedPath, file_get_contents($tmpName), 'upload ' . $folder . ' image: ' . $filename, $githubToken);
             if ($success) {
                 return $uploadedPath;
             }
@@ -114,7 +118,7 @@ function uploaded_article_image(?string &$error): ?string
     }
 
     // Local file system upload
-    $uploadDir = __DIR__ . '/../assets/uploads/articles';
+    $uploadDir = __DIR__ . '/../assets/uploads/' . $folder;
 
     if (!is_dir($uploadDir) && !mkdir($uploadDir, 0777, true)) {
         $error = 'Folder upload belum bisa dibuat.';
@@ -128,7 +132,7 @@ function uploaded_article_image(?string &$error): ?string
         return null;
     }
 
-    return 'assets/uploads/articles/' . $filename;
+    return 'assets/uploads/' . $folder . '/' . $filename;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -169,87 +173,224 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         
         admin_redirect();
-    } elseif ($isLoggedIn && ($action === 'save' || $action === 'delete')) {
+    } elseif ($isLoggedIn) {
         require_csrf();
-        $articles = load_articles(false);
+        
+        if ($action === 'save' || $action === 'delete') {
+            $articles = load_articles(false);
 
-        if ($action === 'delete') {
-            $id = (string) ($_POST['id'] ?? '');
-            $articles = array_values(array_filter($articles, fn (array $article): bool => ($article['id'] ?? '') !== $id));
-            
-            if (save_articles($articles)) {
-                admin_redirect('?success=delete');
-            }
-            $error = 'Gagal menghapus artikel.';
-        } else {
-            $id = trim((string) ($_POST['id'] ?? ''));
-            $titleInput = trim((string) ($_POST['title'] ?? ''));
-            $contentInput = trim((string) ($_POST['content'] ?? ''));
-
-            $uploadError = null;
-            $uploadedImage = uploaded_article_image($uploadError);
-
-            if ($uploadError !== null) {
-                $error = $uploadError;
-            } elseif ($titleInput === '' || $contentInput === '') {
-                $error = 'Judul dan isi artikel wajib diisi.';
-            } else {
-                $now = date('Y-m-d H:i');
-                $existing = $id !== '' ? find_article_by_id($id) : null;
-                $imageUrl = trim((string) ($_POST['image'] ?? ''));
-                $currentImage = trim((string) ($_POST['current_image'] ?? ''));
-
-                if (($_POST['remove_image'] ?? '') === '1') {
-                    $currentImage = '';
+            if ($action === 'delete') {
+                $id = (string) ($_POST['id'] ?? '');
+                $articles = array_values(array_filter($articles, fn (array $article): bool => ($article['id'] ?? '') !== $id));
+                
+                if (save_articles($articles)) {
+                    admin_redirect('?tab=articles&success=delete');
                 }
+                $error = 'Gagal menghapus artikel.';
+            } else {
+                $id = trim((string) ($_POST['id'] ?? ''));
+                $titleInput = trim((string) ($_POST['title'] ?? ''));
+                $contentInput = trim((string) ($_POST['content'] ?? ''));
 
-                $image = $uploadedImage ?: ($imageUrl !== '' ? $imageUrl : $currentImage);
-                $article = [
-                    'id' => $existing['id'] ?? ('art_' . date('Ymd_His')),
-                    'title' => $titleInput,
-                    'slug' => unique_article_slug($titleInput, $existing['id'] ?? null),
-                    'category' => trim((string) ($_POST['category'] ?? 'Artikel')),
-                    'author' => trim((string) ($_POST['author'] ?? 'Admin Yayasan')),
-                    'excerpt' => trim((string) ($_POST['excerpt'] ?? '')),
-                    'content' => $contentInput,
-                    'image' => $image,
-                    'views' => (int) ($existing['views'] ?? 0),
-                    'status' => in_array(($_POST['status'] ?? 'draft'), ['draft', 'published'], true) ? $_POST['status'] : 'draft',
-                    'created_at' => $existing['created_at'] ?? $now,
-                    'updated_at' => $now,
-                ];
+                $uploadError = null;
+                $uploadedImage = uploaded_image($uploadError, 'articles');
 
-                $updated = false;
+                if ($uploadError !== null) {
+                    $error = $uploadError;
+                } elseif ($titleInput === '' || $contentInput === '') {
+                    $error = 'Judul dan isi artikel wajib diisi.';
+                } else {
+                    $now = date('Y-m-d H:i');
+                    $existing = $id !== '' ? find_article_by_id($id) : null;
+                    $imageUrl = trim((string) ($_POST['image'] ?? ''));
+                    $currentImage = trim((string) ($_POST['current_image'] ?? ''));
 
-                foreach ($articles as $index => $existingArticle) {
-                    if (($existingArticle['id'] ?? '') !== $article['id']) {
-                        continue;
+                    if (($_POST['remove_image'] ?? '') === '1') {
+                        $currentImage = '';
                     }
 
-                    $articles[$index] = $article;
-                    $updated = true;
-                    break;
-                }
+                    $image = $uploadedImage ?: ($imageUrl !== '' ? $imageUrl : $currentImage);
+                    $article = [
+                        'id' => $existing['id'] ?? ('art_' . date('Ymd_His')),
+                        'title' => $titleInput,
+                        'slug' => unique_article_slug($titleInput, $existing['id'] ?? null),
+                        'category' => trim((string) ($_POST['category'] ?? 'Artikel')),
+                        'author' => trim((string) ($_POST['author'] ?? 'Admin Yayasan')),
+                        'excerpt' => trim((string) ($_POST['excerpt'] ?? '')),
+                        'content' => $contentInput,
+                        'image' => $image,
+                        'views' => (int) ($existing['views'] ?? 0),
+                        'status' => in_array(($_POST['status'] ?? 'draft'), ['draft', 'published'], true) ? $_POST['status'] : 'draft',
+                        'created_at' => $existing['created_at'] ?? $now,
+                        'updated_at' => $now,
+                    ];
 
-                if (!$updated) {
-                    $articles[] = $article;
-                }
+                    $updated = false;
 
-                if (save_articles($articles)) {
-                    admin_redirect('?success=save');
-                }
+                    foreach ($articles as $index => $existingArticle) {
+                        if (($existingArticle['id'] ?? '') !== $article['id']) {
+                            continue;
+                        }
 
-                $error = 'Artikel belum bisa disimpan. Pastikan environment token GitHub sudah benar jika dijalankan di production.';
+                        $articles[$index] = $article;
+                        $updated = true;
+                        break;
+                    }
+
+                    if (!$updated) {
+                        $articles[] = $article;
+                    }
+
+                    if (save_articles($articles)) {
+                        admin_redirect('?tab=articles&success=save');
+                    }
+
+                    $error = 'Artikel belum bisa disimpan. Pastikan environment token GitHub sudah benar jika dijalankan di production.';
+                }
+            }
+        } elseif ($action === 'save_foundation') {
+            $siteData = load_site_data();
+            $siteData['foundation']['name'] = trim((string)($_POST['name'] ?? ''));
+            $siteData['foundation']['tagline'] = trim((string)($_POST['tagline'] ?? ''));
+            $siteData['foundation']['description'] = trim((string)($_POST['description'] ?? ''));
+            $siteData['foundation']['phone'] = trim((string)($_POST['phone'] ?? ''));
+            $siteData['foundation']['email'] = trim((string)($_POST['email'] ?? ''));
+            $siteData['foundation']['address'] = trim((string)($_POST['address'] ?? ''));
+            $siteData['foundation']['maps_embed'] = trim((string)($_POST['maps_embed'] ?? ''));
+
+            $uploadError = null;
+            $uploadedImage = uploaded_image($uploadError, 'schools');
+            
+            if ($uploadError !== null) {
+                $error = $uploadError;
+            } else {
+                $imageUrl = trim((string) ($_POST['hero_image_url'] ?? ''));
+                if ($uploadedImage) {
+                    $siteData['foundation']['hero_image'] = $uploadedImage;
+                } elseif ($imageUrl !== '') {
+                    $siteData['foundation']['hero_image'] = $imageUrl;
+                } elseif (($_POST['remove_image'] ?? '') === '1') {
+                    $siteData['foundation']['hero_image'] = '';
+                }
+                
+                if (save_site_data($siteData)) {
+                    admin_redirect('?tab=foundation&success=save');
+                } else {
+                    $error = 'Gagal menyimpan data yayasan.';
+                }
+            }
+        } elseif ($action === 'save_branding') {
+            $siteData = load_site_data();
+            $siteData['branding']['theme_color'] = trim((string)($_POST['theme_color'] ?? 'orange'));
+            $siteData['branding']['logo_type'] = trim((string)($_POST['logo_type'] ?? 'text'));
+            $siteData['branding']['logo_text'] = trim((string)($_POST['logo_text'] ?? 'YC'));
+            $siteData['branding']['text_header_sub'] = trim((string)($_POST['text_header_sub'] ?? 'Sekolah Indonesia'));
+            $siteData['branding']['text_contact_button'] = trim((string)($_POST['text_contact_button'] ?? 'Hubungi Kami'));
+            $siteData['branding']['text_footer_tagline'] = trim((string)($_POST['text_footer_tagline'] ?? 'Pendidikan terpadu untuk keluarga Indonesia.'));
+            $siteData['branding']['text_footer_copyright'] = trim((string)($_POST['text_footer_copyright'] ?? '&copy; {year} Yayasan Cendekia. Semua hak dilindungi.'));
+
+            $uploadError = null;
+            // Hack uploaded_image to work with logo
+            $tmpFile = $_FILES['logo_upload'] ?? null;
+            if ($tmpFile && $tmpFile['error'] !== UPLOAD_ERR_NO_FILE) {
+                // temporarily spoof the name so `uploaded_image` processes it
+                $_FILES['hero_image_upload'] = $tmpFile;
+                $uploadedImage = uploaded_image($uploadError, 'schools'); // Reuse 'schools' folder for now
+                if ($uploadError !== null) {
+                    $error = $uploadError;
+                } elseif ($uploadedImage) {
+                    $siteData['branding']['logo_image'] = $uploadedImage;
+                }
+            }
+
+            if (($_POST['remove_logo'] ?? '') === '1') {
+                $siteData['branding']['logo_image'] = '';
+            }
+
+            if ($error === '') {
+                if (save_site_data($siteData)) {
+                    admin_redirect('?tab=branding&success=save');
+                } else {
+                    $error = 'Gagal menyimpan data branding.';
+                }
+            }
+        } elseif ($action === 'save_school') {
+            $id = trim((string)($_POST['school_id'] ?? ''));
+            $siteData = load_site_data();
+            if (isset($siteData['schools'][$id])) {
+                $siteData['schools'][$id]['name'] = trim((string)($_POST['name'] ?? ''));
+                $siteData['schools'][$id]['description'] = trim((string)($_POST['description'] ?? ''));
+                $siteData['schools'][$id]['accent'] = trim((string)($_POST['accent'] ?? ''));
+                $siteData['schools'][$id]['phone'] = trim((string)($_POST['phone'] ?? ''));
+                $siteData['schools'][$id]['form_url'] = trim((string)($_POST['form_url'] ?? ''));
+                $siteData['schools'][$id]['maps_embed'] = trim((string)($_POST['maps_embed'] ?? ''));
+                
+                $programs = [];
+                $pTitles = $_POST['program_title'] ?? [];
+                $pDescs = $_POST['program_desc'] ?? [];
+                foreach ($pTitles as $idx => $title) {
+                    if (trim($title) !== '') {
+                        $programs[] = ['title' => trim($title), 'description' => trim($pDescs[$idx] ?? '')];
+                    }
+                }
+                $siteData['schools'][$id]['programs'] = $programs;
+                
+                $siteData['schools'][$id]['facilities'] = array_filter(array_map('trim', explode("\n", $_POST['facilities'] ?? '')));
+                $siteData['schools'][$id]['activities'] = array_filter(array_map('trim', explode("\n", $_POST['activities'] ?? '')));
+                
+                $uploadError = null;
+                $uploadedImage = uploaded_image($uploadError, 'schools');
+                if ($uploadError !== null) {
+                    $error = $uploadError;
+                } else {
+                    $imageUrl = trim((string) ($_POST['hero_image_url'] ?? ''));
+                    if ($uploadedImage) {
+                        $siteData['schools'][$id]['hero_image'] = $uploadedImage;
+                    } elseif ($imageUrl !== '') {
+                        $siteData['schools'][$id]['hero_image'] = $imageUrl;
+                    } elseif (($_POST['remove_image'] ?? '') === '1') {
+                        $siteData['schools'][$id]['hero_image'] = '';
+                    }
+                    
+                    if (save_site_data($siteData)) {
+                        admin_redirect('?tab=schools&edit_school=' . $id . '&success=save');
+                    } else {
+                        $error = 'Gagal menyimpan data sekolah.';
+                    }
+                }
+            }
+        } elseif ($action === 'save_faq') {
+            $faqs = load_faq_data();
+            $id = trim((string)($_POST['id'] ?? ''));
+            $question = trim((string)($_POST['question'] ?? ''));
+            $answer = trim((string)($_POST['answer'] ?? ''));
+            
+            if ($question !== '' && $answer !== '') {
+                if ($id !== '' && isset($faqs[(int)$id])) {
+                    $faqs[(int)$id] = ['question' => $question, 'answer' => $answer];
+                } else {
+                    $faqs[] = ['question' => $question, 'answer' => $answer];
+                }
+                if (save_faq_data($faqs)) {
+                    admin_redirect('?tab=faq&success=save');
+                } else {
+                    $error = 'Gagal menyimpan FAQ.';
+                }
+            } else {
+                $error = 'Pertanyaan dan jawaban wajib diisi.';
+            }
+        } elseif ($action === 'delete_faq') {
+            $faqs = load_faq_data();
+            $id = trim((string)($_POST['id'] ?? ''));
+            if ($id !== '' && isset($faqs[(int)$id])) {
+                unset($faqs[(int)$id]);
+                if (save_faq_data(array_values($faqs))) {
+                    admin_redirect('?tab=faq&success=delete');
+                } else {
+                    $error = 'Gagal menghapus FAQ.';
+                }
             }
         }
-    }
-}
-
-$isLoggedIn = ($_SESSION['admin_logged_in'] ?? false) === true;
-if (!$isLoggedIn && isset($_COOKIE['admin_auth'])) {
-    $expectedHash = hash_hmac('sha256', $adminPassword, $sessionSecret);
-    if (hash_equals($expectedHash, $_COOKIE['admin_auth'])) {
-        $isLoggedIn = true;
     }
 }
 
@@ -257,32 +398,39 @@ $editId = (string) ($_GET['edit'] ?? '');
 $editArticle = $editId !== '' ? find_article_by_id($editId) : null;
 $articles = load_articles(false);
 
+$siteData = load_site_data();
+$faqs = load_faq_data();
+$editSchoolId = (string) ($_GET['edit_school'] ?? '');
+$editSchool = $editSchoolId !== '' && isset($siteData['schools'][$editSchoolId]) ? $siteData['schools'][$editSchoolId] : null;
+$editFaqId = (string) ($_GET['edit_faq'] ?? '');
+$editFaq = $editFaqId !== '' && isset($faqs[(int)$editFaqId]) ? $faqs[(int)$editFaqId] : null;
+
 if (($_GET['success'] ?? '') === 'save') {
-    $message = 'Artikel berhasil disimpan. Perubahan sedang di-commit ke GitHub dan akan otomatis ter-deploy dalam 1 menit.';
+    $message = 'Data berhasil disimpan. Perubahan sedang di-commit ke GitHub dan akan otomatis ter-deploy dalam 1 menit.';
 } elseif (($_GET['success'] ?? '') === 'delete') {
-    $message = 'Artikel berhasil dihapus dan perubahan sedang di-commit ke GitHub.';
+    $message = 'Data berhasil dihapus dan perubahan sedang di-commit ke GitHub.';
 } elseif (($_GET['success'] ?? '') === 'login') {
-    $message = 'Login berhasil. Silakan kelola artikel sekolah.';
+    $message = 'Login berhasil. Silakan kelola website sekolah.';
 }
 
 $title = 'Dashboard Admin - Yayasan Cendekia';
-$description = 'Dashboard admin artikel Yayasan Cendekia.';
+$description = 'Dashboard admin sistem CMS Yayasan Cendekia.';
 
 require __DIR__ . '/includes/header.php';
 ?>
 <main>
     <section class="bg-slate-950 py-14 text-white sm:py-16">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <p class="text-sm font-bold uppercase tracking-wide text-amber-200">Dashboard Admin</p>
-            <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Kelola artikel website.</h1>
-            <p class="mt-5 max-w-2xl text-base leading-8 text-slate-200">Tambah, edit, publikasikan, atau simpan draft artikel sekolah dari satu tempat.</p>
+            <p class="text-sm font-bold uppercase tracking-wide text-secondary-200">Dashboard Admin</p>
+            <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Kelola Website Yayasan.</h1>
+            <p class="mt-5 max-w-2xl text-base leading-8 text-slate-200">Kelola artikel, identitas yayasan, unit sekolah, dan FAQ dari satu tempat secara dinamis.</p>
         </div>
     </section>
 
     <section class="bg-slate-50 py-12 sm:py-16">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <?php if ($message !== ''): ?>
-                <p class="mb-6 rounded-md bg-amber-50 px-4 py-3 text-sm font-bold text-orange-800 ring-1 ring-amber-200"><?= e($message); ?></p>
+                <p class="mb-6 rounded-md bg-secondary-50 px-4 py-3 text-sm font-bold text-primary-800 ring-1 ring-secondary-200"><?= e($message); ?></p>
             <?php endif; ?>
             <?php if ($error !== ''): ?>
                 <p class="mb-6 rounded-md bg-red-50 px-4 py-3 text-sm font-bold text-red-700 ring-1 ring-red-200"><?= e($error); ?></p>
@@ -294,125 +442,39 @@ require __DIR__ . '/includes/header.php';
                     <input type="hidden" name="action" value="login">
                     <label class="grid gap-2 text-sm font-bold text-slate-700">
                         Password admin
-                        <input type="password" name="password" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                        <input type="password" name="password" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                     </label>
-                    <button type="submit" class="mt-5 w-full rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Masuk Dashboard</button>
-                    <!-- <p class="mt-4 text-xs leading-6 text-slate-500">Password admin ada di documentasi dan diberikan oleh tim admin.</p> -->
+                    <button type="submit" class="mt-5 w-full rounded-md bg-primary-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-700">Masuk Dashboard</button>
                 </form>
             <?php else: ?>
-                <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <h2 class="text-2xl font-bold text-slate-950"><?= $editArticle ? 'Edit artikel' : 'Tambah artikel baru'; ?></h2>
-                        <p class="mt-1 text-sm text-slate-600">Artikel berstatus Published akan tampil di halaman utama dan halaman artikel.</p>
-                    </div>
-                    <form method="post">
+                
+                <div class="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between border-b border-slate-200 pb-5">
+                    <nav class="-mb-px flex gap-6">
+                        <a href="?tab=articles" class="<?= $currentTab === 'articles' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">Artikel</a>
+                        <a href="?tab=branding" class="<?= $currentTab === 'branding' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">Branding & Tampilan</a>
+                        <a href="?tab=foundation" class="<?= $currentTab === 'foundation' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">Identitas & Kontak</a>
+                        <a href="?tab=schools" class="<?= $currentTab === 'schools' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">Unit Sekolah</a>
+                        <a href="?tab=faq" class="<?= $currentTab === 'faq' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">FAQ</a>
+                    </nav>
+                    <form method="post" class="mt-4 sm:mt-0">
                         <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']); ?>">
                         <input type="hidden" name="action" value="logout">
-                        <button type="submit" class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Keluar</button>
+                        <button type="submit" class="rounded-md border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-secondary-300 hover:text-primary-700">Keluar</button>
                     </form>
                 </div>
 
-                <div class="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-                    <form method="post" enctype="multipart/form-data" class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                        <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']); ?>">
-                        <input type="hidden" name="action" value="save">
-                        <input type="hidden" name="id" value="<?= e($editArticle['id'] ?? ''); ?>">
-                        <input type="hidden" name="current_image" value="<?= e($editArticle['image'] ?? ''); ?>">
-                        <div class="grid gap-4">
-                            <label class="grid gap-2 text-sm font-bold text-slate-700">
-                                Judul
-                                <input type="text" name="title" value="<?= e($editArticle['title'] ?? ''); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
-                            </label>
-                            <div class="grid gap-4 sm:grid-cols-2">
-                                <label class="grid gap-2 text-sm font-bold text-slate-700">
-                                    Kategori
-                                    <input type="text" name="category" value="<?= e($editArticle['category'] ?? 'Kegiatan Sekolah'); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100">
-                                </label>
-                                <label class="grid gap-2 text-sm font-bold text-slate-700">
-                                    Status
-                                    <select name="status" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100">
-                                        <?php $status = $editArticle['status'] ?? 'published'; ?>
-                                        <option value="published" <?= $status === 'published' ? 'selected' : ''; ?>>Published</option>
-                                        <option value="draft" <?= $status === 'draft' ? 'selected' : ''; ?>>Draft</option>
-                                    </select>
-                                </label>
-                            </div>
-                            <label class="grid gap-2 text-sm font-bold text-slate-700">
-                                Penulis
-                                <input type="text" name="author" value="<?= e($editArticle['author'] ?? 'Admin Yayasan'); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100">
-                            </label>
-                            <div class="grid gap-4 rounded-lg border border-amber-200 bg-amber-50 p-4">
-                                <div>
-                                    <p class="text-sm font-bold text-slate-950">Gambar utama</p>
-                                    <p class="mt-1 text-xs leading-6 text-slate-600">Upload Gambar Melalui Lokal dari komputer, atau pakai URL gambar jika file sudah ada di internet.</p>
-                                    <p class="mt-2 rounded-md bg-white px-3 py-2 text-xs font-semibold leading-6 text-orange-800 ring-1 ring-amber-200">Catatan: jika upload gambar lokal dan URL gambar diisi bersamaan, gambar lokal akan digunakan terlebih dahulu.</p>
-                                </div>
-                                <?php if (!empty($editArticle['image'])): ?>
-                                    <div class="overflow-hidden rounded-lg border border-amber-200 bg-white">
-                                        <img src="<?= e($editArticle['image']); ?>" alt="<?= e($editArticle['title'] ?? 'Preview gambar artikel'); ?>" class="h-44 w-full object-cover">
-                                    </div>
-                                <?php endif; ?>
-                                <label class="grid gap-2 text-sm font-bold text-slate-700">
-                                    Upload Gambar Melalui Lokal
-                                    <input type="file" name="image_upload" accept="image/jpeg,image/png,image/webp,image/gif" class="rounded-md border border-slate-200 bg-white px-3 py-3 font-normal outline-none transition file:mr-4 file:rounded-md file:border-0 file:bg-orange-600 file:px-4 file:py-2 file:text-sm file:font-bold file:text-white hover:file:bg-orange-700 focus:border-orange-500 focus:ring-4 focus:ring-amber-100">
-                                </label>
-                                <label class="grid gap-2 text-sm font-bold text-slate-700">
-                                    Upload Gambar Melalui Internet
-                                    <input type="url" name="image" value="<?= str_starts_with((string) ($editArticle['image'] ?? ''), 'http') ? e($editArticle['image']) : ''; ?>" class="rounded-md border border-slate-200 bg-white px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="https://...">
-                                </label>
-                                <?php if (!empty($editArticle['image'])): ?>
-                                    <label class="flex items-center gap-2 text-sm font-semibold text-slate-700">
-                                        <input type="checkbox" name="remove_image" value="1" class="h-4 w-4 rounded border-slate-300 text-orange-600 focus:ring-orange-500">
-                                        Hapus gambar dari artikel ini
-                                    </label>
-                                <?php endif; ?>
-                            </div>
-                            <label class="grid gap-2 text-sm font-bold text-slate-700">
-                                Ringkasan
-                                <textarea name="excerpt" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100"><?= e($editArticle['excerpt'] ?? ''); ?></textarea>
-                            </label>
-                            <label class="grid gap-2 text-sm font-bold text-slate-700">
-                                Isi artikel
-                                <textarea name="content" rows="12" class="rounded-md border border-slate-200 px-3 py-3 font-normal leading-7 outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required><?= e($editArticle['content'] ?? ''); ?></textarea>
-                            </label>
-                        </div>
-                        <div class="mt-6 flex flex-col gap-3 sm:flex-row">
-                            <button type="submit" class="rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700">Simpan Artikel</button>
-                            <?php if ($editArticle): ?>
-                                <a href="/admin" class="rounded-md border border-slate-200 px-5 py-3 text-center text-sm font-bold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Batal Edit</a>
-                            <?php endif; ?>
-                        </div>
-                    </form>
+                <?php if ($currentTab === 'articles'): ?>
+                    <?php include __DIR__ . '/admin_tab_articles.php'; ?>
+                <?php elseif ($currentTab === 'branding'): ?>
+                    <?php include __DIR__ . '/admin_tab_branding.php'; ?>
+                <?php elseif ($currentTab === 'foundation'): ?>
+                    <?php include __DIR__ . '/admin_tab_foundation.php'; ?>
+                <?php elseif ($currentTab === 'schools'): ?>
+                    <?php include __DIR__ . '/admin_tab_schools.php'; ?>
+                <?php elseif ($currentTab === 'faq'): ?>
+                    <?php include __DIR__ . '/admin_tab_faq.php'; ?>
+                <?php endif; ?>
 
-                    <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
-                        <h2 class="text-xl font-bold text-slate-950">Daftar artikel</h2>
-                        <div class="mt-5 grid gap-4">
-                            <?php foreach ($articles as $article): ?>
-                                <article class="rounded-lg border border-slate-200 bg-slate-50 p-4">
-                                    <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                                        <div>
-                                            <p class="text-xs font-bold uppercase tracking-wide text-orange-700"><?= e($article['status'] ?? 'draft'); ?> / <?= e($article['category'] ?? 'Artikel'); ?></p>
-                                            <h3 class="mt-2 text-base font-bold text-slate-950"><?= e($article['title'] ?? 'Tanpa judul'); ?></h3>
-                                            <p class="mt-2 text-sm leading-6 text-slate-600"><?= e(article_plain_excerpt($article, 120)); ?></p>
-                                        </div>
-                                        <div class="flex shrink-0 gap-2">
-                                            <a href="/admin?edit=<?= e($article['id'] ?? ''); ?>" class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Edit</a>
-                                            <form method="post" onsubmit="return confirm('Hapus artikel ini?');">
-                                                <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']); ?>">
-                                                <input type="hidden" name="action" value="delete">
-                                                <input type="hidden" name="id" value="<?= e($article['id'] ?? ''); ?>">
-                                                <button type="submit" class="rounded-md border border-red-200 bg-white px-3 py-2 text-xs font-bold text-red-700 transition hover:bg-red-50">Hapus</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </article>
-                            <?php endforeach; ?>
-                            <?php if ($articles === []): ?>
-                                <p class="rounded-lg border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">Belum ada artikel.</p>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-                </div>
             <?php endif; ?>
         </div>
     </section>

@@ -14,7 +14,7 @@ function render_school_card(string $key, array $school): void
             <p class="mt-3 text-sm leading-7 text-slate-600"><?= e($school['description']); ?></p>
             <div class="mt-6 flex flex-wrap gap-3">
                 <a href="<?= e(url($school['page'])); ?>" class="rounded-md bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800">Lihat Sekolah</a>
-                <a href="<?= e(url($school['page'])); ?>#pendaftaran" class="rounded-md border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-amber-300 hover:text-orange-700">Daftar</a>
+                <a href="<?= e(url($school['page'])); ?>#pendaftaran" class="rounded-md border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-secondary-300 hover:text-primary-700">Daftar</a>
             </div>
         </div>
     </article>
@@ -55,7 +55,7 @@ function render_registration_preview(array $school): void
     ?>
     <form class="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" action="<?= e($formAction); ?>" method="post" target="<?= e($iframeName); ?>" data-google-form>
         <div>
-            <span class="inline-flex rounded-full bg-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange-800 ring-1 ring-amber-200"><?= e($campusLabel); ?></span>
+            <span class="inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-800 ring-1 ring-secondary-200"><?= e($campusLabel); ?></span>
             <p class="mt-3 text-sm leading-7 text-slate-600">Data pendaftaran Anda akan langsung diterima oleh admin resmi <?= e($campusLabel); ?>.</p>
         </div>
 
@@ -69,200 +69,200 @@ function render_registration_preview(array $school): void
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama lengkap
-                    <input type="text" name="entry.794168599" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
+                    <input type="text" name="entry.794168599" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama calon siswa" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama panggilan
-                    <input type="text" name="entry.627662662" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama panggilan anak" required>
+                    <input type="text" name="entry.627662662" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama panggilan anak" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     No. WA
-                    <input type="tel" name="entry.1052167666" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
+                    <input type="tel" name="entry.1052167666" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="08xxxxxxxxxx" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Asal TK
-                    <input type="text" name="entry.1697485376" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Asal sekolah/TK sebelumnya" required>
+                    <input type="text" name="entry.1697485376" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Asal sekolah/TK sebelumnya" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Ayah
-                    <input type="text" name="entry.150230774" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ayah" required>
+                    <input type="text" name="entry.150230774" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ayah" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pekerjaan Ayah
-                    <input type="text" name="entry.1280888089" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ayah" required>
+                    <input type="text" name="entry.1280888089" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ayah" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Ibu
-                    <input type="text" name="entry.1615103016" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ibu" required>
+                    <input type="text" name="entry.1615103016" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ibu" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pekerjaan Ibu
-                    <input type="text" name="entry.1310556616" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ibu" required>
+                    <input type="text" name="entry.1310556616" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ibu" required>
                 </label>
             </div>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
                 Alamat Rumah
-                <textarea name="entry.277342110" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat domisili lengkap" required></textarea>
+                <textarea name="entry.277342110" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Alamat domisili lengkap" required></textarea>
             </label>
 
         <?php elseif ($school['name'] === 'SDIT SABILUL QURAN'): ?>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Lengkap
-                    <input type="text" name="entry.1267371777" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
+                    <input type="text" name="entry.1267371777" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama calon siswa" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Panggilan
-                    <input type="text" name="entry.567078244" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama panggilan anak" required>
+                    <input type="text" name="entry.567078244" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama panggilan anak" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Jenis Kelamin
-                    <select name="entry.484836580" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <select name="entry.484836580" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                         <option>Laki-laki</option>
                         <option>Perempuan</option>
                     </select>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Tempat tanggal lahir
-                    <input type="text" name="entry.149872710" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Contoh: Cirebon, 12 Mei 2019" required>
+                    <input type="text" name="entry.149872710" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Contoh: Cirebon, 12 Mei 2019" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Agama
-                    <input type="text" name="entry.1744331187" value="Islam" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <input type="text" name="entry.1744331187" value="Islam" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Kewarganegaraan
-                    <input type="text" name="entry.539583406" value="WNI" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <input type="text" name="entry.539583406" value="WNI" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Asal Sekolah
-                    <input type="text" name="entry.1590909408" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Asal TK/sekolah sebelumnya" required>
+                    <input type="text" name="entry.1590909408" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Asal TK/sekolah sebelumnya" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     No. WA Aktif
-                    <input type="tel" name="entry.676149694" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
+                    <input type="tel" name="entry.676149694" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="08xxxxxxxxxx" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-3">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Ayah
-                    <input type="text" name="entry.935546412" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ayah" required>
+                    <input type="text" name="entry.935546412" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ayah" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pendidikan Ayah
-                    <input type="text" name="entry.1717883185" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ayah" required>
+                    <input type="text" name="entry.1717883185" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pendidikan terakhir Ayah" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pekerjaan Ayah
-                    <input type="text" name="entry.2090349951" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ayah" required>
+                    <input type="text" name="entry.2090349951" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ayah" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-3">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Ibu
-                    <input type="text" name="entry.837404399" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ibu" required>
+                    <input type="text" name="entry.837404399" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ibu" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pendidikan Ibu
-                    <input type="text" name="entry.1098953204" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ibu" required>
+                    <input type="text" name="entry.1098953204" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pendidikan terakhir Ibu" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pekerjaan Ibu
-                    <input type="text" name="entry.216663890" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ibu" required>
+                    <input type="text" name="entry.216663890" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ibu" required>
                 </label>
             </div>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
                 Alamat tempat tinggal
-                <textarea name="entry.1035227650" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat lengkap domisili" required></textarea>
+                <textarea name="entry.1035227650" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Alamat lengkap domisili" required></textarea>
             </label>
 
         <?php elseif ($school['name'] === 'SMPIT TAHFIDZUL QURAN'): ?>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Lengkap
-                    <input type="text" name="entry.2055510208" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
+                    <input type="text" name="entry.2055510208" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama calon siswa" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Panggilan
-                    <input type="text" name="entry.558526172" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama panggilan anak" required>
+                    <input type="text" name="entry.558526172" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama panggilan anak" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Jenis Kelamin
-                    <select name="entry.324562681" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <select name="entry.324562681" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                         <option>Laki-laki</option>
                         <option>Perempuan</option>
                     </select>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Tempat, Tanggal Lahir
-                    <input type="text" name="entry.56417918" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Contoh: Cirebon, 12 Mei 2013" required>
+                    <input type="text" name="entry.56417918" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Contoh: Cirebon, 12 Mei 2013" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Agama
-                    <input type="text" name="entry.810990337" value="Islam" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <input type="text" name="entry.810990337" value="Islam" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Kewarganegaraan
-                    <input type="text" name="entry.2002042407" value="WNI" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <input type="text" name="entry.2002042407" value="WNI" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Asal Sekolah
-                    <input type="text" name="entry.181234805" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Asal sekolah/SD sebelumnya" required>
+                    <input type="text" name="entry.181234805" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Asal sekolah/SD sebelumnya" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     No. WA
-                    <input type="tel" name="entry.408552828" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
+                    <input type="tel" name="entry.408552828" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="08xxxxxxxxxx" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-3">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Ayah
-                    <input type="text" name="entry.1001224564" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ayah" required>
+                    <input type="text" name="entry.1001224564" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ayah" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pendidikan Ayah
-                    <input type="text" name="entry.51377260" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ayah" required>
+                    <input type="text" name="entry.51377260" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pendidikan terakhir Ayah" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pekerjaan Ayah
-                    <input type="text" name="entry.698003970" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ayah" required>
+                    <input type="text" name="entry.698003970" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ayah" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-3">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Ibu
-                    <input type="text" name="entry.108118824" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ibu" required>
+                    <input type="text" name="entry.108118824" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ibu" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pendidikan Ibu
-                    <input type="text" name="entry.137652037" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ibu" required>
+                    <input type="text" name="entry.137652037" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pendidikan terakhir Ibu" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pekerjaan Ibu
-                    <input type="text" name="entry.1959004689" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ibu" required>
+                    <input type="text" name="entry.1959004689" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ibu" required>
                 </label>
             </div>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
                 Alamat Tempat Tinggal
-                <textarea name="entry.488607707" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat lengkap tempat tinggal" required></textarea>
+                <textarea name="entry.488607707" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Alamat lengkap tempat tinggal" required></textarea>
             </label>
 
         <?php else: ?>
@@ -301,10 +301,10 @@ function render_registration_preview(array $school): void
         </label>
         
         <?php if ($isActualFormAvailable): ?>
-            <button type="submit" class="rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-200">
+            <button type="submit" class="rounded-md bg-primary-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-secondary-200">
                 Kirim Pendaftaran
             </button>
-            <p class="hidden rounded-md bg-amber-50 px-4 py-3 text-sm font-semibold text-orange-800 ring-1 ring-amber-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
+            <p class="hidden rounded-md bg-secondary-50 px-4 py-3 text-sm font-semibold text-primary-800 ring-1 ring-secondary-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
             <p class="text-xs leading-6 text-slate-500">Setelah dikirim, admin sekolah akan menindaklanjuti data pendaftaran ini.</p>
         <?php else: ?>
             <button type="button" disabled class="rounded-md bg-slate-400 px-5 py-3 text-sm font-bold text-white cursor-not-allowed hover:bg-slate-400 focus:outline-none">
@@ -417,7 +417,7 @@ function render_school_detail_sections(array $school): void
     <section class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
-                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Program Unggulan</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Program Unggulan</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Kegiatan belajar yang disesuaikan dengan jenjang.</h2>
             </div>
             <div class="grid gap-5 md:grid-cols-3">
@@ -434,7 +434,7 @@ function render_school_detail_sections(array $school): void
     <section class="bg-white py-16 sm:py-20">
         <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
             <div>
-                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Fasilitas</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Fasilitas</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Ruang belajar dan kegiatan siswa.</h2>
                 <p class="mt-5 text-base leading-8 text-slate-600">Fasilitas disiapkan untuk mendukung kegiatan belajar harian, pendampingan guru, dan aktivitas siswa di sekolah.</p>
             </div>
@@ -458,7 +458,7 @@ function render_school_detail_sections(array $school): void
     <section class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
-                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Kegiatan Siswa</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Kegiatan Siswa</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Anak belajar lewat kebiasaan sehari-hari.</h2>
             </div>
             <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -491,7 +491,7 @@ function render_school_page(string $key): void
         <section class="bg-white py-16 sm:py-20">
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
                 <div>
-                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Profil Sekolah</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Profil Sekolah</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Lingkungan belajar yang dekat dengan anak.</h2>
                     <p class="mt-5 text-base leading-8 text-slate-600"><?= e($school['description']); ?></p>
                     <div class="mt-8 grid gap-4 sm:grid-cols-3">
@@ -510,7 +510,7 @@ function render_school_page(string $key): void
                     </div>
                 </div>
                 <aside class="rounded-lg bg-slate-950 p-6 text-white shadow-soft">
-                    <p class="text-sm font-semibold text-amber-200">Pendaftaran</p>
+                    <p class="text-sm font-semibold text-secondary-200">Pendaftaran</p>
                     <h2 class="mt-3 text-2xl font-bold">Hubungi admin <?= e($school['short_name']); ?></h2>
                     <p class="mt-4 text-sm leading-7 text-slate-200">Admin akan membantu menjawab pertanyaan seputar biaya, jadwal, berkas, dan langkah pendaftaran.</p>
                     <div class="mt-6 grid gap-3">
@@ -526,7 +526,7 @@ function render_school_page(string $key): void
         <section id="pendaftaran" class="bg-slate-50 py-16 sm:py-20">
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
                 <div>
-                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Pendaftaran</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Pendaftaran</p>
                     <?php if ($school['name'] === 'SMPIT TAHFIDZUL QURAN'): ?>
                         <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Formulir Pendaftaran</h2>
                         <div class="mt-5 text-sm leading-7 text-slate-600 space-y-4">
@@ -535,9 +535,9 @@ function render_school_page(string $key): void
                             <p>Melalui formulir ini, Ayah/Bunda dapat mengisi data awal pendaftaran calon peserta didik baru. Data yang diisi akan digunakan oleh pihak sekolah sebagai data administrasi awal dalam proses Penerimaan Peserta Didik Baru (PPDB).</p>
                             <p>Mohon agar Ayah/Bunda mengisi setiap kolom dengan data yang benar dan lengkap agar proses verifikasi dapat berjalan dengan baik.</p>
                             <p>Setelah mengisi formulir ini, mohon berkenan untuk menghubungi Admin Sekolah melalui WhatsApp guna proses verifikasi data dan informasi tahapan pendaftaran selanjutnya.</p>
-                            <div class="my-4 rounded-md border border-amber-200 bg-amber-50 p-4">
-                                <span class="block font-bold text-orange-950">📞 Admin (WhatsApp):</span>
-                                <a href="https://wa.me/6281573888807" target="_blank" rel="noopener" class="text-orange-700 font-bold hover:underline">0815-7388-8807</a>
+                            <div class="my-4 rounded-md border border-secondary-200 bg-secondary-50 p-4">
+                                <span class="block font-bold text-primary-950">📞 Admin (WhatsApp):</span>
+                                <a href="https://wa.me/6281573888807" target="_blank" rel="noopener" class="text-primary-700 font-bold hover:underline">0815-7388-8807</a>
                             </div>
                             <p>Apabila terdapat pertanyaan atau membutuhkan informasi lebih lanjut terkait proses pendaftaran, Ayah/Bunda juga dapat menghubungi nomor tersebut.</p>
                             <p class="font-semibold text-slate-900">Semoga Allah memudahkan setiap langkah pendidikan Ananda.</p>
@@ -555,7 +555,7 @@ function render_school_page(string $key): void
         <section class="bg-white py-16 sm:py-20">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="mb-8 max-w-2xl">
-                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Lokasi</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Lokasi</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Google Maps <?= e($school['name']); ?></h2>
                 </div>
                 <?php render_map($school['maps_embed'], 'Lokasi ' . $school['name'], $school['maps_url'] ?? null); ?>
