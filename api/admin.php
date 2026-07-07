@@ -406,9 +406,9 @@ $editFaqId = (string) ($_GET['edit_faq'] ?? '');
 $editFaq = $editFaqId !== '' && isset($faqs[(int)$editFaqId]) ? $faqs[(int)$editFaqId] : null;
 
 if (($_GET['success'] ?? '') === 'save') {
-    $message = 'Data berhasil disimpan. Perubahan sedang di-commit ke GitHub dan akan otomatis ter-deploy dalam 1 menit.';
+    $message = 'Data berhasil disimpan';
 } elseif (($_GET['success'] ?? '') === 'delete') {
-    $message = 'Data berhasil dihapus dan perubahan sedang di-commit ke GitHub.';
+    $message = 'Data berhasil dihapus';
 } elseif (($_GET['success'] ?? '') === 'login') {
     $message = 'Login berhasil. Silakan kelola website sekolah.';
 }
