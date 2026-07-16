@@ -18,6 +18,22 @@ those files are one-time migration seeds only.
    Both `http://127.0.0.1:8000/tk-paud.php` and the clean URL
    `http://127.0.0.1:8000/tk-paud` will then resolve to the correct page.
 
+   > **PENTING:** Jangan gunakan `api/index.php` sebagai router file.
+   > Perintah `php -S localhost:8000 api/index.php` akan menyebabkan semua
+   > halaman menampilkan konten index/beranda. Selalu gunakan `router.php`.
+
+## Static build preview
+
+After running `php scripts/build-static.php`, you can preview the generated
+static HTML files with a separate server:
+
+```powershell
+php -S 127.0.0.1:8000 serve-static.php
+```
+
+This serves files from `public/` and automatically rewrites `.php` URLs to
+their `.html` equivalents so existing links and bookmarks continue to work.
+
 ## DomaiNesia production
 
 Create the database and its dedicated user in cPanel, then import

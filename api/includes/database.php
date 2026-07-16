@@ -20,6 +20,32 @@ function cms_last_error(?string $message = null): string
 
 function cms_env(string $name, string $default = ''): string
 {
+    static $envLoaded = false;
+    if (!$envLoaded) {
+        $envPath = dirname(dirname(__DIR__)) . '/.env';
+        if (is_file($envPath)) {
+            $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($lines as $line) {
+                $line = trim($line);
+                if ($line === '' || str_starts_with($line, '#')) {
+                    continue;
+                }
+                if (strpos($line, '=') !== false) {
+                    list($key, $val) = explode('=', $line, 2);
+                    $key = trim($key);
+                    $val = trim($val);
+                    if (preg_match('/^"(.*)"$/', $val, $matches) || preg_match("/^'(.*)'$/", $val, $matches)) {
+                        $val = $matches[1];
+                    }
+                    putenv("{$key}={$val}");
+                    $_ENV[$key] = $val;
+                    $_SERVER[$key] = $val;
+                }
+            }
+        }
+        $envLoaded = true;
+    }
+
     $value = getenv($name);
 
     if ($value === false && isset($_ENV[$name])) {

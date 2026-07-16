@@ -11,8 +11,8 @@ require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/articles.php';
 require_once __DIR__ . '/includes/cms.php';
 
-$adminPassword = (string) getenv('ADMIN_PASSWORD');
-$sessionSecret = (string) getenv('SESSION_SECRET');
+$adminPassword = (string) cms_env('ADMIN_PASSWORD');
+$sessionSecret = (string) cms_env('SESSION_SECRET');
 $configurationError = $adminPassword === '' || $sessionSecret === ''
     ? 'ADMIN_PASSWORD dan SESSION_SECRET wajib diatur di environment server.'
     : '';
@@ -30,7 +30,7 @@ if (empty($_SESSION['csrf_token'])) {
 
 function admin_redirect(string $suffix = ''): void
 {
-    header('Location: /admin.php' . $suffix);
+    header('Location: ' . url('admin.php') . $suffix);
     exit;
 }
 

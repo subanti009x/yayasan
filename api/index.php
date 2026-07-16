@@ -1,4 +1,20 @@
 <?php
+// Fallback routing if started with the wrong router command: php -S localhost:8000 api/index.php
+if (php_sapi_name() === 'cli-server') {
+    $requestUri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+    $requestUri = is_string($requestUri) ? trim($requestUri, '/') : '';
+    if ($requestUri !== '' && $requestUri !== 'index.php' && $requestUri !== 'api/index.php') {
+        $routerFile = dirname(__DIR__) . '/router.php';
+        if (is_file($routerFile)) {
+            $routeResult = require $routerFile;
+            if ($routeResult === false) {
+                return false;
+            }
+            return;
+        }
+    }
+}
+
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/components.php';
 require_once __DIR__ . '/includes/articles.php';

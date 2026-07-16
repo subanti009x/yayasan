@@ -44,11 +44,13 @@ $routes = [
 
 if (preg_match('#^artikel-([a-z0-9-]+)$#i', $requestPath, $matches)) {
     $_GET['slug'] = $matches[1];
+    $_SERVER['SCRIPT_NAME'] = '/artikel.php';
     require __DIR__ . '/api/artikel.php';
     return true;
 }
 
 if (isset($routes[$requestPath])) {
+    $_SERVER['SCRIPT_NAME'] = '/' . $routes[$requestPath];
     require __DIR__ . '/api/' . $routes[$requestPath];
     return true;
 }
