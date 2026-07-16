@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Artikel - Yayasan Cendekia</title>
+    <meta name="description" content="Artikel, berita, dan informasi terbaru dari Yayasan Cendekia.">
+    <meta name="theme-color" content="#ea580c">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: tailwind.colors.orange || tailwind.colors.orange,
+                        secondary: tailwind.colors.amber || tailwind.colors.amber,
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Arial', 'sans-serif']
+                    },
+                    boxShadow: {
+                        soft: '0 18px 45px rgba(15, 23, 42, 0.10)'
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        .glass-nav { backdrop-filter: blur(18px); }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 glass-nav">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Navigasi utama">
+            <a href="index.php" class="flex items-center gap-3" aria-label="Beranda Yayasan Cendekia">
+                                    <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-600 text-base font-bold text-white shadow-soft">YC</span>
+                                <span>
+                    <span class="block text-sm font-bold tracking-wide text-slate-950">Yayasan Cendekia</span>
+                    <span class="block text-xs text-slate-500">Sekolah Indonesia</span>
+                </span>
+            </a>
+
+            <div class="hidden items-center gap-1 lg:flex">
+                                    <a href="index.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        Yayasan                    </a>
+                                    <a href="tk-paud.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        TK / PAUD                    </a>
+                                    <a href="sd.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        SD                    </a>
+                                    <a href="smp.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        SMP                    </a>
+                                    <a href="smk.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        SMK                    </a>
+                                    <a href="index.php#cabang-losari" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        Cabang Losari                    </a>
+                                    <a href="articles.php" class="rounded-md px-3 py-2 text-sm font-semibold transition bg-secondary-50 text-primary-800">
+                        Artikel                    </a>
+                                    <a href="faq.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        FAQ                    </a>
+                                    <a href="kontak.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        Kontak                    </a>
+                            </div>
+
+            <a href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="hidden rounded-md bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-secondary-200 lg:inline-flex" target="_blank" rel="noopener">
+                Hubungi Kami            </a>
+
+            <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm lg:hidden" data-mobile-toggle aria-controls="mobile-menu" aria-expanded="false">
+                <span class="sr-only">Buka menu</span>
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-4 py-4 lg:hidden" data-mobile-menu>
+            <div class="mx-auto grid max-w-7xl gap-1">
+                                    <a href="index.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        Yayasan                    </a>
+                                    <a href="tk-paud.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        TK / PAUD                    </a>
+                                    <a href="sd.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        SD                    </a>
+                                    <a href="smp.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        SMP                    </a>
+                                    <a href="smk.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        SMK                    </a>
+                                    <a href="index.php#cabang-losari" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        Cabang Losari                    </a>
+                                    <a href="articles.php" class="rounded-md px-3 py-3 text-sm font-semibold bg-secondary-50 text-primary-800">
+                        Artikel                    </a>
+                                    <a href="faq.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        FAQ                    </a>
+                                    <a href="kontak.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        Kontak                    </a>
+                                <a href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="mt-2 rounded-md bg-primary-600 px-3 py-3 text-center text-sm font-semibold text-white" target="_blank" rel="noopener">
+                    Hubungi Kami                </a>
+            </div>
+        </div>
+    </header>
+<main>
+    <section class="bg-slate-950 py-20 text-white sm:py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <p class="text-sm font-bold uppercase tracking-wide text-secondary-200">Artikel Yayasan</p>
+            <h1 class="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-5xl">Cerita, kegiatan, dan informasi sekolah.</h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-200">Temukan kabar terbaru, tips pendidikan, dan aktivitas siswa yang ditulis langsung oleh admin sekolah.</p>
+        </div>
+    </section>
+
+    <section class="bg-slate-50 py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+                                                <article class="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+        <a href="artikel.php?slug=pentingnya-pendampingan-orang-tua-saat-memilih-sekolah" class="block aspect-[16/10] overflow-hidden bg-secondary-50">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Pentingnya Pendampingan Orang Tua Saat Memilih Sekolah" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                    </a>
+        <div class="p-6">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wide text-primary-700">
+                <span>Informasi Pendaftaran</span>
+                <span class="text-slate-300">/</span>
+                <span class="text-slate-500">20 May 2026</span>
+            </div>
+            <h3 class="mt-3 text-xl font-bold leading-tight text-slate-950">
+                <a href="artikel.php?slug=pentingnya-pendampingan-orang-tua-saat-memilih-sekolah" class="transition hover:text-primary-700">Pentingnya Pendampingan Orang Tua Saat Memilih Sekolah</a>
+            </h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Memilih sekolah akan lebih mudah ketika orang tua memahami kebutuhan anak, lingkungan belajar, dan arah pendampingan yang diberikan sekolah.</p>
+            <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-secondary-50 px-3 py-1.5 text-xs font-bold text-primary-800 ring-1 ring-secondary-200" data-article-views-id="art_20260520_002" data-article-views-count="3">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="3" />
+        </svg>
+        <span class="views-count-text">Dilihat 3 kali</span>
+    </span>
+                    <a href="artikel.php?slug=pentingnya-pendampingan-orang-tua-saat-memilih-sekolah" class="inline-flex rounded-md border border-secondary-200 px-4 py-2 text-sm font-bold text-primary-700 transition hover:border-primary-300 hover:bg-secondary-50">Baca Artikel</a>
+            </div>
+        </div>
+    </article>
+                                                    <article class="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-soft">
+        <a href="artikel.php?slug=kegiatan-belajar-menyenangkan-di-yayasan-cendekia" class="block aspect-[16/11] overflow-hidden bg-secondary-50">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&amp;fit=crop&amp;w=1400&amp;q=80" alt="Kegiatan Belajar Menyenangkan di Yayasan Cendekia" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                    </a>
+        <div class="p-6">
+            <div class="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wide text-primary-700">
+                <span>Kegiatan Sekolah</span>
+                <span class="text-slate-300">/</span>
+                <span class="text-slate-500">20 May 2026</span>
+            </div>
+            <h3 class="mt-3 text-xl font-bold leading-tight text-slate-950">
+                <a href="artikel.php?slug=kegiatan-belajar-menyenangkan-di-yayasan-cendekia" class="transition hover:text-primary-700">Kegiatan Belajar Menyenangkan di Yayasan Cendekia</a>
+            </h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Suasana belajar yang hangat membantu siswa lebih percaya diri, aktif bertanya, dan nyaman mengikuti kegiatan sekolah.</p>
+            <div class="mt-5 flex flex-wrap items-center justify-between gap-3">
+                    <span class="inline-flex items-center gap-1.5 rounded-full bg-secondary-50 px-3 py-1.5 text-xs font-bold text-primary-800 ring-1 ring-secondary-200" data-article-views-id="art_20260520_001" data-article-views-count="1">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6Z" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="12" cy="12" r="3" />
+        </svg>
+        <span class="views-count-text">Dilihat 1 kali</span>
+    </span>
+                    <a href="artikel.php?slug=kegiatan-belajar-menyenangkan-di-yayasan-cendekia" class="inline-flex rounded-md border border-secondary-200 px-4 py-2 text-sm font-bold text-primary-700 transition hover:border-primary-300 hover:bg-secondary-50">Baca Artikel</a>
+            </div>
+        </div>
+    </article>
+                                        </div>
+                    </div>
+    </section>
+</main>
+    <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-8">
+            <div>
+                <div class="flex items-center gap-3">
+                                            <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-600 text-base font-bold text-white">YC</span>
+                                        <div>
+                        <p class="font-bold text-slate-950">Yayasan Cendekia</p>
+                        <p class="text-sm text-slate-500">Pendidikan terpadu untuk keluarga Indonesia.</p>
+                    </div>
+                </div>
+                <p class="mt-5 max-w-xl text-sm leading-7 text-slate-600">Yayasan Cendekia hadir untuk mendampingi anak-anak dari usia dini sampai siap melanjutkan masa depan. Informasi pendaftaran tersedia untuk Cendekia Cirebon serta TK dan SD IT Cendekia 2 Losari.</p>
+            </div>
+
+            <div>
+                <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Cendekia Cirebon</h2>
+                <div class="mt-4 grid gap-2 text-sm">
+                                            <a href="tk-paud.php" class="text-slate-600 transition hover:text-primary-700">TKIT Cendekia</a>
+                                            <a href="sd.php" class="text-slate-600 transition hover:text-primary-700">SDIT SABILUL QURAN</a>
+                                            <a href="smp.php" class="text-slate-600 transition hover:text-primary-700">SMPIT TAHFIDZUL QURAN</a>
+                                            <a href="smk.php" class="text-slate-600 transition hover:text-primary-700">SMK CENDEKIA</a>
+                                        <span class="mt-3 text-xs font-bold uppercase tracking-wide text-slate-400">Cabang Losari</span>
+                                            <a href="losari-tk.php" class="text-slate-600 transition hover:text-primary-700">TKIT Cendekia 2 Losari</a>
+                                            <a href="losari-sd.php" class="text-slate-600 transition hover:text-primary-700">SD IT Cendekia 2 Losari</a>
+                                        <a href="articles.php" class="mt-3 text-slate-600 transition hover:text-primary-700">Artikel Sekolah</a>
+                    <a href="faq.php" class="mt-3 text-slate-600 transition hover:text-primary-700">FAQ Pendaftaran</a>
+                                            <a href="/admin.php" class="text-slate-600 transition hover:text-primary-700">Dashboard Admin</a>
+                                    </div>
+            </div>
+
+            <div>
+                <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Kontak</h2>
+                <div class="mt-4 grid gap-2 text-sm text-slate-600">
+                    <p>Jl. Kh. Wahid Hasyim Jalan Raden H. Patra Kusuma Desa, Mertapada Wetan, Kec. Astanajapura, Kabupaten Cirebon, Jawa Barat 45183</p>
+                    <a class="transition hover:text-primary-700" href="mailto:info@yayasancendekia.sch.id">info@yayasancendekia.sch.id</a>
+                    <a class="transition hover:text-primary-700" href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">WhatsApp Yayasan</a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-slate-200 px-4 py-5 text-center text-xs text-slate-500">
+            &copy; 2026 Yayasan Cendekia. Semua hak dilindungi.        </div>
+    </footer>
+
+    <script src="/assets/js/app.js?v=1779269577"></script>
+</body>
+</html>

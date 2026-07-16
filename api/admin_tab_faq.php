@@ -10,7 +10,7 @@
         <h3 class="text-lg font-bold text-slate-900 mb-4"><?= $editFaq !== null ? 'Edit FAQ' : 'Tambah FAQ Baru' ?></h3>
         <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']); ?>">
         <input type="hidden" name="action" value="save_faq">
-        <input type="hidden" name="id" value="<?= e($editFaqId); ?>">
+        <input type="hidden" name="id" value="<?= e((string) ($editFaq['id'] ?? '')); ?>">
         
         <div class="grid gap-4">
             <label class="grid gap-2 text-sm font-bold text-slate-700">
@@ -33,8 +33,13 @@
 
     <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
         <h2 class="text-xl font-bold text-slate-950">Daftar FAQ Saat Ini</h2>
+        <form method="get" class="mt-4 flex gap-3">
+            <input type="hidden" name="tab" value="faq">
+            <input type="search" name="faq_q" maxlength="100" value="<?= e($faqSearch); ?>" placeholder="Cari pertanyaan atau jawaban" class="min-w-0 flex-1 rounded-md border border-slate-200 px-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-4 focus:ring-secondary-100">
+            <button type="submit" class="rounded-md bg-primary-600 px-4 py-2 text-sm font-bold text-white">Cari</button>
+        </form>
         <div class="mt-5 grid gap-4">
-            <?php foreach ($faqs as $index => $faq): ?>
+            <?php foreach ($faqs as $faq): ?>
                 <div class="rounded-lg border border-slate-200 bg-slate-50 p-4">
                     <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                         <div>
@@ -42,11 +47,11 @@
                             <p class="mt-2 text-sm leading-6 text-slate-600 line-clamp-3"><?= e($faq['answer']) ?></p>
                         </div>
                         <div class="flex shrink-0 gap-2 mt-3 sm:mt-0">
-                            <a href="?tab=faq&edit_faq=<?= $index ?>" class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-secondary-300 hover:text-primary-700">Edit</a>
+                            <a href="?tab=faq&edit_faq=<?= (int) $faq['id'] ?>" class="rounded-md border border-slate-200 bg-white px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-secondary-300 hover:text-primary-700">Edit</a>
                             <form method="post" onsubmit="return confirm('Hapus FAQ ini?');" class="inline">
                                 <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']); ?>">
                                 <input type="hidden" name="action" value="delete_faq">
-                                <input type="hidden" name="id" value="<?= $index ?>">
+                                <input type="hidden" name="id" value="<?= (int) $faq['id'] ?>">
                                 <button type="submit" class="rounded-md border border-red-200 bg-white px-3 py-2 text-xs font-bold text-red-700 transition hover:bg-red-50">Hapus</button>
                             </form>
                         </div>

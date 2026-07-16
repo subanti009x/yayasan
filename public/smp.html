@@ -13,6 +13,10 @@
         tailwind.config = {
             theme: {
                 extend: {
+                    colors: {
+                        primary: tailwind.colors.orange || tailwind.colors.orange,
+                        secondary: tailwind.colors.amber || tailwind.colors.amber,
+                    },
                     fontFamily: {
                         sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Arial', 'sans-serif']
                     },
@@ -31,37 +35,36 @@
     <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 glass-nav">
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Navigasi utama">
             <a href="index.html" class="flex items-center gap-3" aria-label="Beranda Yayasan Cendekia">
-                <span class="grid h-11 w-11 place-items-center rounded-lg bg-orange-600 text-base font-bold text-white shadow-soft">YC</span>
-                <span>
+                                    <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-600 text-base font-bold text-white shadow-soft">YC</span>
+                                <span>
                     <span class="block text-sm font-bold tracking-wide text-slate-950">Yayasan Cendekia</span>
                     <span class="block text-xs text-slate-500">Sekolah Indonesia</span>
                 </span>
             </a>
 
             <div class="hidden items-center gap-1 lg:flex">
-                                    <a href="index.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="index.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
                         Yayasan                    </a>
-                                    <a href="tk-paud.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="tk-paud.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
                         TK / PAUD                    </a>
-                                    <a href="sd.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="sd.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
                         SD                    </a>
-                                    <a href="smp.html" class="rounded-md px-3 py-2 text-sm font-semibold transition bg-amber-50 text-orange-800">
+                                    <a href="smp.html" class="rounded-md px-3 py-2 text-sm font-semibold transition bg-secondary-50 text-primary-800">
                         SMP                    </a>
-                                    <a href="smk.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="smk.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
                         SMK                    </a>
-                                    <a href="index.html#cabang-losari" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="index.html#cabang-losari" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
                         Cabang Losari                    </a>
-                                    <a href="articles.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="articles.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
                         Artikel                    </a>
-                                    <a href="faq.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="faq.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
                         FAQ                    </a>
-                                    <a href="kontak.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="kontak.html" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
                         Kontak                    </a>
                             </div>
 
-            <a href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="hidden rounded-md bg-orange-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-200 lg:inline-flex" target="_blank" rel="noopener">
-                Hubungi Kami
-            </a>
+            <a href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="hidden rounded-md bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-secondary-200 lg:inline-flex" target="_blank" rel="noopener">
+                Hubungi Kami            </a>
 
             <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm lg:hidden" data-mobile-toggle aria-controls="mobile-menu" aria-expanded="false">
                 <span class="sr-only">Buka menu</span>
@@ -73,27 +76,26 @@
 
         <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-4 py-4 lg:hidden" data-mobile-menu>
             <div class="mx-auto grid max-w-7xl gap-1">
-                                    <a href="index.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="index.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
                         Yayasan                    </a>
-                                    <a href="tk-paud.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="tk-paud.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
                         TK / PAUD                    </a>
-                                    <a href="sd.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="sd.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
                         SD                    </a>
-                                    <a href="smp.html" class="rounded-md px-3 py-3 text-sm font-semibold bg-amber-50 text-orange-800">
+                                    <a href="smp.html" class="rounded-md px-3 py-3 text-sm font-semibold bg-secondary-50 text-primary-800">
                         SMP                    </a>
-                                    <a href="smk.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="smk.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
                         SMK                    </a>
-                                    <a href="index.html#cabang-losari" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="index.html#cabang-losari" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
                         Cabang Losari                    </a>
-                                    <a href="articles.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="articles.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
                         Artikel                    </a>
-                                    <a href="faq.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="faq.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
                         FAQ                    </a>
-                                    <a href="kontak.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-amber-50 hover:text-orange-800">
+                                    <a href="kontak.html" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
                         Kontak                    </a>
-                                <a href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="mt-2 rounded-md bg-orange-600 px-3 py-3 text-center text-sm font-semibold text-white" target="_blank" rel="noopener">
-                    Hubungi WhatsApp
-                </a>
+                                <a href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="mt-2 rounded-md bg-primary-600 px-3 py-3 text-center text-sm font-semibold text-white" target="_blank" rel="noopener">
+                    Hubungi Kami                </a>
             </div>
         </div>
     </header>
@@ -115,7 +117,7 @@
         <section class="bg-white py-16 sm:py-20">
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
                 <div>
-                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Profil Sekolah</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Profil Sekolah</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Lingkungan belajar yang dekat dengan anak.</h2>
                     <p class="mt-5 text-base leading-8 text-slate-600">Masa SMP menjadi ruang bagi siswa untuk lebih percaya diri, belajar bertanggung jawab, dan menyiapkan diri menuju jenjang berikutnya.</p>
                     <div class="mt-8 grid gap-4 sm:grid-cols-3">
@@ -134,7 +136,7 @@
                     </div>
                 </div>
                 <aside class="rounded-lg bg-slate-950 p-6 text-white shadow-soft">
-                    <p class="text-sm font-semibold text-amber-200">Pendaftaran</p>
+                    <p class="text-sm font-semibold text-secondary-200">Pendaftaran</p>
                     <h2 class="mt-3 text-2xl font-bold">Hubungi admin SMP</h2>
                     <p class="mt-4 text-sm leading-7 text-slate-200">Admin akan membantu menjawab pertanyaan seputar biaya, jadwal, berkas, dan langkah pendaftaran.</p>
                     <div class="mt-6 grid gap-3">
@@ -148,7 +150,7 @@
             <section class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
-                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Program Unggulan</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Program Unggulan</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Kegiatan belajar yang disesuaikan dengan jenjang.</h2>
             </div>
             <div class="grid gap-5 md:grid-cols-3">
@@ -171,7 +173,7 @@
     <section class="bg-white py-16 sm:py-20">
         <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
             <div>
-                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Fasilitas</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Fasilitas</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Ruang belajar dan kegiatan siswa.</h2>
                 <p class="mt-5 text-base leading-8 text-slate-600">Fasilitas disiapkan untuk mendukung kegiatan belajar harian, pendampingan guru, dan aktivitas siswa di sekolah.</p>
             </div>
@@ -219,7 +221,7 @@
     <section class="bg-slate-50 py-16 sm:py-20">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="mb-10 max-w-3xl">
-                <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Kegiatan Siswa</p>
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Kegiatan Siswa</p>
                 <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Anak belajar lewat kebiasaan sehari-hari.</h2>
             </div>
             <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -266,7 +268,7 @@
         <section id="pendaftaran" class="bg-slate-50 py-16 sm:py-20">
             <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
                 <div>
-                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Pendaftaran</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Pendaftaran</p>
                                             <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Formulir Pendaftaran</h2>
                         <div class="mt-5 text-sm leading-7 text-slate-600 space-y-4">
                             <p class="font-semibold text-slate-900">Assalamu’alaikum warahmatullahi wabarakatuh.</p>
@@ -274,9 +276,9 @@
                             <p>Melalui formulir ini, Ayah/Bunda dapat mengisi data awal pendaftaran calon peserta didik baru. Data yang diisi akan digunakan oleh pihak sekolah sebagai data administrasi awal dalam proses Penerimaan Peserta Didik Baru (PPDB).</p>
                             <p>Mohon agar Ayah/Bunda mengisi setiap kolom dengan data yang benar dan lengkap agar proses verifikasi dapat berjalan dengan baik.</p>
                             <p>Setelah mengisi formulir ini, mohon berkenan untuk menghubungi Admin Sekolah melalui WhatsApp guna proses verifikasi data dan informasi tahapan pendaftaran selanjutnya.</p>
-                            <div class="my-4 rounded-md border border-amber-200 bg-amber-50 p-4">
-                                <span class="block font-bold text-orange-950">📞 Admin (WhatsApp):</span>
-                                <a href="https://wa.me/6281573888807" target="_blank" rel="noopener" class="text-orange-700 font-bold hover:underline">0815-7388-8807</a>
+                            <div class="my-4 rounded-md border border-secondary-200 bg-secondary-50 p-4">
+                                <span class="block font-bold text-primary-950">📞 Admin (WhatsApp):</span>
+                                <a href="https://wa.me/6281573888807" target="_blank" rel="noopener" class="text-primary-700 font-bold hover:underline">0815-7388-8807</a>
                             </div>
                             <p>Apabila terdapat pertanyaan atau membutuhkan informasi lebih lanjut terkait proses pendaftaran, Ayah/Bunda juga dapat menghubungi nomor tersebut.</p>
                             <p class="font-semibold text-slate-900">Semoga Allah memudahkan setiap langkah pendidikan Ananda.</p>
@@ -284,8 +286,11 @@
                         </div>
                                     </div>
                     <form class="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" action="https://docs.google.com/forms/d/e/1FAIpQLSf-PKQotTVWdF63AwsB1wu3xV_lvWCwOKWzDEEuzPZdq29Fpg/formResponse" method="post" target="hidden_google_form_smp" data-google-form>
+        <div class="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+            <label>Jangan isi kolom ini<input type="text" name="website" tabindex="-1" autocomplete="off" data-form-honeypot></label>
+        </div>
         <div>
-            <span class="inline-flex rounded-full bg-amber-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-orange-800 ring-1 ring-amber-200">Cabang Kota Cirebon</span>
+            <span class="inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-800 ring-1 ring-secondary-200">Cabang Kota Cirebon</span>
             <p class="mt-3 text-sm leading-7 text-slate-600">Data pendaftaran Anda akan langsung diterima oleh admin resmi Cabang Kota Cirebon.</p>
         </div>
 
@@ -293,77 +298,77 @@
                     <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Lengkap
-                    <input type="text" name="entry.2055510208" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama calon siswa" required>
+                    <input type="text" name="entry.2055510208" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama calon siswa" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Panggilan
-                    <input type="text" name="entry.558526172" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama panggilan anak" required>
+                    <input type="text" name="entry.558526172" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama panggilan anak" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Jenis Kelamin
-                    <select name="entry.324562681" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <select name="entry.324562681" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                         <option>Laki-laki</option>
                         <option>Perempuan</option>
                     </select>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Tempat, Tanggal Lahir
-                    <input type="text" name="entry.56417918" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Contoh: Cirebon, 12 Mei 2013" required>
+                    <input type="text" name="entry.56417918" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Contoh: Cirebon, 12 Mei 2013" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Agama
-                    <input type="text" name="entry.810990337" value="Islam" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <input type="text" name="entry.810990337" value="Islam" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Kewarganegaraan
-                    <input type="text" name="entry.2002042407" value="WNI" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" required>
+                    <input type="text" name="entry.2002042407" value="WNI" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-2">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Asal Sekolah
-                    <input type="text" name="entry.181234805" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Asal sekolah/SD sebelumnya" required>
+                    <input type="text" name="entry.181234805" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Asal sekolah/SD sebelumnya" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     No. WA
-                    <input type="tel" name="entry.408552828" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="08xxxxxxxxxx" required>
+                    <input type="tel" name="entry.408552828" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="08xxxxxxxxxx" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-3">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Ayah
-                    <input type="text" name="entry.1001224564" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ayah" required>
+                    <input type="text" name="entry.1001224564" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ayah" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pendidikan Ayah
-                    <input type="text" name="entry.51377260" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ayah" required>
+                    <input type="text" name="entry.51377260" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pendidikan terakhir Ayah" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pekerjaan Ayah
-                    <input type="text" name="entry.698003970" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ayah" required>
+                    <input type="text" name="entry.698003970" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ayah" required>
                 </label>
             </div>
             <div class="grid gap-4 sm:grid-cols-3">
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Nama Ibu
-                    <input type="text" name="entry.108118824" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Nama lengkap Ibu" required>
+                    <input type="text" name="entry.108118824" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ibu" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pendidikan Ibu
-                    <input type="text" name="entry.137652037" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pendidikan terakhir Ibu" required>
+                    <input type="text" name="entry.137652037" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pendidikan terakhir Ibu" required>
                 </label>
                 <label class="grid gap-2 text-sm font-semibold text-slate-700">
                     Pekerjaan Ibu
-                    <input type="text" name="entry.1959004689" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Pekerjaan Ibu" required>
+                    <input type="text" name="entry.1959004689" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ibu" required>
                 </label>
             </div>
             <label class="grid gap-2 text-sm font-semibold text-slate-700">
                 Alamat Tempat Tinggal
-                <textarea name="entry.488607707" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-orange-500 focus:ring-4 focus:ring-amber-100" placeholder="Alamat lengkap tempat tinggal" required></textarea>
+                <textarea name="entry.488607707" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Alamat lengkap tempat tinggal" required></textarea>
             </label>
 
         
@@ -372,10 +377,14 @@
             <input type="text" value="SMPIT TAHFIDZUL QURAN" readonly class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal text-slate-600">
         </label>
         
-                    <button type="submit" class="rounded-md bg-orange-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-orange-700 focus:outline-none focus:ring-4 focus:ring-amber-200">
+                    <label class="flex items-start gap-3 text-xs leading-6 text-slate-600">
+                <input type="checkbox" required class="mt-1 h-4 w-4 rounded border-slate-300 text-primary-600 focus:ring-primary-500">
+                <span>Saya menyetujui pengiriman data pendaftaran kepada admin sekolah untuk proses penerimaan siswa.</span>
+            </label>
+            <button type="submit" class="rounded-md bg-primary-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-secondary-200">
                 Kirim Pendaftaran
             </button>
-            <p class="hidden rounded-md bg-amber-50 px-4 py-3 text-sm font-semibold text-orange-800 ring-1 ring-amber-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
+            <p class="hidden rounded-md bg-secondary-50 px-4 py-3 text-sm font-semibold text-primary-800 ring-1 ring-secondary-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
             <p class="text-xs leading-6 text-slate-500">Setelah dikirim, admin sekolah akan menindaklanjuti data pendaftaran ini.</p>
                 
         <iframe name="hidden_google_form_smp" class="hidden" title="Google Form submission target" data-google-form-frame></iframe>
@@ -386,7 +395,7 @@
         <section class="bg-white py-16 sm:py-20">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="mb-8 max-w-2xl">
-                    <p class="text-sm font-bold uppercase tracking-wide text-orange-700">Lokasi</p>
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Lokasi</p>
                     <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Google Maps SMPIT TAHFIDZUL QURAN</h2>
                 </div>
                     <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-sm">
@@ -403,8 +412,8 @@
         <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-8">
             <div>
                 <div class="flex items-center gap-3">
-                    <span class="grid h-11 w-11 place-items-center rounded-lg bg-orange-600 text-base font-bold text-white">YC</span>
-                    <div>
+                                            <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-600 text-base font-bold text-white">YC</span>
+                                        <div>
                         <p class="font-bold text-slate-950">Yayasan Cendekia</p>
                         <p class="text-sm text-slate-500">Pendidikan terpadu untuk keluarga Indonesia.</p>
                     </div>
@@ -415,15 +424,15 @@
             <div>
                 <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Cendekia Cirebon</h2>
                 <div class="mt-4 grid gap-2 text-sm">
-                                            <a href="tk-paud.html" class="text-slate-600 transition hover:text-orange-700">TKIT Cendekia</a>
-                                            <a href="sd.html" class="text-slate-600 transition hover:text-orange-700">SDIT SABILUL QURAN</a>
-                                            <a href="smp.html" class="text-slate-600 transition hover:text-orange-700">SMPIT TAHFIDZUL QURAN</a>
-                                            <a href="smk.html" class="text-slate-600 transition hover:text-orange-700">SMK CENDEKIA</a>
+                                            <a href="tk-paud.html" class="text-slate-600 transition hover:text-primary-700">TKIT Cendekia</a>
+                                            <a href="sd.html" class="text-slate-600 transition hover:text-primary-700">SDIT SABILUL QURAN</a>
+                                            <a href="smp.html" class="text-slate-600 transition hover:text-primary-700">SMPIT TAHFIDZUL QURAN</a>
+                                            <a href="smk.html" class="text-slate-600 transition hover:text-primary-700">SMK CENDEKIA</a>
                                         <span class="mt-3 text-xs font-bold uppercase tracking-wide text-slate-400">Cabang Losari</span>
-                                            <a href="losari-tk.html" class="text-slate-600 transition hover:text-orange-700">TKIT Cendekia 2 Losari</a>
-                                            <a href="losari-sd.html" class="text-slate-600 transition hover:text-orange-700">SD IT Cendekia 2 Losari</a>
-                                        <a href="articles.html" class="mt-3 text-slate-600 transition hover:text-orange-700">Artikel Sekolah</a>
-                    <a href="faq.html" class="mt-3 text-slate-600 transition hover:text-orange-700">FAQ Pendaftaran</a>
+                                            <a href="losari-tk.html" class="text-slate-600 transition hover:text-primary-700">TKIT Cendekia 2 Losari</a>
+                                            <a href="losari-sd.html" class="text-slate-600 transition hover:text-primary-700">SD IT Cendekia 2 Losari</a>
+                                        <a href="articles.html" class="mt-3 text-slate-600 transition hover:text-primary-700">Artikel Sekolah</a>
+                    <a href="faq.html" class="mt-3 text-slate-600 transition hover:text-primary-700">FAQ Pendaftaran</a>
                                     </div>
             </div>
 
@@ -431,16 +440,15 @@
                 <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Kontak</h2>
                 <div class="mt-4 grid gap-2 text-sm text-slate-600">
                     <p>Jl. Kh. Wahid Hasyim Jalan Raden H. Patra Kusuma Desa, Mertapada Wetan, Kec. Astanajapura, Kabupaten Cirebon, Jawa Barat 45183</p>
-                    <a class="transition hover:text-orange-700" href="mailto:info@yayasancendekia.sch.id">info@yayasancendekia.sch.id</a>
-                    <a class="transition hover:text-orange-700" href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">WhatsApp Yayasan</a>
+                    <a class="transition hover:text-primary-700" href="mailto:info@yayasancendekia.sch.id">info@yayasancendekia.sch.id</a>
+                    <a class="transition hover:text-primary-700" href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">WhatsApp Yayasan</a>
                 </div>
             </div>
         </div>
         <div class="border-t border-slate-200 px-4 py-5 text-center text-xs text-slate-500">
-            &copy; 2026 Yayasan Cendekia. Semua hak dilindungi.
-        </div>
+            &copy; 2026 Yayasan Cendekia. Semua hak dilindungi.        </div>
     </footer>
 
-    <script src="/assets/js/app.js?v=1779269577"></script>
+    <script src="/assets/js/app.js?v=1784164854"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
 .playwright-cli/
 
 .vercel
+.env
+api/config.local.php

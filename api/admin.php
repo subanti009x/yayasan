@@ -1,42 +1,31 @@
 <?php
+$isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    || (($_SERVER['SERVER_PORT'] ?? '') === '443');
+ini_set('session.use_strict_mode', '1');
+ini_set('session.cookie_httponly', '1');
+ini_set('session.cookie_samesite', 'Lax');
+session_set_cookie_params(['httponly' => true, 'secure' => $isHttps, 'samesite' => 'Lax']);
 session_start();
 
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/articles.php';
 require_once __DIR__ . '/includes/cms.php';
 
-$adminPassword = getenv('ADMIN_PASSWORD') ?: 'cendekia-admin';
-$sessionSecret = getenv('SESSION_SECRET') ?: 'cendekia-session-secret-key-123456';
+$adminPassword = (string) getenv('ADMIN_PASSWORD');
+$sessionSecret = (string) getenv('SESSION_SECRET');
+$configurationError = $adminPassword === '' || $sessionSecret === ''
+    ? 'ADMIN_PASSWORD dan SESSION_SECRET wajib diatur di environment server.'
+    : '';
 
-// 1. Stateless Cookie Session Check (to keep login state across serverless functions)
-$isLoggedIn = ($_SESSION['admin_logged_in'] ?? false) === true;
-if (!$isLoggedIn && isset($_COOKIE['admin_auth'])) {
-    $expectedHash = hash_hmac('sha256', $adminPassword, $sessionSecret);
-    if (hash_equals($expectedHash, $_COOKIE['admin_auth'])) {
-        $isLoggedIn = true;
-        $_SESSION['admin_logged_in'] = true;
-    }
-}
+$isLoggedIn = ($_SESSION['admin_role'] ?? '') === 'admin';
 
 $message = '';
 $error = '';
 $currentTab = $_GET['tab'] ?? 'articles';
 
-// 2. CSRF Token handling (Stateless backup via cookie)
+// CSRF token is bound to the server-side session.
 if (empty($_SESSION['csrf_token'])) {
-    if (isset($_COOKIE['csrf_token'])) {
-        $_SESSION['csrf_token'] = $_COOKIE['csrf_token'];
-    } else {
-        $token = bin2hex(random_bytes(16));
-        $_SESSION['csrf_token'] = $token;
-        setcookie('csrf_token', $token, [
-            'expires' => time() + 3600,
-            'path' => '/',
-            'secure' => true,
-            'httponly' => true,
-            'samesite' => 'Lax'
-        ]);
-    }
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 
 function admin_redirect(string $suffix = ''): void
@@ -53,6 +42,44 @@ function require_csrf(): void
         http_response_code(400);
         exit('Token keamanan tidak valid.');
     }
+}
+
+function admin_external_url(string $value): ?string
+{
+    $value = trim(str_replace("\0", '', $value));
+
+    if ($value === '') {
+        return '';
+    }
+
+    $parts = filter_var($value, FILTER_VALIDATE_URL) ? parse_url($value) : false;
+    if ($parts === false || !in_array(strtolower((string) ($parts['scheme'] ?? '')), ['https'], true) || strlen($value) > 2048) {
+        return null;
+    }
+
+    return $value;
+}
+
+function admin_text(string $field, int $maximum): string
+{
+    $value = trim((string) ($_POST[$field] ?? ''));
+    return mb_substr(str_replace("\0", '', $value), 0, $maximum);
+}
+
+function admin_managed_upload_path(string $url): ?string
+{
+    $parts = parse_url($url);
+    if (!is_array($parts)) {
+        return null;
+    }
+
+    $path = ltrim((string) ($parts['path'] ?? ''), '/');
+    if ($path === 'uploads.php') {
+        parse_str((string) ($parts['query'] ?? ''), $query);
+        $path = (string) ($query['path'] ?? '');
+    }
+
+    return preg_match('#^uploads/(?:articles|schools)/[a-z0-9._-]+$#i', $path) ? $path : null;
 }
 
 function uploaded_image(?string &$error, string $folder = 'articles'): ?string
@@ -89,13 +116,16 @@ function uploaded_image(?string &$error, string $folder = 'articles'): ?string
     }
 
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mimeType = $finfo ? finfo_file($finfo, $tmpName) : '';
-
-    if ($finfo) {
-        finfo_close($finfo);
-    }
+    $mimeType = $finfo ? (string) finfo_file($finfo, $tmpName) : '';
+    unset($finfo);
 
     if (!in_array($mimeType, $allowedMimeTypes, true)) {
+        $error = 'File yang diupload bukan gambar yang valid.';
+        return null;
+    }
+
+    $imageInfo = @getimagesize($tmpName);
+    if (!is_array($imageInfo) || ($imageInfo['mime'] ?? '') !== $mimeType) {
         $error = 'File yang diupload bukan gambar yang valid.';
         return null;
     }
@@ -103,36 +133,22 @@ function uploaded_image(?string &$error, string $folder = 'articles'): ?string
     $prefix = $folder === 'articles' ? 'artikel' : 'hero';
     $filename = $prefix . '-' . date('Ymd-His') . '-' . bin2hex(random_bytes(4)) . '.' . $extension;
 
-    // Vercel Serverless File Upload to GitHub
-    if (getenv('VERCEL') === '1') {
-        $githubToken = getenv('GITHUB_TOKEN');
-        if ($githubToken) {
-            $uploadedPath = 'assets/uploads/' . $folder . '/' . $filename;
-            $success = commit_to_github($uploadedPath, file_get_contents($tmpName), 'upload ' . $folder . ' image: ' . $filename, $githubToken);
-            if ($success) {
-                return $uploadedPath;
-            }
-        }
-        $error = 'Gagal menyimpan gambar di cloud (Token GitHub belum diatur).';
+    $content = file_get_contents($tmpName);
+    if ($content === false) {
+        $error = 'Gambar belum bisa dibaca. Silakan coba lagi.';
         return null;
     }
 
-    // Local file system upload
-    $uploadDir = __DIR__ . '/../assets/uploads/' . $folder;
-
-    if (!is_dir($uploadDir) && !mkdir($uploadDir, 0777, true)) {
-        $error = 'Folder upload belum bisa dibuat.';
-        return null;
+    $uploadedPath = 'uploads/' . $folder . '/' . $filename;
+    if (cms_save_upload($uploadedPath, $content, $mimeType)) {
+        return getenv('VERCEL') === '1'
+            ? '/' . $uploadedPath
+            : 'uploads.php?path=' . rawurlencode($uploadedPath);
     }
 
-    $targetPath = $uploadDir . '/' . $filename;
-
-    if (!move_uploaded_file($tmpName, $targetPath)) {
-        $error = 'Gambar belum bisa disimpan ke server.';
-        return null;
-    }
-
-    return 'assets/uploads/' . $folder . '/' . $filename;
+    $storageError = cms_last_error();
+    $error = $storageError !== '' ? $storageError : 'Gambar belum bisa disimpan ke database.';
+    return null;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -141,56 +157,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'login') {
         require_csrf();
 
-        if (hash_equals($adminPassword, (string) ($_POST['password'] ?? ''))) {
-            $_SESSION['admin_logged_in'] = true;
-            
-            // Set signed authentication cookie
-            $hash = hash_hmac('sha256', $adminPassword, $sessionSecret);
-            setcookie('admin_auth', $hash, [
-                'expires' => time() + 86400 * 7,
-                'path' => '/',
-                'secure' => true,
-                'httponly' => true,
-                'samesite' => 'Lax'
-            ]);
-            
+        $rateKey = security_client_key($sessionSecret);
+        if ($configurationError === '' && login_is_rate_limited($rateKey)) {
+            $error = 'Terlalu banyak percobaan login. Silakan coba lagi 15 menit lagi.';
+        } else {
+
+        $submittedPassword = (string) ($_POST['password'] ?? '');
+        $isPasswordValid = $configurationError === '' && (
+            str_starts_with($adminPassword, '$2y$') || str_starts_with($adminPassword, '$argon2')
+                ? password_verify($submittedPassword, $adminPassword)
+                : hash_equals($adminPassword, $submittedPassword)
+        );
+
+        if ($isPasswordValid) {
+            session_regenerate_id(true);
+            $_SESSION['admin_role'] = 'admin';
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+            clear_login_failures($rateKey);
             admin_redirect('?success=login');
         }
-
+        record_login_failure($rateKey);
         $error = 'Password admin belum sesuai.';
+        }
     } elseif ($action === 'logout') {
         require_csrf();
         $_SESSION = [];
         session_destroy();
-        
-        // Clear authentication cookie
-        setcookie('admin_auth', '', [
-            'expires' => time() - 3600,
-            'path' => '/',
-            'secure' => true,
-            'httponly' => true,
-            'samesite' => 'Lax'
-        ]);
         
         admin_redirect();
     } elseif ($isLoggedIn) {
         require_csrf();
         
         if ($action === 'save' || $action === 'delete') {
-            $articles = load_articles(false);
-
             if ($action === 'delete') {
                 $id = (string) ($_POST['id'] ?? '');
-                $articles = array_values(array_filter($articles, fn (array $article): bool => ($article['id'] ?? '') !== $id));
-                
-                if (save_articles($articles)) {
+                $article = $id !== '' ? find_article_by_id($id) : null;
+                if ($article !== null && delete_article($id)) {
+                    $uploadPath = admin_managed_upload_path((string) ($article['image'] ?? ''));
+                    if ($uploadPath !== null) {
+                        cms_delete_upload($uploadPath);
+                    }
                     admin_redirect('?tab=articles&success=delete');
                 }
-                $error = 'Gagal menghapus artikel.';
+                $storageError = cms_last_error();
+                $error = $storageError !== '' ? $storageError : 'Gagal menghapus artikel.';
             } else {
                 $id = trim((string) ($_POST['id'] ?? ''));
-                $titleInput = trim((string) ($_POST['title'] ?? ''));
-                $contentInput = trim((string) ($_POST['content'] ?? ''));
+                $titleInput = admin_text('title', 180);
+                $contentInput = admin_text('content', 20000);
 
                 $uploadError = null;
                 $uploadedImage = uploaded_image($uploadError, 'articles');
@@ -202,21 +216,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 } else {
                     $now = date('Y-m-d H:i');
                     $existing = $id !== '' ? find_article_by_id($id) : null;
-                    $imageUrl = trim((string) ($_POST['image'] ?? ''));
+                    $imageUrl = admin_external_url((string) ($_POST['image'] ?? ''));
                     $currentImage = trim((string) ($_POST['current_image'] ?? ''));
 
                     if (($_POST['remove_image'] ?? '') === '1') {
                         $currentImage = '';
                     }
 
-                    $image = $uploadedImage ?: ($imageUrl !== '' ? $imageUrl : $currentImage);
-                    $article = [
+                    if ($imageUrl === null) {
+                        $error = 'URL gambar artikel harus menggunakan HTTPS yang valid.';
+                    } else {
+                        $image = $uploadedImage ?: ($imageUrl !== '' ? $imageUrl : $currentImage);
+                        $article = [
                         'id' => $existing['id'] ?? ('art_' . date('Ymd_His')),
                         'title' => $titleInput,
                         'slug' => unique_article_slug($titleInput, $existing['id'] ?? null),
-                        'category' => trim((string) ($_POST['category'] ?? 'Artikel')),
-                        'author' => trim((string) ($_POST['author'] ?? 'Admin Yayasan')),
-                        'excerpt' => trim((string) ($_POST['excerpt'] ?? '')),
+                        'category' => admin_text('category', 100) ?: 'Artikel',
+                        'author' => admin_text('author', 120) ?: 'Admin Yayasan',
+                        'excerpt' => admin_text('excerpt', 600),
                         'content' => $contentInput,
                         'image' => $image,
                         'views' => (int) ($existing['views'] ?? 0),
@@ -225,27 +242,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'updated_at' => $now,
                     ];
 
-                    $updated = false;
-
-                    foreach ($articles as $index => $existingArticle) {
-                        if (($existingArticle['id'] ?? '') !== $article['id']) {
-                            continue;
+                        if (save_article($article)) {
+                            admin_redirect('?tab=articles&success=save');
                         }
 
-                        $articles[$index] = $article;
-                        $updated = true;
-                        break;
+                        $storageError = cms_last_error();
+                        $error = $storageError !== '' ? $storageError : 'Artikel belum bisa disimpan ke database.';
                     }
-
-                    if (!$updated) {
-                        $articles[] = $article;
-                    }
-
-                    if (save_articles($articles)) {
-                        admin_redirect('?tab=articles&success=save');
-                    }
-
-                    $error = 'Artikel belum bisa disimpan. Pastikan environment token GitHub sudah benar jika dijalankan di production.';
                 }
             }
         } elseif ($action === 'save_foundation') {
@@ -264,19 +267,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($uploadError !== null) {
                 $error = $uploadError;
             } else {
-                $imageUrl = trim((string) ($_POST['hero_image_url'] ?? ''));
-                if ($uploadedImage) {
+                $imageUrl = admin_external_url((string) ($_POST['hero_image_url'] ?? ''));
+                if ($imageUrl === null) {
+                    $error = 'URL gambar yayasan harus menggunakan HTTPS yang valid.';
+                }
+                if ($error === '' && $uploadedImage) {
                     $siteData['foundation']['hero_image'] = $uploadedImage;
-                } elseif ($imageUrl !== '') {
+                } elseif ($error === '' && $imageUrl !== '') {
                     $siteData['foundation']['hero_image'] = $imageUrl;
-                } elseif (($_POST['remove_image'] ?? '') === '1') {
+                } elseif ($error === '' && ($_POST['remove_image'] ?? '') === '1') {
                     $siteData['foundation']['hero_image'] = '';
                 }
                 
-                if (save_site_data($siteData)) {
+                if ($error === '' && save_site_data($siteData)) {
                     admin_redirect('?tab=foundation&success=save');
                 } else {
-                    $error = 'Gagal menyimpan data yayasan.';
+                    $storageError = cms_last_error();
+                    $error = $storageError !== '' ? $storageError : 'Gagal menyimpan data yayasan.';
                 }
             }
         } elseif ($action === 'save_branding') {
@@ -300,6 +307,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $error = $uploadError;
                 } elseif ($uploadedImage) {
                     $siteData['branding']['logo_image'] = $uploadedImage;
+                    $siteData['branding']['logo_type'] = 'image';
                 }
             }
 
@@ -311,7 +319,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (save_site_data($siteData)) {
                     admin_redirect('?tab=branding&success=save');
                 } else {
-                    $error = 'Gagal menyimpan data branding.';
+                    $storageError = cms_last_error();
+                    $error = $storageError !== '' ? $storageError : 'Gagal menyimpan data branding.';
                 }
             }
         } elseif ($action === 'save_school') {
@@ -322,8 +331,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $siteData['schools'][$id]['description'] = trim((string)($_POST['description'] ?? ''));
                 $siteData['schools'][$id]['accent'] = trim((string)($_POST['accent'] ?? ''));
                 $siteData['schools'][$id]['phone'] = trim((string)($_POST['phone'] ?? ''));
-                $siteData['schools'][$id]['form_url'] = trim((string)($_POST['form_url'] ?? ''));
-                $siteData['schools'][$id]['maps_embed'] = trim((string)($_POST['maps_embed'] ?? ''));
+                $formUrl = admin_external_url((string) ($_POST['form_url'] ?? ''));
+                $mapsEmbed = admin_external_url((string) ($_POST['maps_embed'] ?? ''));
+                if ($formUrl === null || $mapsEmbed === null) {
+                    $error = 'Link pendaftaran dan Google Maps harus menggunakan HTTPS yang valid.';
+                } else {
+                    $siteData['schools'][$id]['form_url'] = $formUrl;
+                    $siteData['schools'][$id]['maps_embed'] = $mapsEmbed;
+                }
                 
                 $programs = [];
                 $pTitles = $_POST['program_title'] ?? [];
@@ -343,8 +358,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if ($uploadError !== null) {
                     $error = $uploadError;
                 } else {
-                    $imageUrl = trim((string) ($_POST['hero_image_url'] ?? ''));
-                    if ($uploadedImage) {
+                    $imageUrl = admin_external_url((string) ($_POST['hero_image_url'] ?? ''));
+                    if ($imageUrl === null) {
+                        $error = 'URL gambar sekolah harus menggunakan HTTPS yang valid.';
+                    } elseif ($uploadedImage) {
                         $siteData['schools'][$id]['hero_image'] = $uploadedImage;
                     } elseif ($imageUrl !== '') {
                         $siteData['schools'][$id]['hero_image'] = $imageUrl;
@@ -352,42 +369,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $siteData['schools'][$id]['hero_image'] = '';
                     }
                     
-                    if (save_site_data($siteData)) {
+                    if ($error === '' && save_site_data($siteData)) {
                         admin_redirect('?tab=schools&edit_school=' . $id . '&success=save');
                     } else {
-                        $error = 'Gagal menyimpan data sekolah.';
+                        $storageError = cms_last_error();
+                        $error = $storageError !== '' ? $storageError : 'Gagal menyimpan data sekolah.';
                     }
                 }
             }
         } elseif ($action === 'save_faq') {
-            $faqs = load_faq_data();
-            $id = trim((string)($_POST['id'] ?? ''));
-            $question = trim((string)($_POST['question'] ?? ''));
-            $answer = trim((string)($_POST['answer'] ?? ''));
+            $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+            $question = admin_text('question', 300);
+            $answer = admin_text('answer', 3000);
             
             if ($question !== '' && $answer !== '') {
-                if ($id !== '' && isset($faqs[(int)$id])) {
-                    $faqs[(int)$id] = ['question' => $question, 'answer' => $answer];
-                } else {
-                    $faqs[] = ['question' => $question, 'answer' => $answer];
-                }
-                if (save_faq_data($faqs)) {
+                if (save_faq($id === false ? null : $id, $question, $answer)) {
                     admin_redirect('?tab=faq&success=save');
                 } else {
-                    $error = 'Gagal menyimpan FAQ.';
+                    $storageError = cms_last_error();
+                    $error = $storageError !== '' ? $storageError : 'Gagal menyimpan FAQ.';
                 }
             } else {
                 $error = 'Pertanyaan dan jawaban wajib diisi.';
             }
         } elseif ($action === 'delete_faq') {
-            $faqs = load_faq_data();
-            $id = trim((string)($_POST['id'] ?? ''));
-            if ($id !== '' && isset($faqs[(int)$id])) {
-                unset($faqs[(int)$id]);
-                if (save_faq_data(array_values($faqs))) {
+            $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
+            if ($id !== false && $id !== null) {
+                if (delete_faq($id)) {
                     admin_redirect('?tab=faq&success=delete');
                 } else {
-                    $error = 'Gagal menghapus FAQ.';
+                    $storageError = cms_last_error();
+                    $error = $storageError !== '' ? $storageError : 'Gagal menghapus FAQ.';
                 }
             }
         }
@@ -396,14 +408,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $editId = (string) ($_GET['edit'] ?? '');
 $editArticle = $editId !== '' ? find_article_by_id($editId) : null;
-$articles = load_articles(false);
+$articleSearch = mb_substr(trim((string) ($_GET['article_q'] ?? '')), 0, 100);
+$articleStatus = (string) ($_GET['article_status'] ?? '');
+$articles = load_articles(false, $articleSearch, $articleStatus);
 
 $siteData = load_site_data();
-$faqs = load_faq_data();
+$faqSearch = mb_substr(trim((string) ($_GET['faq_q'] ?? '')), 0, 100);
+$faqs = load_faq_data($faqSearch);
 $editSchoolId = (string) ($_GET['edit_school'] ?? '');
 $editSchool = $editSchoolId !== '' && isset($siteData['schools'][$editSchoolId]) ? $siteData['schools'][$editSchoolId] : null;
-$editFaqId = (string) ($_GET['edit_faq'] ?? '');
-$editFaq = $editFaqId !== '' && isset($faqs[(int)$editFaqId]) ? $faqs[(int)$editFaqId] : null;
+$editFaqId = filter_input(INPUT_GET, 'edit_faq', FILTER_VALIDATE_INT);
+$editFaq = $editFaqId !== false && $editFaqId !== null ? find_faq_by_id($editFaqId) : null;
 
 if (($_GET['success'] ?? '') === 'save') {
     $message = 'Data berhasil disimpan';
@@ -431,6 +446,9 @@ require __DIR__ . '/includes/header.php';
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <?php if ($message !== ''): ?>
                 <p class="mb-6 rounded-md bg-secondary-50 px-4 py-3 text-sm font-bold text-primary-800 ring-1 ring-secondary-200"><?= e($message); ?></p>
+            <?php endif; ?>
+            <?php if ($configurationError !== ''): ?>
+                <p class="mb-6 rounded-md bg-red-50 px-4 py-3 text-sm font-bold text-red-700 ring-1 ring-red-200"><?= e($configurationError); ?></p>
             <?php endif; ?>
             <?php if ($error !== ''): ?>
                 <p class="mb-6 rounded-md bg-red-50 px-4 py-3 text-sm font-bold text-red-700 ring-1 ring-red-200"><?= e($error); ?></p>

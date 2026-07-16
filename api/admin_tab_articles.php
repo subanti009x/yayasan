@@ -78,6 +78,16 @@
 
     <div class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
         <h2 class="text-xl font-bold text-slate-950">Daftar artikel</h2>
+        <form method="get" class="mt-4 grid gap-3 sm:grid-cols-[1fr_auto_auto]">
+            <input type="hidden" name="tab" value="articles">
+            <input type="search" name="article_q" maxlength="100" value="<?= e($articleSearch); ?>" placeholder="Cari artikel" class="rounded-md border border-slate-200 px-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-4 focus:ring-secondary-100">
+            <select name="article_status" class="rounded-md border border-slate-200 px-3 py-2 text-sm outline-none focus:border-primary-500 focus:ring-4 focus:ring-secondary-100">
+                <option value="">Semua status</option>
+                <option value="published" <?= $articleStatus === 'published' ? 'selected' : ''; ?>>Published</option>
+                <option value="draft" <?= $articleStatus === 'draft' ? 'selected' : ''; ?>>Draft</option>
+            </select>
+            <button type="submit" class="rounded-md bg-primary-600 px-4 py-2 text-sm font-bold text-white">Filter</button>
+        </form>
         <div class="mt-5 grid gap-4">
             <?php foreach ($articles as $article): ?>
                 <article class="rounded-lg border border-slate-200 bg-slate-50 p-4">

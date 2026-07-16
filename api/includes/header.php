@@ -54,7 +54,7 @@ $secondaryColor = $themeMap[$themeColor] ?? 'amber';
         <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Navigasi utama">
             <a href="<?= url('index.php'); ?>" class="flex items-center gap-3" aria-label="Beranda <?= e($data['foundation']['name']); ?>">
                 <?php if (($data['branding']['logo_type'] ?? 'text') === 'image' && !empty($data['branding']['logo_image'])): ?>
-                    <img src="/<?= e($data['branding']['logo_image']); ?>" alt="Logo" class="h-11 object-contain">
+                    <img src="<?= e(media_url($data['branding']['logo_image'])); ?>" alt="Logo" class="h-11 object-contain">
                 <?php else: ?>
                     <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-600 text-base font-bold text-white shadow-soft"><?= e($data['branding']['logo_text'] ?? 'YC'); ?></span>
                 <?php endif; ?>

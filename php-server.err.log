@@ -1,0 +1,88 @@
+[Mon Jul 13 13:43:09 2026] PHP 8.2.12 Development Server (http://127.0.0.1:8080) started
+[Mon Jul 13 13:43:22 2026] 127.0.0.1:64125 Accepted
+[Mon Jul 13 13:43:22 2026] 127.0.0.1:64125 [200]: GET /index.php
+[Mon Jul 13 13:43:22 2026] 127.0.0.1:64125 Closing
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:57895 Accepted
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:57895 [200]: GET /index.php
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:57895 Closing
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:51442 Accepted
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:51442 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:51442 Closing
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:62037 Accepted
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:62037 [404]: GET /favicon.ico - No such file or directory
+[Mon Jul 13 13:45:35 2026] 127.0.0.1:62037 Closing
+[Mon Jul 13 13:45:41 2026] 127.0.0.1:59912 Accepted
+[Mon Jul 13 13:45:41 2026] 127.0.0.1:59912 [200]: GET /tk-paud.php
+[Mon Jul 13 13:45:41 2026] 127.0.0.1:59912 Closing
+[Mon Jul 13 13:45:41 2026] 127.0.0.1:54958 Accepted
+[Mon Jul 13 13:45:41 2026] 127.0.0.1:54958 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:45:41 2026] 127.0.0.1:54958 Closing
+[Mon Jul 13 13:45:46 2026] 127.0.0.1:55790 Accepted
+[Mon Jul 13 13:45:46 2026] 127.0.0.1:51700 Accepted
+[Mon Jul 13 13:45:46 2026] 127.0.0.1:55790 [200]: GET /articles.php
+[Mon Jul 13 13:45:46 2026] 127.0.0.1:55790 Closing
+[Mon Jul 13 13:45:46 2026] 127.0.0.1:51700 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:45:46 2026] 127.0.0.1:51700 Closing
+[Mon Jul 13 13:45:50 2026] 127.0.0.1:55606 Accepted
+[Mon Jul 13 13:45:50 2026] 127.0.0.1:62654 Accepted
+[Mon Jul 13 13:45:50 2026] 127.0.0.1:55606 [200]: GET /faq.php
+[Mon Jul 13 13:45:50 2026] 127.0.0.1:55606 Closing
+[Mon Jul 13 13:45:50 2026] 127.0.0.1:62654 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:45:50 2026] 127.0.0.1:62654 Closing
+[Mon Jul 13 13:45:53 2026] 127.0.0.1:65505 Accepted
+[Mon Jul 13 13:45:53 2026] 127.0.0.1:65199 Accepted
+[Mon Jul 13 13:45:53 2026] 127.0.0.1:65505 [200]: GET /kontak.php
+[Mon Jul 13 13:45:53 2026] 127.0.0.1:65505 Closing
+[Mon Jul 13 13:45:53 2026] 127.0.0.1:65199 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:45:53 2026] 127.0.0.1:65199 Closing
+[Mon Jul 13 13:45:59 2026] 127.0.0.1:63332 Accepted
+[Mon Jul 13 13:45:59 2026] 127.0.0.1:63332 [200]: GET /admin.php
+[Mon Jul 13 13:45:59 2026] 127.0.0.1:63332 Closing
+[Mon Jul 13 13:45:59 2026] 127.0.0.1:65281 Accepted
+[Mon Jul 13 13:45:59 2026] 127.0.0.1:65281 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:45:59 2026] 127.0.0.1:65281 Closing
+[Mon Jul 13 13:46:03 2026] 127.0.0.1:55840 Accepted
+[Mon Jul 13 13:46:03 2026] 127.0.0.1:55840 [200]: GET /admin.php
+[Mon Jul 13 13:46:03 2026] 127.0.0.1:55840 Closing
+[Mon Jul 13 13:46:03 2026] 127.0.0.1:54468 Accepted
+[Mon Jul 13 13:46:03 2026] 127.0.0.1:54468 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:46:03 2026] 127.0.0.1:54468 Closing
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:61223 Accepted
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:51141 Accepted
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:61223 [302]: POST /admin.php
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:61223 Closing
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:51141 [200]: GET /admin.php?success=login
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:51141 Closing
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:60756 Accepted
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:60756 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:46:05 2026] 127.0.0.1:60756 Closing
+[Mon Jul 13 13:46:07 2026] 127.0.0.1:50496 Accepted
+[Mon Jul 13 13:46:07 2026] 127.0.0.1:50496 [200]: GET /admin.php?tab=branding
+[Mon Jul 13 13:46:07 2026] 127.0.0.1:50496 Closing
+[Mon Jul 13 13:46:07 2026] 127.0.0.1:54422 Accepted
+[Mon Jul 13 13:46:07 2026] 127.0.0.1:54422 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:46:07 2026] 127.0.0.1:54422 Closing
+[Mon Jul 13 13:46:10 2026] 127.0.0.1:59139 Accepted
+[Mon Jul 13 13:46:10 2026] 127.0.0.1:59139 [200]: GET /admin.php?tab=foundation
+[Mon Jul 13 13:46:10 2026] 127.0.0.1:59139 Closing
+[Mon Jul 13 13:46:10 2026] 127.0.0.1:59182 Accepted
+[Mon Jul 13 13:46:10 2026] 127.0.0.1:59182 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:46:10 2026] 127.0.0.1:59182 Closing
+[Mon Jul 13 13:46:13 2026] 127.0.0.1:55939 Accepted
+[Mon Jul 13 13:46:13 2026] 127.0.0.1:55939 [200]: GET /admin.php?tab=schools
+[Mon Jul 13 13:46:13 2026] 127.0.0.1:55939 Closing
+[Mon Jul 13 13:46:13 2026] 127.0.0.1:53914 Accepted
+[Mon Jul 13 13:46:13 2026] 127.0.0.1:53914 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:46:14 2026] 127.0.0.1:53914 Closing
+[Mon Jul 13 13:46:17 2026] 127.0.0.1:62783 Accepted
+[Mon Jul 13 13:46:17 2026] 127.0.0.1:62783 [200]: GET /admin.php?tab=schools&edit_school=tk-paud
+[Mon Jul 13 13:46:17 2026] 127.0.0.1:62783 Closing
+[Mon Jul 13 13:46:17 2026] 127.0.0.1:49578 Accepted
+[Mon Jul 13 13:46:17 2026] 127.0.0.1:49578 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:46:17 2026] 127.0.0.1:49578 Closing
+[Mon Jul 13 13:46:20 2026] 127.0.0.1:55627 Accepted
+[Mon Jul 13 13:46:20 2026] 127.0.0.1:55627 [200]: GET /admin.php?tab=faq
+[Mon Jul 13 13:46:20 2026] 127.0.0.1:55627 Closing
+[Mon Jul 13 13:46:20 2026] 127.0.0.1:57916 Accepted
+[Mon Jul 13 13:46:20 2026] 127.0.0.1:57916 [404]: GET /assets/js/app.js?v=1779269577 - No such file or directory
+[Mon Jul 13 13:46:20 2026] 127.0.0.1:57916 Closing

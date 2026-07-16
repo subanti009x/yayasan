@@ -44,7 +44,7 @@ $logoType = $branding['logo_type'] ?? 'text';
                 <span>Logo Gambar (Jika Tipe Gambar)</span>
                 <?php if (!empty($branding['logo_image'])): ?>
                     <div class="mb-2">
-                        <img src="/<?= e($branding['logo_image']); ?>" alt="Logo Saat Ini" class="h-16 rounded-md bg-slate-100 object-contain p-2">
+                        <img src="<?= e(media_url($branding['logo_image'])); ?>" alt="Logo Saat Ini" class="h-16 rounded-md bg-slate-100 object-contain p-2">
                     </div>
                 <?php endif; ?>
                 <input type="file" name="logo_upload" accept="image/jpeg, image/png, image/webp, image/gif" class="block w-full text-sm text-slate-500 file:mr-4 file:rounded-md file:border-0 file:bg-primary-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-primary-700 hover:file:bg-primary-100">

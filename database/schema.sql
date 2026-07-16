@@ -1,0 +1,54 @@
+CREATE DATABASE IF NOT EXISTS yayasan_cendekia
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE yayasan_cendekia;
+
+CREATE TABLE IF NOT EXISTS cms_documents (
+  document_key VARCHAR(64) NOT NULL PRIMARY KEY,
+  data JSON NOT NULL,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS cms_articles (
+  id VARCHAR(64) NOT NULL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  category VARCHAR(120) NOT NULL,
+  author VARCHAR(120) NOT NULL,
+  excerpt TEXT NOT NULL,
+  content LONGTEXT NOT NULL,
+  image VARCHAR(2048) NOT NULL DEFAULT '',
+  views INT UNSIGNED NOT NULL DEFAULT 0,
+  status ENUM('draft', 'published') NOT NULL DEFAULT 'draft',
+  created_at DATETIME NOT NULL,
+  updated_at DATETIME NOT NULL,
+  INDEX idx_articles_status_created (status, created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS cms_faqs (
+  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  question VARCHAR(500) NOT NULL,
+  answer TEXT NOT NULL,
+  sort_order INT UNSIGNED NOT NULL DEFAULT 0,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_faq_sort (sort_order, id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS cms_uploads (
+  upload_path VARCHAR(255) NOT NULL PRIMARY KEY,
+  content_type VARCHAR(100) NOT NULL,
+  content MEDIUMBLOB NOT NULL,
+  size_bytes INT UNSIGNED NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT chk_upload_size CHECK (size_bytes <= 5242880)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS cms_login_attempts (
+  client_key CHAR(64) NOT NULL PRIMARY KEY,
+  attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+  window_started DATETIME NOT NULL,
+  locked_until DATETIME NULL,
+  INDEX idx_login_locked_until (locked_until)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

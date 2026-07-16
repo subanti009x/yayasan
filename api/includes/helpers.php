@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/security.php';
+apply_security_headers();
 
 function site_data(): array
 {
@@ -25,6 +27,21 @@ function url(string $path): string
         }
         return '/' . preg_replace('/\.php$/', '', $path);
     }
+    return $path;
+}
+
+function media_url(string $path): string
+{
+    $path = trim($path);
+
+    if ($path === '' || preg_match('#^https?://#i', $path) || str_starts_with($path, '/')) {
+        return $path;
+    }
+
+    if (getenv('VERCEL') === '1') {
+        return '/' . ltrim($path, '/');
+    }
+
     return $path;
 }
 

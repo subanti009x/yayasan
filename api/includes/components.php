@@ -54,6 +54,9 @@ function render_registration_preview(array $school): void
     ]);
     ?>
     <form class="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" action="<?= e($formAction); ?>" method="post" target="<?= e($iframeName); ?>" data-google-form>
+        <div class="absolute -left-[10000px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+            <label>Jangan isi kolom ini<input type="text" name="website" tabindex="-1" autocomplete="off" data-form-honeypot></label>
+        </div>
         <div>
             <span class="inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-800 ring-1 ring-secondary-200"><?= e($campusLabel); ?></span>
             <p class="mt-3 text-sm leading-7 text-slate-600">Data pendaftaran Anda akan langsung diterima oleh admin resmi <?= e($campusLabel); ?>.</p>
@@ -301,6 +304,10 @@ function render_registration_preview(array $school): void
         </label>
         
         <?php if ($isActualFormAvailable): ?>
+            <label class="flex items-start gap-3 text-xs leading-6 text-slate-600">
+                <input type="checkbox" required class="mt-1 h-4 w-4 rounded border-slate-300 text-primary-600 focus:ring-primary-500">
+                <span>Saya menyetujui pengiriman data pendaftaran kepada admin sekolah untuk proses penerimaan siswa.</span>
+            </label>
             <button type="submit" class="rounded-md bg-primary-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-secondary-200">
                 Kirim Pendaftaran
             </button>

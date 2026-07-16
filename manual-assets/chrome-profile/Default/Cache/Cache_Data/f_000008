@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TKIT Cendekia - Yayasan Cendekia</title>
+    <meta name="description" content="Anak-anak belajar lewat bermain, bercerita, bernyanyi, dan kegiatan sederhana yang melatih kemandirian serta kebiasaan baik sejak dini.">
+    <meta name="theme-color" content="#ea580c">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: tailwind.colors.orange || tailwind.colors.orange,
+                        secondary: tailwind.colors.amber || tailwind.colors.amber,
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'Arial', 'sans-serif']
+                    },
+                    boxShadow: {
+                        soft: '0 18px 45px rgba(15, 23, 42, 0.10)'
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        .glass-nav { backdrop-filter: blur(18px); }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/90 glass-nav">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8" aria-label="Navigasi utama">
+            <a href="index.php" class="flex items-center gap-3" aria-label="Beranda Yayasan Cendekia">
+                                    <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-600 text-base font-bold text-white shadow-soft">YC</span>
+                                <span>
+                    <span class="block text-sm font-bold tracking-wide text-slate-950">Yayasan Cendekia</span>
+                    <span class="block text-xs text-slate-500">Sekolah Indonesia</span>
+                </span>
+            </a>
+
+            <div class="hidden items-center gap-1 lg:flex">
+                                    <a href="index.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        Yayasan                    </a>
+                                    <a href="tk-paud.php" class="rounded-md px-3 py-2 text-sm font-semibold transition bg-secondary-50 text-primary-800">
+                        TK / PAUD                    </a>
+                                    <a href="sd.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        SD                    </a>
+                                    <a href="smp.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        SMP                    </a>
+                                    <a href="smk.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        SMK                    </a>
+                                    <a href="index.php#cabang-losari" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        Cabang Losari                    </a>
+                                    <a href="articles.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        Artikel                    </a>
+                                    <a href="faq.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        FAQ                    </a>
+                                    <a href="kontak.php" class="rounded-md px-3 py-2 text-sm font-semibold transition text-slate-600 hover:bg-secondary-50 hover:text-primary-800">
+                        Kontak                    </a>
+                            </div>
+
+            <a href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="hidden rounded-md bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-secondary-200 lg:inline-flex" target="_blank" rel="noopener">
+                Hubungi Kami            </a>
+
+            <button type="button" class="inline-flex h-11 w-11 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-700 shadow-sm lg:hidden" data-mobile-toggle aria-controls="mobile-menu" aria-expanded="false">
+                <span class="sr-only">Buka menu</span>
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white px-4 py-4 lg:hidden" data-mobile-menu>
+            <div class="mx-auto grid max-w-7xl gap-1">
+                                    <a href="index.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        Yayasan                    </a>
+                                    <a href="tk-paud.php" class="rounded-md px-3 py-3 text-sm font-semibold bg-secondary-50 text-primary-800">
+                        TK / PAUD                    </a>
+                                    <a href="sd.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        SD                    </a>
+                                    <a href="smp.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        SMP                    </a>
+                                    <a href="smk.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        SMK                    </a>
+                                    <a href="index.php#cabang-losari" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        Cabang Losari                    </a>
+                                    <a href="articles.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        Artikel                    </a>
+                                    <a href="faq.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        FAQ                    </a>
+                                    <a href="kontak.php" class="rounded-md px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-secondary-50 hover:text-primary-800">
+                        Kontak                    </a>
+                                <a href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="mt-2 rounded-md bg-primary-600 px-3 py-3 text-center text-sm font-semibold text-white" target="_blank" rel="noopener">
+                    Hubungi Kami                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+            <section class="relative isolate overflow-hidden bg-slate-950">
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="TKIT Cendekia" class="absolute inset-0 -z-10 h-full w-full object-cover opacity-40">
+        <div class="absolute inset-0 -z-10 bg-gradient-to-r from-slate-950 via-slate-950/82 to-slate-900/30"></div>
+        <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+            <span class="inline-flex rounded-full bg-white/12 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/20">Pendidikan anak usia dini</span>
+            <h1 class="mt-6 max-w-3xl text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">TKIT Cendekia</h1>
+            <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-100">Anak-anak belajar lewat bermain, bercerita, bernyanyi, dan kegiatan sederhana yang melatih kemandirian serta kebiasaan baik sejak dini.</p>
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="#pendaftaran" class="inline-flex items-center justify-center rounded-md px-5 py-3 text-sm font-bold text-white shadow-soft transition focus:outline-none focus:ring-4 bg-orange-600 hover:bg-orange-700 focus:ring-orange-300">Daftar Sekarang</a>
+                <a href="https://wa.me/6281234567801?text=Halo%20TKIT%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="inline-flex items-center justify-center rounded-md bg-white px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-slate-100" target="_blank" rel="noopener">Chat WhatsApp</a>
+            </div>
+        </div>
+    </section>
+    
+        <section class="bg-white py-16 sm:py-20">
+            <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8">
+                <div>
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Profil Sekolah</p>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Lingkungan belajar yang dekat dengan anak.</h2>
+                    <p class="mt-5 text-base leading-8 text-slate-600">Anak-anak belajar lewat bermain, bercerita, bernyanyi, dan kegiatan sederhana yang melatih kemandirian serta kebiasaan baik sejak dini.</p>
+                    <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                        <div class="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                            <p class="text-2xl font-bold text-slate-950">Aktif</p>
+                            <p class="mt-1 text-sm text-slate-600">Pembinaan karakter</p>
+                        </div>
+                        <div class="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                            <p class="text-2xl font-bold text-slate-950">Rapi</p>
+                            <p class="mt-1 text-sm text-slate-600">Komunikasi orang tua</p>
+                        </div>
+                        <div class="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                            <p class="text-2xl font-bold text-slate-950">Siap</p>
+                            <p class="mt-1 text-sm text-slate-600">Pendaftaran online</p>
+                        </div>
+                    </div>
+                </div>
+                <aside class="rounded-lg bg-slate-950 p-6 text-white shadow-soft">
+                    <p class="text-sm font-semibold text-secondary-200">Pendaftaran</p>
+                    <h2 class="mt-3 text-2xl font-bold">Hubungi admin TK / PAUD</h2>
+                    <p class="mt-4 text-sm leading-7 text-slate-200">Admin akan membantu menjawab pertanyaan seputar biaya, jadwal, berkas, dan langkah pendaftaran.</p>
+                    <div class="mt-6 grid gap-3">
+                        <a href="https://wa.me/6281234567801?text=Halo%20TKIT%20Cendekia%2C%20saya%20ingin%20bertanya%20tentang%20pendaftaran." class="rounded-md bg-white px-4 py-3 text-center text-sm font-bold text-slate-950 transition hover:bg-slate-100" target="_blank" rel="noopener">WhatsApp TK / PAUD</a>
+                        <a href="#pendaftaran" class="rounded-md border border-white/20 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-white/10">Isi Form Pendaftaran</a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+            <section class="bg-slate-50 py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 max-w-3xl">
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Program Unggulan</p>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Kegiatan belajar yang disesuaikan dengan jenjang.</h2>
+            </div>
+            <div class="grid gap-5 md:grid-cols-3">
+                                    <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-slate-950">Bermain terarah</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-600">Kegiatan bermain disiapkan untuk melatih bahasa, motorik, rasa ingin tahu, dan keberanian anak.</p>
+                    </article>
+                                    <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-slate-950">Pembiasaan mandiri</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-600">Anak dibiasakan merapikan barang, antre, berdoa, dan mengikuti kegiatan sederhana dengan bimbingan guru.</p>
+                    </article>
+                                    <article class="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+                        <h3 class="text-lg font-bold text-slate-950">Kesiapan masuk SD</h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-600">Anak mulai dikenalkan huruf, angka, warna, bentuk, dan aturan kelas dengan cara yang menyenangkan.</p>
+                    </article>
+                            </div>
+        </div>
+    </section>
+
+    <section class="bg-white py-16 sm:py-20">
+        <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+            <div>
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Fasilitas</p>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Ruang belajar dan kegiatan siswa.</h2>
+                <p class="mt-5 text-base leading-8 text-slate-600">Fasilitas disiapkan untuk mendukung kegiatan belajar harian, pendampingan guru, dan aktivitas siswa di sekolah.</p>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+                                                        <article class="group overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-sm">
+                        <div class="aspect-[16/10] overflow-hidden bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Ruang kelas anak" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-950">Ruang kelas anak</h3>
+                            <p class="mt-2 text-sm leading-7 text-slate-600">Ruang kelas dibuat ramah untuk anak usia dini agar mereka nyaman belajar, bermain, dan mengikuti arahan guru.</p>
+                        </div>
+                    </article>
+                                                        <article class="group overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-sm">
+                        <div class="aspect-[16/10] overflow-hidden bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Area bermain" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-950">Area bermain</h3>
+                            <p class="mt-2 text-sm leading-7 text-slate-600">Area bermain memberi ruang bagi anak untuk bergerak, bersosialisasi, dan belajar melalui aktivitas yang menyenangkan.</p>
+                        </div>
+                    </article>
+                                                        <article class="group overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-sm">
+                        <div class="aspect-[16/10] overflow-hidden bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1604881991720-f91add269bed?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Media belajar edukatif" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-950">Media belajar edukatif</h3>
+                            <p class="mt-2 text-sm leading-7 text-slate-600">Media belajar membantu anak mengenal warna, angka, huruf, bentuk, dan konsep sederhana dengan cara visual.</p>
+                        </div>
+                    </article>
+                                                        <article class="group overflow-hidden rounded-lg border border-slate-200 bg-slate-50 shadow-sm">
+                        <div class="aspect-[16/10] overflow-hidden bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Pendampingan guru kelas" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-950">Pendampingan guru kelas</h3>
+                            <p class="mt-2 text-sm leading-7 text-slate-600">Guru kelas mendampingi anak saat belajar, bermain, dan membangun kebiasaan baik secara bertahap.</p>
+                        </div>
+                    </article>
+                            </div>
+        </div>
+    </section>
+
+    <section class="bg-slate-50 py-16 sm:py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 max-w-3xl">
+                <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Kegiatan Siswa</p>
+                <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">Anak belajar lewat kebiasaan sehari-hari.</h2>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                                                        <article class="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+                        <div class="aspect-[16/11] overflow-hidden bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Bernyanyi dan bercerita" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-950">Bernyanyi dan bercerita</h3>
+                            <p class="mt-2 text-sm leading-7 text-slate-600">Anak belajar bahasa, keberanian, dan imajinasi melalui lagu, cerita, serta interaksi hangat bersama guru.</p>
+                        </div>
+                    </article>
+                                                        <article class="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+                        <div class="aspect-[16/11] overflow-hidden bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Mewarnai dan membuat karya" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-950">Mewarnai dan membuat karya</h3>
+                            <p class="mt-2 text-sm leading-7 text-slate-600">Kegiatan karya melatih motorik halus, kreativitas, kesabaran, dan rasa bangga terhadap hasil buatan sendiri.</p>
+                        </div>
+                    </article>
+                                                        <article class="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+                        <div class="aspect-[16/11] overflow-hidden bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Senam dan permainan motorik" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-950">Senam dan permainan motorik</h3>
+                            <p class="mt-2 text-sm leading-7 text-slate-600">Gerak dan permainan membantu anak melatih koordinasi tubuh, keseimbangan, dan kebiasaan hidup aktif.</p>
+                        </div>
+                    </article>
+                                                        <article class="group overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
+                        <div class="aspect-[16/11] overflow-hidden bg-slate-200">
+                            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Pembiasaan doa dan sopan santun" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-slate-950">Pembiasaan doa dan sopan santun</h3>
+                            <p class="mt-2 text-sm leading-7 text-slate-600">Rutinitas harian menanamkan kebiasaan berdoa, antre, menyapa, dan menghargai teman serta guru.</p>
+                        </div>
+                    </article>
+                            </div>
+        </div>
+    </section>
+    
+        <section id="pendaftaran" class="bg-slate-50 py-16 sm:py-20">
+            <div class="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+                <div>
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Pendaftaran</p>
+                                            <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Isi data calon siswa.</h2>
+                        <p class="mt-5 text-base leading-8 text-slate-600">Formulir di website ini akan mengirimkan data pendaftaran secara langsung ke cabang sekolah yang dipilih.</p>
+                                    </div>
+                    <form class="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm" action="https://docs.google.com/forms/d/e/1FAIpQLSfnm7KS5wFZZKpRBzDMavjtCwjhqJVtSw89WiVemP1vpT0JJA/formResponse" method="post" target="hidden_google_form_tk_paud" data-google-form>
+        <div>
+            <span class="inline-flex rounded-full bg-secondary-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-800 ring-1 ring-secondary-200">Cabang Kota Cirebon</span>
+            <p class="mt-3 text-sm leading-7 text-slate-600">Data pendaftaran Anda akan langsung diterima oleh admin resmi Cabang Kota Cirebon.</p>
+        </div>
+
+        
+                    <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama lengkap
+                    <input type="text" name="entry.794168599" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama calon siswa" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama panggilan
+                    <input type="text" name="entry.627662662" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama panggilan anak" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    No. WA
+                    <input type="tel" name="entry.1052167666" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="08xxxxxxxxxx" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Asal TK
+                    <input type="text" name="entry.1697485376" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Asal sekolah/TK sebelumnya" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Ayah
+                    <input type="text" name="entry.150230774" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ayah" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pekerjaan Ayah
+                    <input type="text" name="entry.1280888089" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ayah" required>
+                </label>
+            </div>
+            <div class="grid gap-4 sm:grid-cols-2">
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Nama Ibu
+                    <input type="text" name="entry.1615103016" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Nama lengkap Ibu" required>
+                </label>
+                <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                    Pekerjaan Ibu
+                    <input type="text" name="entry.1310556616" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Pekerjaan Ibu" required>
+                </label>
+            </div>
+            <label class="grid gap-2 text-sm font-semibold text-slate-700">
+                Alamat Rumah
+                <textarea name="entry.277342110" rows="3" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Alamat domisili lengkap" required></textarea>
+            </label>
+
+        
+        <label class="grid gap-2 text-sm font-semibold text-slate-700">
+            Pilihan sekolah
+            <input type="text" value="TKIT Cendekia" readonly class="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 font-normal text-slate-600">
+        </label>
+        
+                    <button type="submit" class="rounded-md bg-primary-600 px-5 py-3 text-sm font-bold text-white transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-secondary-200">
+                Kirim Pendaftaran
+            </button>
+            <p class="hidden rounded-md bg-secondary-50 px-4 py-3 text-sm font-semibold text-primary-800 ring-1 ring-secondary-200" data-form-success>Terima kasih. Data pendaftaran anda sudah terkirim.</p>
+            <p class="text-xs leading-6 text-slate-500">Setelah dikirim, admin sekolah akan menindaklanjuti data pendaftaran ini.</p>
+                
+        <iframe name="hidden_google_form_tk_paud" class="hidden" title="Google Form submission target" data-google-form-frame></iframe>
+    </form>
+                </div>
+        </section>
+
+        <section class="bg-white py-16 sm:py-20">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="mb-8 max-w-2xl">
+                    <p class="text-sm font-bold uppercase tracking-wide text-primary-700">Lokasi</p>
+                    <h2 class="mt-3 text-3xl font-bold tracking-tight text-slate-950">Google Maps TKIT Cendekia</h2>
+                </div>
+                    <div class="overflow-hidden rounded-lg border border-slate-200 bg-slate-100 shadow-sm">
+        <iframe title="Lokasi TKIT Cendekia" src="https://www.google.com/maps?q=TKIT%20CENDEKIA%2C%20Jl.%20Pelandakan%20RT.002%20RW.007%2C%20Harjamukti%2C%20Kota%20Cirebon%2C%20Jawa%20Barat&amp;output=embed" class="h-80 w-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="flex flex-col gap-3 border-t border-slate-200 bg-white p-4 sm:flex-row sm:items-center sm:justify-between">
+            <p class="text-sm leading-6 text-slate-600">Lokasi tersedia melalui Google Maps.</p>
+            <a href="https://www.google.com/maps?q=TKIT%20CENDEKIA%2C%20Jl.%20Pelandakan%20RT.002%20RW.007%2C%20Harjamukti%2C%20Kota%20Cirebon%2C%20Jawa%20Barat" class="inline-flex justify-center rounded-md bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-800" target="_blank" rel="noopener">Buka di Google Maps</a>
+        </div>
+    </div>
+                </div>
+        </section>
+    </main>
+        <footer class="border-t border-slate-200 bg-white">
+        <div class="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_0.8fr_0.8fr] lg:px-8">
+            <div>
+                <div class="flex items-center gap-3">
+                                            <span class="grid h-11 w-11 place-items-center rounded-lg bg-primary-600 text-base font-bold text-white">YC</span>
+                                        <div>
+                        <p class="font-bold text-slate-950">Yayasan Cendekia</p>
+                        <p class="text-sm text-slate-500">Pendidikan terpadu untuk keluarga Indonesia.</p>
+                    </div>
+                </div>
+                <p class="mt-5 max-w-xl text-sm leading-7 text-slate-600">Yayasan Cendekia hadir untuk mendampingi anak-anak dari usia dini sampai siap melanjutkan masa depan. Informasi pendaftaran tersedia untuk Cendekia Cirebon serta TK dan SD IT Cendekia 2 Losari.</p>
+            </div>
+
+            <div>
+                <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Cendekia Cirebon</h2>
+                <div class="mt-4 grid gap-2 text-sm">
+                                            <a href="tk-paud.php" class="text-slate-600 transition hover:text-primary-700">TKIT Cendekia</a>
+                                            <a href="sd.php" class="text-slate-600 transition hover:text-primary-700">SDIT SABILUL QURAN</a>
+                                            <a href="smp.php" class="text-slate-600 transition hover:text-primary-700">SMPIT TAHFIDZUL QURAN</a>
+                                            <a href="smk.php" class="text-slate-600 transition hover:text-primary-700">SMK CENDEKIA</a>
+                                        <span class="mt-3 text-xs font-bold uppercase tracking-wide text-slate-400">Cabang Losari</span>
+                                            <a href="losari-tk.php" class="text-slate-600 transition hover:text-primary-700">TKIT Cendekia 2 Losari</a>
+                                            <a href="losari-sd.php" class="text-slate-600 transition hover:text-primary-700">SD IT Cendekia 2 Losari</a>
+                                        <a href="articles.php" class="mt-3 text-slate-600 transition hover:text-primary-700">Artikel Sekolah</a>
+                    <a href="faq.php" class="mt-3 text-slate-600 transition hover:text-primary-700">FAQ Pendaftaran</a>
+                                            <a href="/admin.php" class="text-slate-600 transition hover:text-primary-700">Dashboard Admin</a>
+                                    </div>
+            </div>
+
+            <div>
+                <h2 class="text-sm font-bold uppercase tracking-wide text-slate-950">Kontak</h2>
+                <div class="mt-4 grid gap-2 text-sm text-slate-600">
+                    <p>Jl. Kh. Wahid Hasyim Jalan Raden H. Patra Kusuma Desa, Mertapada Wetan, Kec. Astanajapura, Kabupaten Cirebon, Jawa Barat 45183</p>
+                    <a class="transition hover:text-primary-700" href="mailto:info@yayasancendekia.sch.id">info@yayasancendekia.sch.id</a>
+                    <a class="transition hover:text-primary-700" href="https://wa.me/6281234567800?text=Halo%20Yayasan%20Cendekia%2C%20saya%20ingin%20bertanya." target="_blank" rel="noopener">WhatsApp Yayasan</a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-slate-200 px-4 py-5 text-center text-xs text-slate-500">
+            &copy; 2026 Yayasan Cendekia. Semua hak dilindungi.        </div>
+    </footer>
+
+    <script src="/assets/js/app.js?v=1779269577"></script>
+</body>
+</html>

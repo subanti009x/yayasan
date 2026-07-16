@@ -1,0 +1,212 @@
+[Thu Jul 16 08:21:28 2026] PHP 8.2.12 Development Server (http://127.0.0.1:8093) started
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51709 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51709 [200]: GET /index.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51709 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51711 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51711 [200]: GET /articles.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51711 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51713 Accepted
+[Thu Jul 16 08:21:29 2026] [cms-db] SQLSTATE[HY093]: Invalid parameter number
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51713 [200]: GET /articles.php?q=Kegiatan
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51713 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51715 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51715 [200]: GET /faq.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51715 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51717 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51717 [200]: GET /kontak.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51717 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51719 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51719 [200]: GET /sd.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51719 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51721 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51721 [200]: GET /smp.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51721 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51723 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51723 [200]: GET /smk.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51723 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51725 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51725 [200]: GET /tk-paud.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51725 Closing
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51727 Accepted
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51727 [200]: GET /losari-tk.php
+[Thu Jul 16 08:21:29 2026] 127.0.0.1:51727 Closing
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51729 Accepted
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51729 [200]: GET /losari-sd.php
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51729 Closing
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51731 Accepted
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51731 [200]: GET /rosari.php
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51731 Closing
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51733 Accepted
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51733 [200]: GET /admin.php
+[Thu Jul 16 08:21:30 2026] 127.0.0.1:51733 Closing
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51746 Accepted
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51746 [200]: GET /articles.php?q=Kegiatan
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51746 Closing
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51748 Accepted
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51748 [200]: GET /admin.php?tab=faq&faq_q=pendaftaran
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51748 Closing
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51750 Accepted
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51750 [200]: GET /tk-paud.php
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51750 Closing
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51752 Accepted
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51752 [200]: GET /admin.php
+[Thu Jul 16 08:22:03 2026] 127.0.0.1:51752 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51756 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51756 [200]: GET /admin.php
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51756 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51758 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51758 [302]: POST /admin.php
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51758 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51760 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51760 [200]: GET /admin.php?success=login
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51760 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51762 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51762 [200]: GET /admin.php?tab=articles
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51762 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51764 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51764 [302]: POST /admin.php
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51764 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51766 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51766 [200]: GET /admin.php?tab=articles&success=save
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51766 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51769 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51769 [200]: GET /admin.php?tab=articles&article_q=E2E&article_status=draft
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51769 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51771 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51771 [302]: POST /admin.php
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51771 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51773 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51773 [200]: GET /admin.php?tab=articles&success=save
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51773 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51776 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51776 [200]: GET /admin.php?tab=articles
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51776 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51778 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51778 [302]: POST /admin.php
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51778 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51780 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51780 [200]: GET /admin.php?tab=articles&success=delete
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51780 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51783 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51783 [200]: GET /admin.php?tab=faq
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51783 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51785 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51785 [302]: POST /admin.php
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51785 Closing
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51787 Accepted
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51787 [200]: GET /admin.php?tab=faq&success=save
+[Thu Jul 16 08:22:40 2026] 127.0.0.1:51787 Closing
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51790 Accepted
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51790 [200]: GET /admin.php?tab=faq&faq_q=E2E
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51790 Closing
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51792 Accepted
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51792 [302]: POST /admin.php
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51792 Closing
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51794 Accepted
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51794 [200]: GET /admin.php?tab=faq&success=save
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51794 Closing
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51797 Accepted
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51797 [200]: GET /admin.php?tab=faq
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51797 Closing
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51799 Accepted
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51799 [302]: POST /admin.php
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51799 Closing
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51801 Accepted
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51801 [200]: GET /admin.php?tab=faq&success=delete
+[Thu Jul 16 08:22:41 2026] 127.0.0.1:51801 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51824 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51824 [200]: GET /admin.php
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51824 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51826 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51826 [302]: POST /admin.php
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51826 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51828 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51828 [200]: GET /admin.php?success=login
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51828 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51830 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51830 [200]: GET /admin.php?tab=faq
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51830 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51832 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51832 [302]: POST /admin.php
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51832 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51834 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51834 [200]: GET /admin.php?tab=faq&success=save
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51834 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51836 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51836 [200]: GET /faq.php
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51836 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51839 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51839 [200]: GET /admin.php?tab=faq
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51839 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51841 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51841 [302]: POST /admin.php
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51841 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51843 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51843 [200]: GET /admin.php?tab=faq&success=delete
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51843 Closing
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51845 Accepted
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51845 [400]: POST /admin.php
+[Thu Jul 16 08:23:09 2026] 127.0.0.1:51845 Closing
+[Thu Jul 16 08:23:33 2026] 127.0.0.1:51854 Accepted
+[Thu Jul 16 08:23:33 2026] 127.0.0.1:51854 [200]: GET /admin.php
+[Thu Jul 16 08:23:33 2026] 127.0.0.1:51854 Closing
+[Thu Jul 16 08:23:33 2026] 127.0.0.1:51856 Accepted
+[Thu Jul 16 08:23:33 2026] 127.0.0.1:51856 [200]: POST /admin.php
+[Thu Jul 16 08:23:33 2026] 127.0.0.1:51856 Closing
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51869 Accepted
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51869 [200]: GET /admin.php
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51869 Closing
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51871 Accepted
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51871 [302]: POST /admin.php
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51871 Closing
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51873 Accepted
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51873 [200]: GET /admin.php?success=login
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51873 Closing
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51875 Accepted
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51875 [200]: GET /admin.php?tab=articles
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51875 Closing
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51877 Accepted
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51877 [302]: POST /admin.php
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51877 Closing
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51879 Accepted
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51879 [200]: GET /admin.php?tab=articles&success=save
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51879 Closing
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51883 Accepted
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51883 [200]: GET /uploads.php?path=uploads%2Farticles%2Fartikel-20260716-032431-d271074e.png
+[Thu Jul 16 08:24:31 2026] 127.0.0.1:51883 Closing
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51885 Accepted
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51885 [200]: GET /admin.php?tab=articles
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51885 Closing
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51887 Accepted
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51887 [302]: POST /admin.php
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51887 Closing
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51889 Accepted
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51889 [200]: GET /admin.php?tab=articles&success=delete
+[Thu Jul 16 08:24:32 2026] 127.0.0.1:51889 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51903 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51903 [200]: GET /admin.php
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51903 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51905 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51905 [302]: POST /admin.php
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51905 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51907 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51907 [200]: GET /admin.php?success=login
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51907 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51909 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51909 [200]: GET /admin.php?tab=articles
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51909 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51911 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51911 [302]: POST /admin.php
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51911 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51913 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51913 [200]: GET /admin.php?tab=articles&success=save
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51913 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51918 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51918 [200]: GET /admin.php?tab=articles
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51918 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51920 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51920 [302]: POST /admin.php
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51920 Closing
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51922 Accepted
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51922 [200]: GET /admin.php?tab=articles&success=delete
+[Thu Jul 16 08:25:22 2026] 127.0.0.1:51922 Closing
