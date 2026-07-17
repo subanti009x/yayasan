@@ -1,0 +1,7 @@
+<div class="mb-6"><h2 class="text-2xl font-bold text-slate-950">Media Library</h2><p class="mt-1 text-sm text-slate-600">Semua gambar yang diunggah melalui panel admin dapat dilihat dan dihapus dari sini.</p></div>
+<?php if ($mediaFiles === []): ?><p class="rounded-lg border border-slate-200 bg-white p-5 text-sm text-slate-600">Belum ada media yang tersimpan.</p><?php else: ?>
+<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+<?php foreach ($mediaFiles as $media): ?>
+    <article class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm"><img src="<?= e(media_url('uploads.php?path=' . rawurlencode($media['upload_path']))); ?>" alt="<?= e($media['upload_path']); ?>" class="h-40 w-full bg-slate-100 object-cover"><div class="p-4"><p class="break-all text-xs font-semibold text-slate-700"><?= e($media['upload_path']); ?></p><p class="mt-1 text-xs text-slate-500"><?= e((string) $media['content_type']); ?> · <?= e(number_format((int) $media['size_bytes'] / 1024, 1)); ?> KB</p><form method="post" class="mt-4" onsubmit="return confirm('Hapus media ini secara permanen?');"><input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']); ?>"><input type="hidden" name="action" value="delete_media"><input type="hidden" name="path" value="<?= e($media['upload_path']); ?>"><button type="submit" class="rounded-md border border-red-200 px-3 py-2 text-xs font-bold text-red-700 hover:bg-red-50">Hapus Permanen</button></form></div></article>
+<?php endforeach; ?>
+</div><?php endif; ?>

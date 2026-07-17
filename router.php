@@ -49,6 +49,13 @@ if (preg_match('#^artikel-([a-z0-9-]+)$#i', $requestPath, $matches)) {
     return true;
 }
 
+if (preg_match('#^sekolah-([a-z0-9-]+)$#i', $requestPath, $matches)) {
+    $_GET['id'] = $matches[1];
+    $_SERVER['SCRIPT_NAME'] = '/sekolah.php';
+    require __DIR__ . '/api/sekolah.php';
+    return true;
+}
+
 if (isset($routes[$requestPath])) {
     $_SERVER['SCRIPT_NAME'] = '/' . $routes[$requestPath];
     require __DIR__ . '/api/' . $routes[$requestPath];

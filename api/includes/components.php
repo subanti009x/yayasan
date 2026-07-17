@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/registration.php';
 
 function render_school_card(string $key, array $school): void
 {
@@ -43,6 +44,9 @@ function render_school_hero(array $school): void
 
 function render_registration_preview(array $school): void
 {
+    render_managed_registration_form($school);
+    return;
+
     $campusLabel = ($school['campus'] ?? 'cirebon') === 'losari' ? 'Cabang Losari' : 'Cabang Kota Cirebon';
     $formAction = preg_replace('/\/viewform(\?.*)?$/', '/formResponse', $school['form_url']) ?? $school['form_url'];
     $iframeName = 'hidden_google_form_' . preg_replace('/[^a-z0-9]+/', '_', strtolower($school['short_name']));
@@ -342,10 +346,11 @@ function render_map(string $embedUrl, string $title, ?string $openUrl = null): v
 function school_detail_card_item(string|array $item, string $type): array
 {
     if (is_array($item)) {
+        $defaults = detail_card_defaults($type, (string) ($item['title'] ?? ''));
         return [
             'title' => $item['title'] ?? '',
-            'description' => $item['description'] ?? '',
-            'image' => $item['image'] ?? '',
+            'description' => $item['description'] ?? $defaults['description'],
+            'image' => ($item['image'] ?? '') ?: $defaults['image'],
         ];
     }
 

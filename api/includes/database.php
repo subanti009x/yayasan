@@ -222,6 +222,18 @@ function cms_load_upload(string $path): ?array
     }
 }
 
+function cms_list_uploads(): array
+{
+    try {
+        $statement = cms_require_database()->query('SELECT upload_path, content_type, size_bytes, created_at FROM cms_uploads ORDER BY created_at DESC, upload_path ASC');
+        return $statement->fetchAll();
+    } catch (Throwable $exception) {
+        cms_last_error('Media tidak dapat dibaca dari MySQL.');
+        error_log('[cms-db] ' . $exception->getMessage());
+        return [];
+    }
+}
+
 function cms_delete_upload(string $path): bool
 {
     try {

@@ -3,6 +3,8 @@
 $root = dirname(__DIR__);
 $public = $root . '/public';
 define('BUILD_STATIC', true);
+require_once $root . '/api/includes/helpers.php';
+require_once $root . '/api/includes/cms.php';
 $pages = [
     'index.php' => 'index.html',
     'articles.php' => 'articles.html',
@@ -16,12 +18,16 @@ $pages = [
     'faq.php' => 'faq.html',
     'kontak.php' => 'kontak.html',
 ];
+$schoolSourceKeys = ['sd.php' => 'sd', 'smp.php' => 'smp', 'smk.php' => 'smk', 'tk-paud.php' => 'tk-paud', 'losari-tk.php' => 'losari-tk', 'losari-sd.php' => 'losari-sd', 'rosari.php' => 'rosari'];
 
 if (!is_dir($public)) {
     mkdir($public, 0777, true);
 }
 
 foreach ($pages as $source => $target) {
+    if (isset($schoolSourceKeys[$source]) && !isset(load_site_data()['schools'][$schoolSourceKeys[$source]])) {
+        continue;
+    }
     $_SERVER['SCRIPT_NAME'] = '/' . $source;
 
     ob_start();
@@ -43,6 +49,16 @@ foreach ($pages as $source => $target) {
     $html = rewrite_article_links($html);
 
     file_put_contents($public . '/' . $target, $html);
+}
+
+foreach (load_site_data()['schools'] ?? [] as $key => $school) {
+    if (!str_starts_with((string) ($school['page'] ?? ''), 'sekolah-')) continue;
+    $_SERVER['SCRIPT_NAME'] = '/sekolah.php';
+    $_GET['id'] = $key;
+    ob_start(); require $root . '/api/sekolah.php'; $html = ob_get_clean();
+    $html = str_replace(['href="index.php', 'href="articles.php', 'href="faq.php', 'href="kontak.php'], ['href="index.html', 'href="articles.html', 'href="faq.html', 'href="kontak.html'], $html);
+    $html = preg_replace('/href="sekolah-([a-z0-9-]+)"/i', 'href="sekolah-$1.html"', $html) ?? $html;
+    file_put_contents($public . '/sekolah-' . $key . '.html', $html);
 }
 
 require_once $root . '/api/includes/helpers.php';

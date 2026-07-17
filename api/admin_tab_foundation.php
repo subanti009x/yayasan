@@ -42,8 +42,9 @@
         </label>
 
         <label class="grid gap-2 text-sm font-bold text-slate-700 sm:col-span-2">
-            Link Google Maps Embed (iframe src)
-            <input type="text" name="maps_embed" value="<?= e($siteData['foundation']['maps_embed'] ?? ''); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="https://www.google.com/maps/embed?...">
+            Alamat atau Nama Lokasi di Google Maps
+            <input type="text" name="maps_location" value="<?= e(admin_maps_location((string) ($siteData['foundation']['maps_embed'] ?? ''), (string) ($siteData['foundation']['maps_location'] ?? ''))); ?>" class="rounded-md border border-slate-200 px-3 py-3 font-normal outline-none transition focus:border-primary-500 focus:ring-4 focus:ring-secondary-100" placeholder="Contoh: Yayasan Cendekia, Jl. Pelandakan, Kota Cirebon" required>
+            <span class="text-xs font-normal leading-5 text-slate-500">Cukup ketik nama tempat atau alamat lengkap. Sistem akan membuat peta Google Maps otomatis.</span>
         </label>
 
         <div class="grid gap-4 rounded-lg border border-secondary-200 bg-secondary-50 p-4 sm:col-span-2">

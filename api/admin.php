@@ -10,6 +10,8 @@ session_start();
 require_once __DIR__ . '/includes/helpers.php';
 require_once __DIR__ . '/includes/articles.php';
 require_once __DIR__ . '/includes/cms.php';
+require_once __DIR__ . '/includes/registration.php';
+require_once __DIR__ . '/includes/google_forms.php';
 
 $adminPassword = (string) cms_env('ADMIN_PASSWORD');
 $sessionSecret = (string) cms_env('SESSION_SECRET');
@@ -64,6 +66,89 @@ function admin_text(string $field, int $maximum): string
 {
     $value = trim((string) ($_POST[$field] ?? ''));
     return mb_substr(str_replace("\0", '', $value), 0, $maximum);
+}
+
+function admin_json(array $data, int $status = 200): never
+{
+    http_response_code($status);
+    header('Content-Type: application/json; charset=utf-8');
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
+function admin_registration_config(): array
+{
+    $types = ['text', 'tel', 'email', 'number', 'date', 'textarea', 'select'];
+    $fields = [];
+    foreach ((array) ($_POST['registration_field_label'] ?? []) as $index => $label) {
+        $label = mb_substr(trim((string) $label), 0, 120);
+        $name = trim((string) (($_POST['registration_field_name'] ?? [])[$index] ?? ''));
+        if ($label === '' || !preg_match('/^(?:entry\.\d+|[a-z][a-z0-9_-]{0,63})$/i', $name)) continue;
+        $type = (string) (($_POST['registration_field_type'] ?? [])[$index] ?? 'text');
+        $fields[] = [
+            'label' => $label, 'name' => $name, 'type' => in_array($type, $types, true) ? $type : 'text',
+            'placeholder' => mb_substr(trim((string) (($_POST['registration_field_placeholder'] ?? [])[$index] ?? '')), 0, 180),
+            'required' => ((string) (($_POST['registration_field_required'] ?? [])[$index] ?? '')) === '1',
+            'options' => array_values(array_filter(array_map('trim', explode("\n", (string) (($_POST['registration_field_options'] ?? [])[$index] ?? ''))))),
+        ];
+    }
+    return [
+        'title' => admin_text('registration_title', 160), 'intro' => admin_text('registration_intro', 2000),
+        'notice' => admin_text('registration_notice', 2000), 'is_open' => isset($_POST['registration_is_open']),
+        'submit_label' => admin_text('registration_submit_label', 80) ?: 'Kirim Pendaftaran',
+        'success_message' => admin_text('registration_success_message', 300) ?: 'Terima kasih. Data pendaftaran Anda sudah terkirim.',
+        'consent_text' => admin_text('registration_consent_text', 500), 'fields' => $fields,
+    ];
+}
+
+function uploaded_content_images(string $inputName, ?string &$error): array
+{
+    $input = $_FILES[$inputName] ?? null;
+    if (!is_array($input) || !is_array($input['name'] ?? null)) return [];
+    $original = $_FILES['hero_image_upload'] ?? null;
+    $uploads = [];
+    foreach ($input['name'] as $index => $name) {
+        if (($input['error'][$index] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) continue;
+        $_FILES['hero_image_upload'] = ['name' => $name, 'type' => $input['type'][$index] ?? '', 'tmp_name' => $input['tmp_name'][$index] ?? '', 'error' => $input['error'][$index] ?? UPLOAD_ERR_NO_FILE, 'size' => $input['size'][$index] ?? 0];
+        $image = uploaded_image($error, 'schools');
+        if ($error !== null) break;
+        if ($image !== null) $uploads[$index] = $image;
+    }
+    if ($original === null) unset($_FILES['hero_image_upload']); else $_FILES['hero_image_upload'] = $original;
+    return $uploads;
+}
+
+function admin_content_cards(string $prefix, array $uploadedImages = []): array
+{
+    $cards = [];
+    foreach ((array) ($_POST[$prefix . '_title'] ?? []) as $index => $title) {
+        $title = mb_substr(trim((string) $title), 0, 160);
+        if ($title === '') continue;
+        $image = $uploadedImages[$index] ?? admin_external_url((string) (($_POST[$prefix . '_image'] ?? [])[$index] ?? ''));
+        if ($image === null) continue;
+        $cards[] = [
+            'title' => $title,
+            'description' => mb_substr(trim((string) (($_POST[$prefix . '_description'] ?? [])[$index] ?? '')), 0, 800),
+            'image' => $image,
+        ];
+    }
+    return $cards;
+}
+
+function admin_maps_location(string $embedUrl, string $savedLocation = ''): string
+{
+    if (trim($savedLocation) !== '') {
+        return trim($savedLocation);
+    }
+
+    $query = parse_url($embedUrl, PHP_URL_QUERY);
+    parse_str(is_string($query) ? $query : '', $parameters);
+    return trim((string) ($parameters['q'] ?? ''));
+}
+
+function admin_google_maps_embed(string $location): string
+{
+    return 'https://www.google.com/maps?q=' . rawurlencode($location) . '&output=embed';
 }
 
 function admin_managed_upload_path(string $url): ?string
@@ -188,7 +273,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($isLoggedIn) {
         require_csrf();
         
-        if ($action === 'save' || $action === 'delete') {
+        if ($action === 'preview_google_form') {
+            $formUrl = admin_external_url((string) ($_POST['form_url'] ?? ''));
+            if ($formUrl === null || $formUrl === '') {
+                admin_json(['ok' => false, 'message' => 'Masukkan URL HTTPS Google Form yang valid.'], 422);
+            }
+            $syncError = null;
+            $schema = google_form_schema($formUrl, $syncError);
+            if ($schema === null) {
+                admin_json(['ok' => false, 'message' => $syncError ?: 'Google Form belum dapat dibaca.'], 422);
+            }
+            admin_json(['ok' => true, 'schema' => $schema]);
+        } elseif ($action === 'save' || $action === 'delete') {
             if ($action === 'delete') {
                 $id = (string) ($_POST['id'] ?? '');
                 $article = $id !== '' ? find_article_by_id($id) : null;
@@ -259,7 +355,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $siteData['foundation']['phone'] = trim((string)($_POST['phone'] ?? ''));
             $siteData['foundation']['email'] = trim((string)($_POST['email'] ?? ''));
             $siteData['foundation']['address'] = trim((string)($_POST['address'] ?? ''));
-            $siteData['foundation']['maps_embed'] = trim((string)($_POST['maps_embed'] ?? ''));
+            $mapsLocation = admin_text('maps_location', 500);
+            if ($mapsLocation === '') {
+                $error = 'Masukkan alamat atau nama lokasi yayasan untuk peta Google Maps.';
+            } else {
+                $siteData['foundation']['maps_location'] = $mapsLocation;
+                $siteData['foundation']['maps_embed'] = admin_google_maps_embed($mapsLocation);
+                $siteData['foundation']['maps_url'] = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($mapsLocation);
+            }
 
             $uploadError = null;
             $uploadedImage = uploaded_image($uploadError, 'schools');
@@ -332,12 +435,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $siteData['schools'][$id]['accent'] = trim((string)($_POST['accent'] ?? ''));
                 $siteData['schools'][$id]['phone'] = trim((string)($_POST['phone'] ?? ''));
                 $formUrl = admin_external_url((string) ($_POST['form_url'] ?? ''));
-                $mapsEmbed = admin_external_url((string) ($_POST['maps_embed'] ?? ''));
-                if ($formUrl === null || $mapsEmbed === null) {
-                    $error = 'Link pendaftaran dan Google Maps harus menggunakan HTTPS yang valid.';
+                $mapsLocation = admin_text('maps_location', 500);
+                $existingFormUrl = (string) ($siteData['schools'][$id]['form_url'] ?? '');
+                if ($formUrl === null) {
+                    $error = 'Link pendaftaran harus menggunakan HTTPS yang valid.';
+                } elseif ($mapsLocation === '') {
+                    $error = 'Masukkan alamat atau nama lokasi sekolah untuk peta Google Maps.';
                 } else {
                     $siteData['schools'][$id]['form_url'] = $formUrl;
-                    $siteData['schools'][$id]['maps_embed'] = $mapsEmbed;
+                    $siteData['schools'][$id]['maps_location'] = $mapsLocation;
+                    $siteData['schools'][$id]['maps_embed'] = admin_google_maps_embed($mapsLocation);
+                    $siteData['schools'][$id]['maps_url'] = 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode($mapsLocation);
+                    $siteData['schools'][$id]['registration'] = admin_registration_config();
+                    if ($formUrl !== '' && $formUrl !== $existingFormUrl) {
+                        $syncError = null;
+                        $schema = google_form_schema($formUrl, $syncError);
+                        if ($schema === null) {
+                            $error = $syncError;
+                        } else {
+                            $siteData['schools'][$id]['registration']['fields'] = $schema['fields'];
+                            $siteData['schools'][$id]['registration']['is_open'] = true;
+                            $siteData['schools'][$id]['google_form_title'] = $schema['title'];
+                            $siteData['schools'][$id]['google_form_synced_at'] = date('c');
+                        }
+                    }
                 }
                 
                 $programs = [];
@@ -350,8 +471,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 $siteData['schools'][$id]['programs'] = $programs;
                 
-                $siteData['schools'][$id]['facilities'] = array_filter(array_map('trim', explode("\n", $_POST['facilities'] ?? '')));
-                $siteData['schools'][$id]['activities'] = array_filter(array_map('trim', explode("\n", $_POST['activities'] ?? '')));
+                $contentUploadError = null;
+                $facilityImages = uploaded_content_images('facility_image_upload', $contentUploadError);
+                $activityImages = uploaded_content_images('activity_image_upload', $contentUploadError);
+                if ($contentUploadError !== null) {
+                    $error = $contentUploadError;
+                }
+                $siteData['schools'][$id]['facilities'] = admin_content_cards('facility', $facilityImages);
+                $siteData['schools'][$id]['activities'] = admin_content_cards('activity', $activityImages);
                 
                 $uploadError = null;
                 $uploadedImage = uploaded_image($uploadError, 'schools');
@@ -376,6 +503,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $error = $storageError !== '' ? $storageError : 'Gagal menyimpan data sekolah.';
                     }
                 }
+            }
+        } elseif ($action === 'sync_google_form') {
+            $id = preg_replace('/[^a-z0-9-]/i', '', (string) ($_POST['school_id'] ?? ''));
+            $siteData = load_site_data();
+            $url = (string) ($siteData['schools'][$id]['form_url'] ?? '');
+            $syncError = null;
+            $schema = $url !== '' ? google_form_schema($url, $syncError) : null;
+            if ($schema === null) {
+                $error = $syncError ?: 'Simpan URL Google Form terlebih dahulu.';
+            } else {
+                $siteData['schools'][$id]['registration']['fields'] = $schema['fields'];
+                $siteData['schools'][$id]['registration']['is_open'] = true;
+                $siteData['schools'][$id]['google_form_title'] = $schema['title'];
+                $siteData['schools'][$id]['google_form_synced_at'] = date('c');
+                if (save_site_data($siteData)) admin_redirect('?tab=schools&edit_school=' . rawurlencode($id) . '&success=save');
+                $error = cms_last_error() ?: 'Sinkronisasi tidak dapat disimpan.';
+            }
+        } elseif ($action === 'create_school') {
+            $siteData = load_site_data();
+            $name = admin_text('new_school_name', 180);
+            $shortName = admin_text('new_school_short_name', 80);
+            $id = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name) ?? '');
+            $id = trim($id, '-');
+            if ($name === '' || $shortName === '' || $id === '' || isset($siteData['schools'][$id])) {
+                $error = 'Nama unit dan singkatan wajib diisi. Gunakan nama yang belum pernah dipakai.';
+            } else {
+                $siteData['schools'][$id] = [
+                    'name' => $name, 'short_name' => $shortName, 'page' => 'sekolah-' . $id,
+                    'campus' => in_array($_POST['new_school_campus'] ?? '', ['cirebon', 'losari'], true) ? $_POST['new_school_campus'] : 'cirebon',
+                    'level' => admin_text('new_school_level', 120) ?: 'Unit sekolah',
+                    'description' => '', 'programs' => [], 'facilities' => [], 'activities' => [], 'phone' => '', 'form_url' => '',
+                    'maps_embed' => '', 'hero_image' => '', 'accent' => 'amber', 'registration' => registration_default_config(['name' => $name]),
+                ];
+                if (save_site_data($siteData)) admin_redirect('?tab=schools&edit_school=' . rawurlencode($id) . '&success=save');
+                $error = cms_last_error() ?: 'Unit sekolah belum dapat dibuat.';
+            }
+        } elseif ($action === 'delete_school') {
+            $id = preg_replace('/[^a-z0-9-]/i', '', (string) ($_POST['school_id'] ?? ''));
+            $siteData = load_site_data();
+            if ($id === '' || !isset($siteData['schools'][$id])) {
+                $error = 'Unit sekolah tidak ditemukan.';
+            } else {
+                unset($siteData['schools'][$id]);
+                // Deletion is the sole operation allowed to remove a unit.
+                if (save_site_data($siteData, false)) admin_redirect('?tab=schools&success=delete');
+                $error = cms_last_error() ?: 'Unit sekolah belum dapat dihapus.';
             }
         } elseif ($action === 'save_faq') {
             $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
@@ -402,6 +575,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $error = $storageError !== '' ? $storageError : 'Gagal menghapus FAQ.';
                 }
             }
+        } elseif ($action === 'delete_media') {
+            $path = admin_managed_upload_path((string) ($_POST['path'] ?? ''));
+            if ($path === null || !cms_delete_upload($path)) {
+                $error = cms_last_error() ?: 'Media tidak dapat dihapus.';
+            } else {
+                admin_redirect('?tab=media&success=delete');
+            }
         }
     }
 }
@@ -419,6 +599,7 @@ $editSchoolId = (string) ($_GET['edit_school'] ?? '');
 $editSchool = $editSchoolId !== '' && isset($siteData['schools'][$editSchoolId]) ? $siteData['schools'][$editSchoolId] : null;
 $editFaqId = filter_input(INPUT_GET, 'edit_faq', FILTER_VALIDATE_INT);
 $editFaq = $editFaqId !== false && $editFaqId !== null ? find_faq_by_id($editFaqId) : null;
+$mediaFiles = $currentTab === 'media' ? cms_list_uploads() : [];
 
 if (($_GET['success'] ?? '') === 'save') {
     $message = 'Data berhasil disimpan';
@@ -473,6 +654,7 @@ require __DIR__ . '/includes/header.php';
                         <a href="?tab=foundation" class="<?= $currentTab === 'foundation' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">Identitas & Kontak</a>
                         <a href="?tab=schools" class="<?= $currentTab === 'schools' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">Unit Sekolah</a>
                         <a href="?tab=faq" class="<?= $currentTab === 'faq' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">FAQ</a>
+                        <a href="?tab=media" class="<?= $currentTab === 'media' ? 'border-primary-500 text-primary-600' : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-700' ?> whitespace-nowrap border-b-2 py-2 px-1 text-sm font-medium">Media</a>
                     </nav>
                     <form method="post" class="mt-4 sm:mt-0">
                         <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token']); ?>">
@@ -491,6 +673,8 @@ require __DIR__ . '/includes/header.php';
                     <?php include __DIR__ . '/admin_tab_schools.php'; ?>
                 <?php elseif ($currentTab === 'faq'): ?>
                     <?php include __DIR__ . '/admin_tab_faq.php'; ?>
+                <?php elseif ($currentTab === 'media'): ?>
+                    <?php include __DIR__ . '/admin_tab_media.php'; ?>
                 <?php endif; ?>
 
             <?php endif; ?>

@@ -6,8 +6,36 @@ function load_site_data(): array
     return cms_load_document('site');
 }
 
-function save_site_data(array $data): bool
+/**
+ * Keeps school units that exist in the latest stored document when another
+ * section of the site is saved. A unit may only disappear through the
+ * explicit delete-school action.
+ */
+function site_data_with_existing_schools(array $data, array $storedData): array
 {
+    $storedSchools = $storedData['schools'] ?? [];
+    $schools = $data['schools'] ?? [];
+
+    if (!is_array($storedSchools) || !is_array($schools)) {
+        return $data;
+    }
+
+    foreach ($storedSchools as $id => $school) {
+        if (!array_key_exists($id, $schools)) {
+            $schools[$id] = $school;
+        }
+    }
+
+    $data['schools'] = $schools;
+    return $data;
+}
+
+function save_site_data(array $data, bool $preserveExistingSchools = true): bool
+{
+    if ($preserveExistingSchools) {
+        $data = site_data_with_existing_schools($data, load_site_data());
+    }
+
     return cms_save_document('site', $data);
 }
 
